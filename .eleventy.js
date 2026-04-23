@@ -37,12 +37,12 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => parseInt(a.data.aula_numero) - parseInt(b.data.aula_numero));
   };
 
-  eleventyConfig.addNunjucksFilter("filterBySubjectBimester", function(collection, subject, bimester) {
+  eleventyConfig.addNunjucksFilter("filterBySubjectBimester", function (collection, subject, bimester) {
     return getLessons(collection, subject, bimester);
   });
 
   return {
-    pathPrefix: "/apostila-bd-ii/",
+    pathPrefix: "/apostilas/",
     dir: {
       input: "src",
       output: "_site"
