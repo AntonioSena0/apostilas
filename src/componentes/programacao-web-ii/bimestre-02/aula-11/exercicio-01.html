@@ -1,18 +1,223 @@
 ---
 layout: exercicio
-title: "Exercício 01 - Introdução ao Paradigma OO: Classes, Objetos e Instanciação em PHP"
-exercicio_numero: "01"
-aula_numero: "11"
-description: "Primeira atividade prática para consolidar os conhecimentos da aula 11."
+title: "Programação Orientada a Objetos com PHP"
+exercicio_numero: "02"
+aula_numero: "12"
+description: "Atividade prática para fixação de conceitos de Classes, Objetos, Encapsulamento e Métodos."
 ---
 
-<p>Enunciado do exercício 01 em desenvolvimento para a disciplina...</p>
+<section class="section-box">
+  <h2>Enunciado</h2>
+  <p>
+    Neste desafio, você recebeu a interface de um Sistema de Biblioteca Técnica
+    desenvolvida em PHP e Bootstrap. O arquivo principal,
+    <strong>index.php</strong>, contém toda a lógica de exibição e o formulário
+    de cadastro, mas o sistema não funcionará enquanto a classe que representa o
+    objeto "Livro" não for criada.
+  </p>
+  <p>
+    Sua tarefa é estudar o código do <code>index.php</code> para deduzir a
+    estrutura necessária da classe. Você deve descobrir, apenas lendo o código
+    fornecido:
+  </p>
+  <ul>
+    <li>
+      Quais dados o construtor da classe deve estar preparado para receber e em
+      qual ordem?
+    </li>
+    <li>
+      Quais métodos a tabela HTML tenta chamar dentro do loop
+      <code>foreach</code> para exibir as informações na estante?
+    </li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>Preparação</h2>
+  <ol>
+    <li>
+      Certifique-se de estar utilizando o <strong>PHP 8.1</strong> ou superior
+      para aproveitar as funcionalidades modernas da linguagem.
+    </li>
+    <li>
+      Crie uma pasta para o exercício no seu ambiente local (XAMPP ou
+      diretório de sua preferência).
+    </li>
+    <li>Salve o código abaixo como <code>index.php</code>.</li>
+    <li>
+      Crie um arquivo novo e vazio chamado <code>Livro.php</code> na mesma
+      pasta.
+    </li>
+  </ol>
+</section>
+
+<section class="section-box">
+  <h2>1. Código Base: index.php (Interface Pronta)</h2>
+  <p>
+    O aluno deve analisar as linhas onde ocorre o <code>new Livro(...)</code> e
+    as chamadas dentro das tags <code>&lt;td&gt;</code> da tabela.
+  </p>
+  <div class="code-container">
+    <pre><code class="language-php">&lt;?php
+require_once 'Livro.php';
+session_start();
+
+if (!isset($_SESSION['livros']))
+  $_SESSION['livros'] = [];
+
+// Adicionar Livro usando o Construtor
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titulo'])) {
+  $novoLivro = new Livro(
+    $_POST['titulo'],
+    $_POST['autor'],
+    $_POST['ano'],
+    $_POST['genero']
+  );
+  $_SESSION['livros'][] = $novoLivro;
+  header("Location: index.php");
+  exit;
+}
+
+if (isset($_GET['del'])) {
+  unset($_SESSION['livros'][$_GET['del']]);
+  $_SESSION['livros'] = array_values($_SESSION['livros']);
+  header("Location: index.php");
+  exit;
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Biblioteca Técnica&lt;/title&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body class="bg-light"&gt;
+  &lt;div class="container py-5"&gt;
+    &lt;h1&gt;Livros&lt;/h1&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-4"&gt;
+        &lt;div class="card shadow-sm border-0"&gt;
+          &lt;div class="card-body"&gt;
+            &lt;h5 class="card-title mb-4"&gt;Novo Registro&lt;/h5&gt;
+            &lt;form method="POST"&gt;
+              &lt;div class="mb-2"&gt;
+                &lt;label class="form-label small"&gt;Título&lt;/label&gt;
+                &lt;input type="text" name="titulo" class="form-control" required&gt;
+              &lt;/div&gt;
+              &lt;div class="mb-2"&gt;
+                &lt;label class="form-label small"&gt;Autor&lt;/label&gt;
+                &lt;input type="text" name="autor" class="form-control" required&gt;
+              &lt;/div&gt;
+              &lt;div class="row"&gt;
+                &lt;div class="col-md-6 mb-2"&gt;
+                  &lt;label class="form-label small"&gt;Ano&lt;/label&gt;
+                  &lt;input type="number" name="ano" class="form-control" required&gt;
+                &lt;/div&gt;
+                &lt;div class="col-md-6 mb-3"&gt;
+                  &lt;label class="form-label small"&gt;Gênero&lt;/label&gt;
+                  &lt;input type="text" name="genero" class="form-control" required&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;button type="submit" class="btn btn-primary w-100"&gt;Salvar Livro&lt;/button&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="col-md-8"&gt;
+        &lt;div class="card shadow-sm border-0"&gt;
+          &lt;div class="table-responsive"&gt;
+            &lt;table class="table table-hover mb-0"&gt;
+              &lt;thead class="table-dark"&gt;
+                &lt;tr&gt;
+                  &lt;th&gt;Livro (Ano)&lt;/th&gt;
+                  &lt;th&gt;Autor&lt;/th&gt;
+                  &lt;th&gt;Gênero&lt;/th&gt;
+                  &lt;th class="text-center"&gt;Ações&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;?php if (empty($_SESSION['livros'])): ?&gt;
+                  &lt;tr&gt;
+                    &lt;td colspan="4" class="text-center py-4 text-muted"&gt;Estante vazia&lt;/td&gt;
+                  &lt;/tr&gt;
+                &lt;?php endif; ?&gt;
+                &lt;?php foreach ($_SESSION['livros'] as $i =&gt; $livro): ?&gt;
+                  &lt;tr&gt;
+                    &lt;td class="align-middle fw-bold"&gt;&lt;?= $livro-&gt;getDetalhes() ?&gt;&lt;/td&gt;
+                    &lt;td class="align-middle"&gt;&lt;?= $livro-&gt;getAutor() ?&gt;&lt;/td&gt;
+                    &lt;td class="align-middle"&gt;&lt;span class="badge bg-secondary"&gt;&lt;?= $livro-&gt;getGenero() ?&gt;&lt;/span&gt;&lt;/td&gt;
+                    &lt;td class="text-center"&gt;
+                      &lt;a href="?del=&lt;?= $i ?&gt;" class="btn btn-sm btn-danger"&gt;Excluir&lt;/a&gt;
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
+                &lt;?php endforeach; ?&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+</section>
+
+<section class="section-box">
+  <h2>O Desafio: Criar Livro.php</h2>
+  <p>
+    Você deve escrever o código do arquivo <code>Livro.php</code> começando do
+    zero. Regras de implementação:
+  </p>
+  <ul>
+    <li>
+      A classe deve utilizar o <strong>Paradigma Orientado a Objetos</strong>.
+    </li>
+    <li>
+      <strong>Encapsulamento:</strong> Mantenha os dados internos protegidos
+      para que o mundo externo só consiga acessá-los através dos métodos
+      públicos necessários.
+    </li>
+    <li>
+      <strong>Identidade Própria:</strong> Utilize a palavra-chave reservada
+      para se referir aos dados da instância atual que está sendo processada no
+      momento.
+    </li>
+    <li>
+      <strong>Tudo está no index.php:</strong> Não invente nomes de variáveis ou
+      funções. Se o <code>index.php</code> tenta chamar uma função ou enviar um
+      dado, sua classe deve ter exatamente esse nome e estrutura para que a
+      conexão entre os arquivos funcione perfeitamente.
+    </li>
+  </ul>
+</section>
 
 <div class="tip-box">
-  <h4>Orientações</h4>
+  <h4>Orientações Finais</h4>
   <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
+    <li>
+      <strong>Estudo Atento:</strong> Todos os nomes de propriedades e métodos
+      que sua classe precisa ter estão descritos e utilizados diretamente no
+      arquivo <code>index.php</code>. Sua missão é garantir que a classe seja o
+      "encaixe" perfeito para o que a interface já espera consumir.
+    </li>
+    <li>
+      <strong>Rodando o Projeto:</strong> Para testar sua aplicação, utilize o
+      servidor embutido do PHP. Abra o terminal na pasta do projeto e execute:
+      <br /><code>php -S localhost:8000</code>
+    </li>
+    <li>
+      <strong>Validação:</strong> Abra <code>http://localhost:8000</code> no
+      navegador. Se o formulário cadastrar os dados e a tabela exibir as
+      informações corretamente sem erros de sistema, sua engenharia reversa foi
+      concluída com sucesso!
+    </li>
+    <li>
+      <strong>Dica Profissional:</strong> Ao criar o construtor, considere
+      utilizar a técnica de <em>Promoção de Propriedades</em> do PHP 8 para
+      tornar seu código mais limpo e eficiente.
+    </li>
   </ul>
 </div>

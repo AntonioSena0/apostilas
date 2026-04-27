@@ -8,48 +8,216 @@ tags:
 ---
 
 <section class="section-box">
-  <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 11 em desenvolvimento...</p>
+  <h2>1. Teoria & Conceitos</h2>
+  <p>A Programação Orientada a Objetos (POO) organiza o software em torno de "objetos" em vez de apenas funções e lógica sequencial. Ela reconhece que dados (propriedades) e comportamentos (métodos) devem estar unidos em uma única estrutura.</p>
+  
+  <h3>Conceitos com Exemplos Práticos:</h3>
+  <ul>
+    <li>
+      <strong>Classe (O Molde):</strong> É um modelo ou plano para criar algo.
+      <br><em>Exemplo Prático:</em> Pense na planta de arquitetura de uma casa. A planta define onde ficam as janelas e portas, mas você não pode morar na planta. Ela é apenas a definição teórica do que uma casa deve ter.
+      <div class="code-container">
+        <pre><code class="language-php">// A classe define o molde (planta)
+class Casa {
+    public $cor;
+    public $voltagem;
+}</code></pre>
+      </div>
+    </li>
+    <li>
+      <strong>Objeto (A Instância):</strong> É a concretização da classe.
+      <br><em>Exemplo Prático:</em> Utilizando a planta (Classe), você constrói uma casa real na Rua A e outra na Rua B. Ambas seguem o mesmo molde, mas são casas distintas (objetos), cada uma com sua própria cor ou morador.
+      <div class="code-container">
+        <pre><code class="language-php">// Criando objetos reais a partir do molde
+$casaRuaA = new Casa();
+$casaRuaB = new Casa();
+
+$casaRuaA->cor = "Azul";
+$casaRuaB->cor = "Branca";</code></pre>
+      </div>
+    </li>
+    <li>
+      <strong>Propriedades (Atributos):</strong> São as características ou dados que o objeto armazena.
+      <br><em>Exemplo Prático:</em> Em um sistema de biblioteca, um objeto Livro teria propriedades como <code>$titulo</code>, <code>$autor</code> e <code>$numeroPaginas</code>.
+      <div class="code-container">
+        <pre><code class="language-php">class Livro {
+    public $titulo;
+    public $autor;
+    public $numeroPaginas;
+}</code></pre>
+      </div>
+    </li>
+    <li>
+      <strong>Métodos (Comportamentos):</strong> São as ações que o objeto pode realizar.
+      <br><em>Exemplo Prático:</em> O objeto Livro pode ter um método <code>abrir()</code> ou <code>trocarPagina()</code>. São as funções que operam sobre os dados internos daquele objeto específico.
+      <div class="code-container">
+        <pre><code class="language-php">class Livro {
+    public function abrir() {
+        echo "O livro agora está aberto.";
+    }
+}</code></pre>
+      </div>
+    </li>
+    <li>
+      <strong>Visibilidade (Encapsulamento):</strong> Define quem pode ver ou alterar os dados.
+      <ul>
+        <li><strong>Public:</strong> Acessível de qualquer lugar (dentro ou fora da classe).</li>
+        <li><strong>Protected:</strong> Acessível apenas dentro da própria classe e por classes que herdam dela (filhas).</li>
+        <li><strong>Private:</strong> Acessível apenas dentro da própria classe (protege os dados contra alterações externas indevidas).</li>
+      </ul>
+      <div class="code-container">
+        <pre><code class="language-php">class Conta {
+    public $titular;    // Aberto
+    protected $token;   // Herança
+    private $saldo;     // Proteção total
+}</code></pre>
+      </div>
+    </li>
+  </ul>
 </section>
 
 <section class="section-box">
-  <h2>Exemplo de Código</h2>
+  <h2>2. Exemplo de Código</h2>
+  <p>Abaixo, apresento a implementação de uma classe para gerenciar contas bancárias e o uso de Promoção de Propriedades do PHP 8.</p>
+  
   <div class="code-container">
-    <pre><code class="language-php">// Em breve...</code></pre>
+    <pre><code class="language-php">&lt;?php
+/**
+ * Cenário Básico: Definição e Instanciação
+ */
+class ContaBancaria {
+    public string $titular; // Propriedade pública
+    private float $saldo = 0.0; // Propriedade privada: protegida contra acesso direto
+
+    // Método para depositar: ação controlada sobre o saldo
+    public function depositar(float $valor): void {
+        $this->saldo += $valor; // $this refere-se à instância atual
+        echo "Depósito de R$ {$valor} realizado para {$this->titular}.\n";
+    }
+
+    // Método para consultar o saldo: interface segura para ler dado privado
+    public function consultarSaldo(): float {
+        return $this->saldo;
+    }
+}
+
+// Instanciação: Criando um objeto real
+$minhaConta = new ContaBancaria();
+$minhaConta->titular = "Roni Sommerfeld";
+$minhaConta->depositar(500.00);
+
+echo "Saldo atual: R$ " . $minhaConta->consultarSaldo();
+
+/**
+ * Recurso Avançado: Promoção de Propriedades (PHP 8)
+ */
+class Usuario {
+    // O construtor é chamado automaticamente no 'new'
+    public function __construct(
+        public string $nome,  // Declara e atribui simultaneamente
+        public string $email  
+    ) {
+        // A atribuição ocorre de forma implícita e automática pelo PHP 8
+        echo "Usuário {$this->nome} criado com sucesso!\n"; 
+    }
+}
+
+$user = new Usuario("Ana Silva", "ana@email.com");
+?&gt;</code></pre>
   </div>
 </section>
 
 <section class="section-box">
-  <h2>Representação Gráfica</h2>
+  <h2>3. Representação Gráfica</h2>
+  
+  <h3>Diagrama de Classe (UML)</h3>
+  <p>Representa a estrutura estática da classe definida em código:</p>
+  <div class="mermaid">
+    classDiagram
+        class ContaBancaria {
+            +String titular
+            -float saldo
+            +depositar(valor)
+            +consultarSaldo()
+        }
+  </div>
+
+  <br>
+  <h3>Fluxo de Instanciação e Memória</h3>
+  <p>Demonstra o que acontece quando o comando <code>new</code> é executado para dois objetos diferentes:</p>
   <div class="mermaid">
     graph TD
-    A[Início] --> B[Processamento]
-    B --> C[Fim]
+        Classe[Classe ContaBancaria] -->|new| Obj1[Objeto: minhaConta]
+        Classe -->|new| Obj2[Objeto: contaEmpresa]
+
+        subgraph Memoria_RAM
+            Obj1 --- D1[titular: 'Roni' <br> saldo: 500.0]
+            Obj2 --- D2[titular: 'Escola' <br> saldo: 0.0]
+        end
+
+        style Obj1 fill:#f9f,stroke:#333,stroke-width:2px
+        style Obj2 fill:#bbf,stroke:#333,stroke-width:2px
   </div>
 </section>
 
 <div class="tip-box">
-  <h4>Dicas & Lembretes</h4>
+  <h4>4. Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li><strong>Identidade Própria:</strong> Mesmo que dois objetos venham da mesma classe, eles são independentes na memória; alterar um não afeta o outro.</li>
+    <li><strong>Encapsulamento é Lei:</strong> Prefira sempre propriedades <code>private</code> ou <code>protected</code> com métodos de acesso para validar os dados.</li>
+    <li><strong>Case Sensitivity:</strong> Nomes de classes são case-insensitive, mas as variáveis de objeto são case-sensitive (<code>$conta</code> != <code>$Conta</code>).</li>
   </ul>
 </div>
 
 <section class="section-box">
-  <h2>Como aplicar na Prática</h2>
-  <p>Aplicação real em desenvolvimento...</p>
+  <h2>5. Como aplicar na Prática</h2>
+  <p>Em um sistema de e-commerce, em vez de lidar com arrays de strings para cada peça, você cria uma classe <code>Peca</code>. Veja a diferença de valor que a POO entrega:</p>
+
+  <h4>Abordagem Procedural (Sem POO)</h4>
+  <p>Os dados ficam soltos e a lógica de negócio (como descontos) precisa ser repetida manualmente em todo o sistema.</p>
+  <div class="code-container">
+    <pre><code class="language-php">&lt;?php
+$peca_nome = "Pistão";
+$peca_preco = 500.00;
+$desconto = $peca_preco * 0.10; // Lógica exposta e repetitiva
+$final = $peca_preco - $desconto;</code></pre>
+  </div>
+
+  <h4>Abordagem Orientada a Objetos (Com POO)</h4>
+  <p>A inteligência está centralizada. Se a regra de desconto mudar, você altera apenas um lugar.</p>
+  <div class="code-container">
+    <pre><code class="language-php">&lt;?php
+
+class Peca {
+  public function __construct(public string $nome, private float $preco) {}
+
+  public function calcularPrecoComDesconto(float $percentual): float {
+      // Regra de negócio protegida e centralizada
+      return $this->preco - ($this->preco * ($percentual / 100));
+  }
+}
+
+$p1 = new Peca("Pistão", 500.00);
+echo $p1->calcularPrecoComDesconto(10);</code></pre>
+  </div>
 </section>
 
 <section class="section-box">
-  <h2>Referências</h2>
+  <h2>6. Referências</h2>
   <ul>
-    <li>Material de apoio em breve.</li>
+    <li>ZANDSTRA, Matt. PHP 8 Objects, Patterns, and Practice. Apress, 2021.</li>
+    <li>SOMMERFELD, Roni. Unlock PHP 8: From Basic to Advanced. 2024.</li>
+    <li>WELLING, Luke; THOMSON, Laura. PHP and MySQL Web Development. 4th Ed.</li>
+    <li>CENTRO PAULA SOUZA. Plano de Curso nº 370: Técnico em Desenvolvimento de Sistemas.</li>
   </ul>
 </section>
 
 <section class="section-box">
-  <h2>Para Praticar</h2>
+  <h2>7. Para Praticar</h2>
   <ul>
+    <li><strong>Modelagem Simples:</strong> Crie uma classe <code>Carro</code> com as propriedades marca e ano.</li>
+    <li><strong>Uso do Construtor:</strong> Implemente a classe utilizando a Promoção de Propriedades do PHP 8.</li>
+    <li><strong>Diferenciação:</strong> Instancie dois objetos de Carro e use <code>var_dump()</code> para visualizar os identificadores únicos na memória (#1, #2).</li>
     <li><a href="./exercicio-01/">Exercício 01: Praticando Conteúdo</a></li>
     <li><a href="./exercicio-02/">Exercício 02: Desafio de Fixação</a></li>
   </ul>
