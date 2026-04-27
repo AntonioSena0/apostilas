@@ -9,6 +9,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLayoutAlias('aula', 'layouts/aula.njk');
   eleventyConfig.addLayoutAlias('exercicio', 'layouts/exercicio.njk');
   eleventyConfig.addLayoutAlias('dashboard', 'layouts/dashboard.njk');
+  eleventyConfig.addLayoutAlias('questionario', 'layouts/questionario.njk');
 
   // Universal Collection for Lessons
   eleventyConfig.addCollection("aulas", function (collectionApi) {

@@ -1,18 +1,367 @@
 ---
-layout: exercicio
-title: "Exercício 02 - Introdução ao Paradigma OO: Classes, Objetos e Instanciação em PHP"
+layout: questionario
+title: "Introdução ao Paradigma OO: Classes, Objetos e Instanciação em PHP"
 exercicio_numero: "02"
 aula_numero: "11"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 11."
+description: "Questionário para consolidar os conhecimentos da aula 11 sobre Programação Orientada a Objetos em PHP."
+perguntas:
+  - texto: "O que é uma classe em PHP?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Um objeto específico criado a partir de um modelo."
+      - letra: "b"
+        texto: "Um modelo ou blueprint para criar objetos."
+      - letra: "c"
+        texto: "Uma variável que armazena dados."
+      - letra: "d"
+        texto: "Uma função que executa operações."
+
+  - texto: "Como se declara uma classe em PHP?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "class MinhaClasse { }"
+      - letra: "b"
+        texto: "function MinhaClasse() { }"
+      - letra: "c"
+        texto: "$minhaClasse = new Class();"
+      - letra: "d"
+        texto: "define('MinhaClasse', 'valor');"
+
+  - texto: "O que é instanciação em POO?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Criar uma nova classe."
+      - letra: "b"
+        texto: "Criar um objeto a partir de uma classe."
+      - letra: "c"
+        texto: "Definir métodos em uma classe."
+      - letra: "d"
+        texto: "Herdar propriedades de outra classe."
+
+  - texto: "Qual é a sintaxe correta para instanciar um objeto em PHP?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "$objeto = new MinhaClasse();"
+      - letra: "b"
+        texto: "$objeto = MinhaClasse();"
+      - letra: "c"
+        texto: "$objeto = create MinhaClasse;"
+      - letra: "d"
+        texto: "$objeto = class MinhaClasse;"
+
+  - texto: "O que são propriedades em uma classe PHP?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Funções que executam ações."
+      - letra: "b"
+        texto: "Variáveis que armazenam dados do objeto."
+      - letra: "c"
+        texto: "Outros objetos relacionados."
+      - letra: "d"
+        texto: "Constantes definidas na classe."
+
+  - texto: "Como são chamadas as funções definidas dentro de uma classe?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Ações."
+      - letra: "b"
+        texto: "Eventos."
+      - letra: "c"
+        texto: "Métodos."
+      - letra: "d"
+        texto: "Procedimentos."
+
+  - texto: "Qual operador é usado para acessar propriedades ou métodos de um objeto no PHP?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "."
+      - letra: "b"
+        texto: "->"
+      - letra: "c"
+        texto: "::"
+      - letra: "d"
+        texto: "=>"
+
+  - texto: "Para que serve a pseudo-variável '$this' em PHP?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Referenciar o objeto atual dentro da classe."
+      - letra: "b"
+        texto: "Criar uma nova instância da classe."
+      - letra: "c"
+        texto: "Acessar propriedades estáticas."
+      - letra: "d"
+        texto: "Referenciar a classe pai."
+
+  - texto: "Qual o nome do método especial usado como construtor no PHP?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "function construct() { }"
+      - letra: "b"
+        texto: "function Livro() { }"
+      - letra: "c"
+        texto: "function __construct() { }"
+      - letra: "d"
+        texto: "function _init() { }"
+
+  - texto: "O que acontece quando um objeto é instanciado?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "A classe é excluída da memória."
+      - letra: "b"
+        texto: "O script PHP é encerrado."
+      - letra: "c"
+        texto: "Todos os métodos são executados automaticamente."
+      - letra: "d"
+        texto: "O método __construct é chamado automaticamente, se existir."
+
+  - texto: "Qual nível de visibilidade permite acesso apenas dentro da própria classe?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "public"
+      - letra: "b"
+        texto: "private"
+      - letra: "c"
+        texto: "protected"
+      - letra: "d"
+        texto: "internal"
+
+  - texto: "Se uma propriedade for declarada como 'public', ela pode ser acessada onde?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Apenas dentro da classe."
+      - letra: "b"
+        texto: "Apenas em classes filhas."
+      - letra: "c"
+        texto: "Apenas pelo construtor."
+      - letra: "d"
+        texto: "De qualquer lugar (dentro ou fora da classe)."
+
+  - texto: "A visibilidade 'protected' permite acesso em quais locais?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Em qualquer lugar do código."
+      - letra: "b"
+        texto: "Somente fora da classe."
+      - letra: "c"
+        texto: "Dentro da própria classe e em classes que herdam dela."
+      - letra: "d"
+        texto: "Somente no método principal."
+
+  - texto: "Por que o encapsulamento é considerado uma boa prática?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Protege os dados contra acessos e modificações indevidas."
+      - letra: "b"
+        texto: "Torna o código mais rápido na execução."
+      - letra: "c"
+        texto: "Obrigada o uso de bancos de dados."
+      - letra: "d"
+        texto: "Elimina a necessidade de criar métodos."
+
+  - texto: "O que são métodos 'Getters' e 'Setters'?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Métodos para excluir o objeto."
+      - letra: "b"
+        texto: "Métodos para ler e definir valores de propriedades privadas."
+      - letra: "c"
+        texto: "Métodos que conectam o PHP ao HTML."
+      - letra: "d"
+        texto: "Funções nativas do sistema operacional."
+
+  - texto: "Qual a recomendação de nomenclatura (boas práticas) para nomes de classes em PHP?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "PascalCase (ex: MinhaClasse)."
+      - letra: "b"
+        texto: "camelCase (ex: minhaClasse)."
+      - letra: "c"
+        texto: "snake_case (ex: minha_classe)."
+      - letra: "d"
+        texto: "Tudo em minúsculas."
+
+  - texto: "Quantos construtores uma classe PHP pode ter?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Apenas um."
+      - letra: "b"
+        texto: "Dois (um público e um privado)."
+      - letra: "c"
+        texto: "Quantos forem necessários."
+      - letra: "d"
+        texto: "Nenhum, o PHP não usa construtores."
+
+  - texto: "Em boas práticas, qual o objetivo de uma classe?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Resolver todos os problemas do sistema em um único arquivo."
+      - letra: "b"
+        texto: "Representar uma única responsabilidade ou entidade."
+      - letra: "c"
+        texto: "Substituir o uso de variáveis globais apenas."
+      - letra: "d"
+        texto: "Guardar apenas códigos HTML."
+
+  - texto: "O que acontece se você não definir uma visibilidade para um método (ex: function teste())?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "O PHP gera um erro fatal."
+      - letra: "b"
+        texto: "Ele será automaticamente 'private'."
+      - letra: "c"
+        texto: "Ele será automaticamente 'public'."
+      - letra: "d"
+        texto: "Ele será 'protected'."
+
+  - texto: "Qual a principal vantagem de usar POO em vez de programação procedural?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Ocupa menos espaço no servidor."
+      - letra: "b"
+        texto: "Não exige o uso de servidores como o Apache."
+      - letra: "c"
+        texto: "É a única forma de conectar com o MySQL."
+      - letra: "d"
+        texto: "Facilita a reutilização, organização e manutenção do código."
+
+  - texto: "Como se chama o ato de esconder os detalhes internos de funcionamento de um objeto?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Polimorfismo."
+      - letra: "b"
+        texto: "Herança."
+      - letra: "c"
+        texto: "Abstração/Encapsulamento."
+      - letra: "d"
+        texto: "Instanciação."
+
+  - texto: "Podemos passar argumentos/parâmetros na criação de um objeto?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Não, o 'new' não aceita parênteses."
+      - letra: "b"
+        texto: "Sim, os valores são enviados para o método __construct."
+      - letra: "c"
+        texto: "Somente se o objeto for público."
+      - letra: "d"
+        texto: "Sim, mas apenas um argumento por vez."
+
+  - texto: "O que é um 'Objeto'?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Uma coleção de arquivos PHP."
+      - letra: "b"
+        texto: "Um banco de dados simplificado."
+      - letra: "c"
+        texto: "Uma instância viva de uma classe com seus próprios dados."
+      - letra: "d"
+        texto: "O nome dado ao servidor local."
+
+  - texto: "Qual é o padrão recomendado para nomes de métodos em PHP?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "PascalCase."
+      - letra: "b"
+        texto: "camelCase (ex: calcularTotal)."
+      - letra: "c"
+        texto: "SNAKE_CASE."
+      - letra: "d"
+        texto: "Nomes aleatórios."
+
+  - texto: "Uma propriedade privada pode ser lida diretamente fora da classe?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Sim, usando o operador ->."
+      - letra: "b"
+        texto: "Sim, se usarmos o var_dump."
+      - letra: "c"
+        texto: "Não, gera um erro de segurança do Windows."
+      - letra: "d"
+        texto: "Não, é necessário um método público (getter) para retornar o valor."
+
+  - texto: "Qual comando PHP é usado para destruir um objeto da memória manualmente?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "delete($objeto);"
+      - letra: "b"
+        texto: "remove($objeto);"
+      - letra: "c"
+        texto: "unset($objeto);"
+      - letra: "d"
+        texto: "destruct($objeto);"
+
+  - texto: "Sobre o construtor, marque a alternativa correta:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Ele deve sempre retornar uma string."
+      - letra: "b"
+        texto: "É usado para inicializar valores iniciais do objeto."
+      - letra: "c"
+        texto: "Só pode ser chamado manualmente via ->__construct."
+      - letra: "d"
+        texto: "Ele apaga os dados da classe anterior."
+
+  - texto: "O que define o 'estado' de um objeto?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Os valores armazenados em suas propriedades em um dado momento."
+      - letra: "b"
+        texto: "A quantidade de métodos que ele possui."
+      - letra: "c"
+        texto: "O nome da classe que o gerou."
+      - letra: "d"
+        texto: "O tempo que ele leva para carregar."
+
+  - texto: "Podemos ter vários objetos diferentes criados a partir da mesma classe?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Sim, cada objeto terá seus próprios valores independentes."
+      - letra: "b"
+        texto: "Não, cada classe só permite uma instância."
+      - letra: "c"
+        texto: "Sim, mas todos compartilharão obrigatoriamente os mesmos dados."
+      - letra: "d"
+        texto: "Apenas se usarmos o comando 'clone'."
+
+  - texto: "Qual a utilidade do modificador de acesso 'public' para propriedades?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Tornar o código criptografado."
+      - letra: "b"
+        texto: "Permitir que qualquer parte do sistema leia ou altere o valor diretamente."
+      - letra: "c"
+        texto: "Fazer a classe rodar mais rápido em navegadores antigos."
+      - letra: "d"
+        texto: "Impedir que o objeto seja apagado."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Aplique os conceitos de lógica e sintaxe aprendidos.</li>
-    <li>Verifique se o resultado atende aos requisitos propostos.</li>
-    <li>Documente seu código para facilitar o entendimento.</li>
-  </ul>
-</div>

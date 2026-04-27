@@ -1,0 +1,97 @@
+---
+layout: base
+---
+
+<article class="lesson-content">
+  <header class="lesson-header">
+    <a href="../" class="back-link-class">← Voltar para Aula {{ aula_numero }}</a>
+    <h1>Exercício {{ exercicio_numero }}: {{ title }}</h1>
+    {% if description %}
+      <p class="lesson-intro">{{ description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="tip-box">
+    <h4>Instruções</h4>
+    <ul>
+      <li>Leia cada pergunta com atenção.</li>
+      <li>Selecione apenas uma alternativa por pergunta.</li>
+      <li>Ao finalizar, clique em "Verificar Respostas" para ver sua pontuação.</li>
+    </ul>
+  </div>
+
+  <form id="quiz-form">
+    {% for pergunta in perguntas %}
+    {% set perguntaNum = loop.index %}
+    <div class="section-box">
+      <h2>{{ perguntaNum }}. {{ pergunta.texto }}</h2>
+      {% for alternativa in pergunta.alternativas %}
+      <label><input type="radio" name="q{{ perguntaNum }}" value="{{ alternativa.letra }}"> {{ alternativa.letra }}) {{ alternativa.texto }}</label><br>
+      {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="button" onclick="verificarRespostas()">Verificar Respostas</button>
+  </form>
+
+  <div id="resultado" class="section-box">
+    <h2>Resultado:</h2>
+    <p id="pontuacao"></p>
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    function verificarRespostas() {
+      const resultSection = document.getElementById('resultado');
+      const closeResultSectionText = "Fechar Respostas";
+      const showResultSectionText = "Verificar Respostas";
+
+      if(resultSection.style.display === 'block') {
+        resultSection.style.display = 'none';
+        document.querySelector('#quiz-form button').textContent = showResultSectionText;
+        return;
+      }
+
+      const respostasCorretas = {
+        {% for pergunta in perguntas %}
+        q{{ loop.index }}: '{{ pergunta.resposta_correta }}'{{ "," if not loop.last else "" }}
+        {% endfor %}
+      };
+
+      let pontuacao = 0;
+      const totalPerguntas = Object.keys(respostasCorretas).length;
+
+      for (let pergunta in respostasCorretas) {
+        const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
+        if (selecionada && selecionada.value === respostasCorretas[pergunta]) {
+          pontuacao++;
+        }
+      }
+
+      const porcentagem = (pontuacao / totalPerguntas) * 100;
+      let feedback = '';
+
+      if (porcentagem >= 80) {
+        feedback = 'Excelente! Você dominou os conceitos.';
+      } else if (porcentagem >= 60) {
+        feedback = 'Bom trabalho! Mas revise alguns conceitos.';
+      } else {
+        feedback = 'Precisa revisar o conteúdo. Tente novamente.';
+      }
+
+      document.getElementById('pontuacao').textContent = `Você acertou ${pontuacao} de ${totalPerguntas} perguntas (${porcentagem.toFixed(0)}%).`;
+      document.getElementById('feedback').textContent = feedback;
+      
+      // Resetar todas as seleções dos radio buttons
+      const radioButtons = document.querySelectorAll('#quiz-form input[type="radio"]');
+      radioButtons.forEach(radio => radio.checked = false);
+      
+      resultSection.style.display = 'block';
+      document.querySelector('#quiz-form button').textContent = closeResultSectionText;
+    }
+  </script>
+
+  <nav class="lesson-pagination">
+    <a href="../" class="back">VOLTAR PARA AULA</a>
+  </nav>
+</article>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   --bg: #ffffff;
@@ -15,7 +15,11 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--fg);
@@ -213,7 +217,6 @@ header a {
   line-height: 1.4;
 }
 
-
 /* Lesson Content */
 .back-link-class {
   padding: 0.5rem 0;
@@ -225,7 +228,6 @@ header a {
 .back-link-class:hover {
   text-decoration: underline;
 }
-
 
 .aula-badge {
   display: none;
@@ -242,7 +244,7 @@ header a {
 pre {
   padding: 1.5rem;
   overflow-x: auto;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.9rem;
 }
 
@@ -264,7 +266,6 @@ pre {
   font-size: 1.4rem;
 }
 
-
 .section-box {
   border: 2px solid var(--border);
   padding: 2.5rem;
@@ -284,7 +285,6 @@ pre {
   font-weight: 800;
   margin-bottom: 1rem;
 }
-
 
 /* Mermaid */
 .mermaid {
@@ -327,20 +327,20 @@ th {
   border-top: 4px solid var(--border);
 }
 
-.lesson-pagination>* {
+.lesson-pagination > * {
   flex: 1;
   display: flex;
 }
 
-.lesson-pagination> :nth-child(1) {
+.lesson-pagination > :nth-child(1) {
   justify-content: flex-start;
 }
 
-.lesson-pagination> :nth-child(2) {
+.lesson-pagination > :nth-child(2) {
   justify-content: center;
 }
 
-.lesson-pagination> :nth-child(3) {
+.lesson-pagination > :nth-child(3) {
   justify-content: flex-end;
 }
 
@@ -382,4 +382,56 @@ footer {
   .section-box {
     padding: 1.25rem;
   }
+}
+
+/* Questionário Styles */
+
+.section-box input[type="radio"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background: transparent;
+  transition: all 0.5s ease;
+}
+
+.section-box input[type="radio"]:checked {
+  background: #000;
+}
+
+.section-box label {
+  display: block;
+  cursor: pointer;
+}
+
+#quiz-form button {
+  background: var(--fg);
+  color: var(--bg);
+  border: 2px solid var(--fg);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+#quiz-form button:hover {
+  background: var(--bg);
+  color: var(--fg);
+  border: 2px solid var(--fg);
+}
+
+#resultado {
+  display: none;
+  margin-top: 2rem;
 }
