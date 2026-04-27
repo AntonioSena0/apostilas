@@ -36,24 +36,29 @@ Este projeto é uma apostila digital interativa para a disciplina de **Banco de 
 
 1. Clone o repositório ou baixe os arquivos.
 2. No terminal, acesse a pasta do projeto e instale as dependências:
-   ```bash
-   npm install
-   ```
+
+```bash
+npm install
+```
 
 ### Desenvolvimento
 
 Para rodar o projeto localmente com recarregamento automático (Hot Reload):
+
 ```bash
 npm start
 ```
+
 O site estará disponível em `http://localhost:8080`.
 
 ### Build de Produção
 
 Para gerar a versão final e otimizada do site:
+
 ```bash
 npm run build
 ```
+
 Os arquivos gerados estarão na pasta `_site/`.
 
 ## Como Hospedar no GitHub Pages
@@ -66,7 +71,9 @@ Este projeto já está configurado para deploy automático via **GitHub Actions*
 4. Sempre que você fizer um `push` para a branch `main`, o GitHub irá compilar o projeto e atualizar o site automaticamente.
 
 ### Importante: Path Prefix
+
 Se o seu site não estiver na raiz do domínio (ex: `usuario.github.io/nome-do-repo/`), você deve configurar o prefixo no arquivo `.eleventy.js`:
+
 ```javascript
 return {
   pathPrefix: "/nome-do-repo/",
