@@ -1,18 +1,307 @@
 ---
-layout: exercicio
-title: "Exercício 02 - Segurança e Privilégios - Controle de Acesso"
+layout: questionario
+title: "Segurança e Controle de Acesso: DCL e Privilégios"
 exercicio_numero: "02"
 aula_numero: "07"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 07."
+description: "Questionário sobre segurança em SGBDs, abordando autenticação, autorização e comandos GRANT e REVOKE."
+perguntas:
+  - texto: "Qual subconjunto da linguagem SQL é responsável pela autorização de acesso aos objetos do banco de dados?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "DDL (Data Definition Language)"
+      - letra: "b"
+        texto: "DML (Data Manipulation Language)"
+      - letra: "c"
+        texto: "DCL (Data Control Language)"
+      - letra: "d"
+        texto: "TCL (Transaction Control Language)"
+
+  - texto: "Como é definido o processo de verificar a identidade do usuário (quem você é) antes de acessar o SGBD?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Autenticação"
+      - letra: "b"
+        texto: "Autorização"
+      - letra: "c"
+        texto: "Auditoria"
+      - letra: "d"
+        texto: "Integridade"
+
+  - texto: "O processo de verificar quais privilégios um usuário identificado possui (o que você pode fazer) é chamado de:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Autenticação"
+      - letra: "b"
+        texto: "Autorização"
+      - letra: "c"
+        texto: "Criptografia"
+      - letra: "d"
+        texto: "Normalização"
+
+  - texto: "No MySQL, a identidade de um usuário é composta por quais elementos fundamentais?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Apenas o nome do usuário."
+      - letra: "b"
+        texto: "Nome do usuário e e-mail."
+      - letra: "c"
+        texto: "Nome do usuário e cargo na empresa."
+      - letra: "d"
+        texto: "Nome do usuário e host de origem (ex: 'user'@'host')."
+
+  - texto: "Qual o objetivo principal do comando GRANT?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Excluir um usuário do banco de dados."
+      - letra: "b"
+        texto: "Atribuir permissões específicas a um usuário ou papel."
+      - letra: "c"
+        texto: "Modificar a estrutura física de uma tabela."
+      - letra: "d"
+        texto: "Criar uma chave primária em uma entidade forte."
+
+  - texto: "O comando utilizado para remover privilégios anteriormente concedidos é o:"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "DENY"
+      - letra: "b"
+        texto: "DROP"
+      - letra: "c"
+        texto: "REVOKE"
+      - letra: "d"
+        texto: "DELETE"
+
+  - texto: "Em sistemas como MySQL e PostgreSQL, o que acontece se um acesso não for explicitamente permitido via GRANT?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "O acesso é negado por padrão (negação implícita)."
+      - letra: "b"
+        texto: "O acesso é permitido apenas para leitura (SELECT)."
+      - letra: "c"
+        texto: "O usuário torna-se automaticamente o proprietário do objeto."
+      - letra: "d"
+        texto: "O sistema solicita uma permissão temporária ao administrador."
+
+  - texto: "O princípio que dita que cada usuário deve acessar apenas as informações estritamente necessárias para suas funções é o:"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Princípio da Redundância Mínima"
+      - letra: "b"
+        texto: "Princípio da Integridade Referencial"
+      - letra: "c"
+        texto: "Princípio da Autenticação Forte"
+      - letra: "d"
+        texto: "Princípio do Privilégio Mínimo"
+
+  - texto: "Qual nível de granularidade permite que um usuário veja o nome de um produto, mas não o seu preço de custo?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Nível de Tabela"
+      - letra: "b"
+        texto: "Nível de Banco de Dados"
+      - letra: "c"
+        texto: "Nível de Coluna"
+      - letra: "d"
+        texto: "Nível de Rotina"
+
+  - texto: "No PostgreSQL, a identidade de acesso é baseada principalmente em:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "User + Host"
+      - letra: "b"
+        texto: "Roles (Papéis)"
+      - letra: "c"
+        texto: "Endereço MAC da placa de rede"
+      - letra: "d"
+        texto: "Tabelas .ibd"
+
+  - texto: "Onde são armazenados os privilégios globais no MySQL?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Na tabela de sistema mysql.user"
+      - letra: "b"
+        texto: "No arquivo externo pg_hba.conf"
+      - letra: "c"
+        texto: "No information_schema.tables"
+      - letra: "d"
+        texto: "Dentro do cabeçalho de cada arquivo .db"
+
+  - texto: "Qual a particularidade do PostgreSQL ao conceder acesso a uma tabela dentro de um esquema (schema)?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "O acesso às tabelas é liberado automaticamente no login."
+      - letra: "b"
+        texto: "Não é possível dar acesso a tabelas individuais."
+      - letra: "c"
+        texto: "Exige-se o privilégio de USAGE no SCHEMA antes do acesso à tabela."
+      - letra: "d"
+        texto: "O usuário deve ser o Owner (proprietário) do banco de dados."
+
+  - texto: "O que caracteriza o 'Owner' (Proprietário) de uma tabela no contexto de SGBDs?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "É o usuário que possui a maior senha do sistema."
+      - letra: "b"
+        texto: "É o criador da tabela, possuindo controle total sobre ela por padrão."
+      - letra: "c"
+        texto: "É qualquer usuário que possua o privilégio SELECT."
+      - letra: "d"
+        texto: "É o administrador do servidor de hardware."
+
+  - texto: "Privilégios que afetam todo o servidor de banco de dados são classificados como nível:"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Local"
+      - letra: "b"
+        texto: "Relacional"
+      - letra: "c"
+        texto: "Colunar"
+      - letra: "d"
+        texto: "Global"
+
+  - texto: "Sobre Integridade e Segurança, é correto afirmar que:"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Privilégios garantem que apenas pessoas certas modifiquem os dados."
+      - letra: "b"
+        texto: "A segurança de acesso substitui as chaves estrangeiras."
+      - letra: "c"
+        texto: "A integridade lógica impede o login de usuários não autorizados."
+      - letra: "d"
+        texto: "O comando GRANT é usado para definir chaves primárias."
+
+  - texto: "Qual comando é frequentemente usado no SQL Server para proibir explicitamente um acesso?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "REVOKE"
+      - letra: "b"
+        texto: "DENY"
+      - letra: "c"
+        texto: "FORBID"
+      - letra: "d"
+        texto: "BLOCK"
+
+  - texto: "O nível de granularidade que controla a execução de Procedures e Functions é o nível de:"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Tabela"
+      - letra: "b"
+        texto: "Coluna"
+      - letra: "c"
+        texto: "Rotina"
+      - letra: "d"
+        texto: "Database"
+
+  - texto: "No PostgreSQL, os privilégios de papéis e autenticação são gerenciados através de catálogos como:"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "mysql.db"
+      - letra: "b"
+        texto: "sys.auth"
+      - letra: "c"
+        texto: "config.users"
+      - letra: "d"
+        texto: "pg_authid e pg_roles"
+
+  - texto: "A segurança em SGBDs visa proteger os dados contra o uso indevido e garantir a:"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Confidencialidade e consistência a longo prazo."
+      - letra: "b"
+        texto: "Velocidade máxima de conexão via rede."
+      - letra: "c"
+        texto: "Eliminação total de backups físicos."
+      - letra: "d"
+        texto: "Criação ilimitada de usuários anônimos."
+
+  - texto: "Ao revogar um privilégio com REVOKE, o que acontece com os outros acessos do usuário?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Todos os outros acessos são removidos por segurança."
+      - letra: "b"
+        texto: "Os demais acessos que não foram revogados são mantidos."
+      - letra: "c"
+        texto: "O usuário é desconectado imediatamente do servidor."
+      - letra: "d"
+        texto: "A senha do usuário é invalidada."
+
+  - texto: "Qual comando DCL concede a permissão de inserir novos registros em uma tabela?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "GRANT SELECT"
+      - letra: "b"
+        texto: "GRANT UPDATE"
+      - letra: "c"
+        texto: "GRANT INSERT"
+      - letra: "d"
+        texto: "GRANT ALTER"
+
+  - texto: "Em qual cenário a granularidade de 'Database/Esquema' é aplicada?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Ao dar permissão para um usuário desligar o servidor."
+      - letra: "b"
+        texto: "Ao permitir a alteração de apenas uma célula da tabela."
+      - letra: "c"
+        texto: "Ao ocultar o nome das colunas de uma tabela."
+      - letra: "d"
+        texto: "Ao conceder permissões para agir dentro de um banco de dados específico."
+
+  - texto: "O que garante que os dados em um banco de dados sejam logicamente corretos?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Comandos GRANT e REVOKE."
+      - letra: "b"
+        texto: "Restrições de Integridade (PK e FK)."
+      - letra: "c"
+        texto: "O host de origem do usuário."
+      - letra: "d"
+        texto: "A extensão do arquivo .sqlite."
+
+  - texto: "No MySQL, o que acontece se você der um privilégio em um database para um usuário?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Ele ganha acesso imediato às tabelas daquele banco."
+      - letra: "b"
+        texto: "Ele precisa de uma permissão adicional de USAGE no sistema."
+      - letra: "c"
+        texto: "O banco de dados é bloqueado para outros usuários."
+      - letra: "d"
+        texto: "O acesso é negado até que o servidor seja reiniciado."
+
+  - texto: "A autorização no contexto de SGBDs trata especificamente de:"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Descobrir a senha secreta do administrador."
+      - letra: "b"
+        texto: "Instalar o banco de dados no disco rígido."
+      - letra: "c"
+        texto: "Gerenciar o acesso aos objetos do banco via dicionário de dados."
+      - letra: "d"
+        texto: "Aumentar o número de colunas em uma tabela fraca."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Aplique os conceitos de lógica e sintaxe aprendidos.</li>
-    <li>Verifique se o resultado atende aos requisitos propostos.</li>
-    <li>Documente seu código para facilitar o entendimento.</li>
-  </ul>
-</div>
