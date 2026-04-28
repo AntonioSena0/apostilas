@@ -1,7 +1,7 @@
 ---
 title: "Elaboração do cronograma de trabalho e levantamento de recursos necessários."
 aula_numero: "11"
-description: "Descrição da aula 11"
+description: "Aprenda a estruturar cronogramas, definir WBS, e identificar recursos necessários para o desenvolvimento do seu TCC tecnológico."
 tags:
   - aula
   - bimestre-02
@@ -9,49 +9,123 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo teórico da aula.</p>
+  
+  <h3>Cronograma de Trabalho</h3>
+  <p>É o instrumento que responde à pergunta "<strong>Quando?</strong>". Ele divide a pesquisa ou o desenvolvimento em etapas, prevendo o tempo necessário para passar de uma fase a outra. Em projetos de tecnologia, o cronograma é parte vital do Plano de Gerenciamento do Projeto, garantindo que o ciclo de vida de desenvolvimento de sistemas (SDLC) seja respeitado.</p>
+  
+  <h3>WBS (Work Breakdown Structure)</h3>
+  <p>No desenvolvimento de sistemas, utiliza-se a Estrutura Analítica do Projeto (EAP) para decompor o projeto em tarefas menores e hierárquicas, facilitando a estimativa de tempo e atribuição de responsáveis. A WBS funciona como um mapa de todas as atividades que precisam ser realizadas para atingir o objetivo final do projeto.</p>
+  
+  <h3>Recursos Necessários</h3>
+  <p>O levantamento responde às questões "<strong>Com o quê?</strong>" e "<strong>Quanto?</strong>". Divide-se em três categorias:</p>
+  <ul>
+    <li><strong>Recursos Humanos (Staffing):</strong> Definição da equipe e das habilidades técnicas e interpessoais necessárias.</li>
+    <li><strong>Recursos Materiais e Tecnológicos:</strong> Especificação de hardware (servidores, dispositivos) e software (IDEs, bancos de dados, frameworks).</li>
+    <li><strong>Recursos Financeiros:</strong> Elaboração do orçamento (Budget) para cobrir pessoal e material permanente ou de consumo.</li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Exemplo de Código</h2>
+  <p>Embora cronogramas sejam gerenciais, em projetos modernos eles podem ser representados por arquivos de configuração (YAML/JSON) em ferramentas de automação:</p>
   <div class="code-container">
-    <pre><code class="language-text">// Exemplo de código</code></pre>
+    <pre><code class="language-yaml"># Exemplo de estrutura de tarefas para o TCC (WBS)
+projeto_tcc:
+  fase_1_planejamento:
+    - tarefa: Delimitação do Tema
+      duracao: 1 semana
+    - tarefa: Levantamento de Recursos
+      responsavel: "Equipe"
+  fase_2_analise:
+    - tarefa: Elicitação de Requisitos
+      depedencia: "Delimitação do Tema"
+    - tarefa: Diagrama de Casos de Uso
+      status: "Pendente"
+  recursos_hardware:
+    - item: "Computador com 8GB RAM"
+    - item: "Dispositivo Móvel (Android/iOS)"</code></pre>
   </div>
 </section>
 
 <section class="section-box">
   <h2>Representação Gráfica</h2>
+  <p>As principais formas de visualizar o cronograma e os recursos são:</p>
+  
+  <h4>Gráfico de Gantt (Exemplo Simplificado)</h4>
+  <div class="mermaid">
+    gantt
+      title Cronograma do TCC - 1º Semestre
+      dateFormat YYYY-MM-DD
+      
+      section Planejamento
+      Delimitação do Tema :t1, 2026-05-01, 7d
+      Levantamento de Recursos :t2, after t1, 7d
+      
+      section Análise
+      Elicitação de Requisitos :t3, after t2, 14d
+      Diagrama de Casos de Uso :t4, after t3, 10d
+      
+      section Modelagem
+      Modelo de BD :t5, after t4, 14d
+  </div>
+  
+  <h4>Diagrama Hierárquico (WBS)</h4>
   <div class="mermaid">
     graph TD
-    A --> B
+      TCC["Projeto TCC"] --> P1["Planejamento"]
+      TCC --> P2["Análise"]
+      TCC --> P3["Modelagem"]
+      TCC --> P4["Implementação"]
+      
+      P1 --> P1A["Delimitação do Tema"]
+      P1 --> P1B["Levantamento de Recursos"]
+      
+      P2 --> P2A["Elicitação de Requisitos"]
+      P2 --> P2B["Diagrama de Casos de Uso"]
+      
+      P3 --> P3A["Modelo de BD"]
+      P3 --> P3B["Diagrama de Classes"]
+      
+      P4 --> P4A["Prototipagem"]
+      P4 --> P4B["Testes"]
   </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Dica importante</li>
+    <li><strong>Margem de Erro:</strong> No início do projeto (fase de planejamento), as estimativas de tempo podem ter uma margem de erro de até 25%, e as de custo de até 100%. Seja conservador nos prazos.</li>
+    <li><strong>Scope Creep:</strong> Cuidado com a "corrupção de escopo" — a adição de novas funcionalidades durante o projeto sem o ajuste proporcional no cronograma e nos recursos.</li>
+    <li><strong>Milestones (Marcos):</strong> Estabeleça datas críticas para entregas parciais e correções.</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
   <ul>
-    <li>Aplicação prática</li>
+    <li><strong>Ferramentas de Gestão:</strong> Utilize softwares como Microsoft Project, Trello ou Slack para gerenciar a comunicação e as tarefas.</li>
+    <li><strong>Documentação de Recursos:</strong> Crie um documento de Especificação de Hardware e Software, listando tudo que será instalado e os custos associados (licenças, treinamento).</li>
+    <li><strong>Metodologias Ágeis:</strong> Considere o uso de Sprints e quadros Kanban para visualizar o fluxo de trabalho e recursos em tempo real.</li>
   </ul>
 </section>
 
 <section class="section-box">
   <h2>Referências</h2>
   <ul>
-    <li>Referência 1</li>
+    <li>DENNIS, Alan; WIXOM, Barbara Haley; ROTH, Roberta M. <em>Análise e Projeto de Sistemas</em>. 5. ed. São Paulo: LTC, 2014.</li>
+    <li>LAKATOS, Eva Maria; MARCONI, Marina de Andrade. <em>Fundamentos de Metodologia Científica</em>. 8. ed. São Paulo: Atlas, 2017.</li>
+    <li>BEZERRA, E. <em>Princípios de Análise e Projeto de Sistemas com UML</em>. Elsevier.</li>
+    <li><a href="https://www.lucidchart.com/pages/pt/guia/o-que-e-grafico-de-gantt">O que é e como fazer gráfico de Gantt</a></li>
+    <li><a href="https://artia.com/blog/como-fazer-eap-na-gestao-de-projetos/">EAP (Estrutura Analítica do Projeto): o que é, aprenda a fazer em 4 passos e benefícios na gestão de projetos</a></li>
   </ul>
 </section>
 
 <section class="section-box">
   <h2>Para Praticar</h2>
-  <ul>
-    <li><a href="#">Exercício 1</a></li>
-  </ul>
+  <ol>
+    <li><strong>Elabore uma WBS (EAP)</strong> para o seu TCC, contendo pelo menos 3 fases e 10 subtarefas no total. Utilize as fases abordadas neste bimestre como referência.</li>
+    <li><strong>Liste todos os recursos de software</strong> (IDEs, Bancos de Dados, Ferramentas CASE) que você precisará para desenvolver seu protótipo tecnológico, baseando-se nas sugestões do plano de curso.</li>
+    <li><strong>Crie um Gráfico de Gantt simplificado</strong> (pode ser em papel ou planilha) para o primeiro semestre de desenvolvimento do seu projeto, indicando duração estimada de cada fase.</li>
+  </ol>
 </section>
 
