@@ -25,6 +25,27 @@ Este projeto é uma apostila digital interativa para a disciplina de **Banco de 
 └── package.json        # Dependências e scripts do projeto
 ```
 
+## Convenções de Numeração
+
+### Aulas
+
+As aulas são numeradas de forma **contínua** ao longo de todo o componente curricular, independente do bimestre:
+
+- **1º Bimestre**: Aulas 01-10
+- **2º Bimestre**: Aulas 11-20  
+- **3º Bimestre**: Aulas 21-30
+- **4º Bimestre**: Aulas 31-40
+
+Esta convenção facilita a navegação sequencial e a referência cruzada entre conteúdos relacionados.
+
+### Diretórios
+
+Apesar da numeração contínua das aulas, os diretórios mantêm a organização por bimestre para facilitar a manutenção:
+
+```text
+componentes/[componente]/bimestre-XX/aula-XX/
+```
+
 ## Como Executar o Projeto
 
 ### Pré-requisitos
