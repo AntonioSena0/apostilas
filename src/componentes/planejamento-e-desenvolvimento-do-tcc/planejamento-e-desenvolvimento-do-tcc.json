@@ -1,0 +1,17 @@
+{
+  "subject": "planejamento-e-desenvolvimento-do-tcc",
+  "subject_title": "Planejamento e Desenvolvimento do Trabalho de Conclusao de Curso",
+  "subject_description": "Componente dedicado ao planejamento, desenvolvimento e execução do Trabalho de Conclusão de Curso, abrangendo desde a definição do tema até a apresentação final.",
+  "subject_status": "40 Aulas • 4 Bimestres",
+  
+  "layout": "aula",
+
+  "tags": ["aula"],
+  "nav_text": "⮜ VOLTAR",
+  "bimester_titles": {
+    "bimestre-01": "Planejamento, Problematização e Modelagem de Negócio",
+    "bimestre-02": "Engenharia de Requisitos e Estrutura do Artigo",
+    "bimestre-03": "Modelagem Técnica e Análise de Dados",
+    "bimestre-04": "Implementação, Finalização e Apresentação"
+  }
+}
