@@ -25,7 +25,8 @@ tags:
   </ul>
 </section>
 
-<section class="section-box">
+<!-- TODO: Pensar no que colocar aqui -->
+<!-- <section class="section-box">
   <h2>Exemplo de Código</h2>
   <p>Embora cronogramas sejam gerenciais, em projetos modernos eles podem ser representados por arquivos de configuração (YAML/JSON) em ferramentas de automação:</p>
   <div class="code-container">
@@ -45,49 +46,53 @@ projeto_tcc:
     - item: "Computador com 8GB RAM"
     - item: "Dispositivo Móvel (Android/iOS)"</code></pre>
   </div>
-</section>
+</section> -->
 
 <section class="section-box">
   <h2>Representação Gráfica</h2>
   <p>As principais formas de visualizar o cronograma e os recursos são:</p>
   
   <h4>Gráfico de Gantt (Exemplo Simplificado)</h4>
-  <div class="mermaid">
-    gantt
-      title Cronograma do TCC - 1º Semestre
-      dateFormat YYYY-MM-DD
-      
-      section Planejamento
-      Delimitação do Tema :t1, 2026-05-01, 7d
-      Levantamento de Recursos :t2, after t1, 7d
-      
-      section Análise
-      Elicitação de Requisitos :t3, after t2, 14d
-      Diagrama de Casos de Uso :t4, after t3, 10d
-      
-      section Modelagem
-      Modelo de BD :t5, after t4, 14d
-  </div>
+  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fres.cloudinary.com%2Fmonday-blogs%2Ffl_lossy%2Cf_auto%2Cq_auto%2Fwp-blog%2F2024%2F01%2Fgantt_pmo.png&f=1&nofb=1&ipt=54e59b377119cd48db10751b119afb1594151cee76a6bd005e564641a94f7bf4" alt="Exemplo Diagrama de Gantt">
+  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftemplatelab.com%2Fwp-content%2Fuploads%2F2020%2F06%2FDaily-Gantt-Chart-Template-TemplateLab-scaled.jpg&f=1&nofb=1&ipt=ae648de4edd49ff5ca6c063c89509767d612ee4ef202d05a0c85f109ff9c57fd" alt="Exemplo Diagrama de Gantt no Excel">
   
   <h4>Diagrama Hierárquico (WBS)</h4>
+  <h5>Mapa mental</h5>
+  <div class="mermaid">
+    mindmap
+      root((Projeto: Portal TI))
+        Gerenciamento de Projeto
+          Planejamento
+          Reuniões de Status
+          Documentação
+        Desenvolvimento Frontend
+          Interface do Usuário
+          Componentes Reutilizáveis
+          Consumo de APIs
+        Desenvolvimento Backend
+          Arquitetura da Base de Dados
+          Autenticação
+          Serviços de API
+        Infraestrutura e DevOps
+          Configuração de Containers
+          Pipeline CI/CD
+          Hospedagem em Nuvem
+        QA e Testes
+          Testes Unitários
+          Testes de Usabilidade
+  </div>
+  <h5>Fluxograma</h5>
   <div class="mermaid">
     graph TD
-      TCC["Projeto TCC"] --> P1["Planejamento"]
-      TCC --> P2["Análise"]
-      TCC --> P3["Modelagem"]
-      TCC --> P4["Implementação"]
-      
-      P1 --> P1A["Delimitação do Tema"]
-      P1 --> P1B["Levantamento de Recursos"]
-      
-      P2 --> P2A["Elicitação de Requisitos"]
-      P2 --> P2B["Diagrama de Casos de Uso"]
-      
-      P3 --> P3A["Modelo de BD"]
-      P3 --> P3B["Diagrama de Classes"]
-      
-      P4 --> P4A["Prototipagem"]
-      P4 --> P4B["Testes"]
+      A[Projeto: Portal TI] --> B[1.0 Iniciação]
+      A --> C[2.0 Execução]
+      A --> D[3.0 Encerramento]
+
+      B --> B1[1.1 Levantamento de Requisitos]
+      B --> B2[1.2 Definição de Arquitetura]
+
+      C --> C1[2.1 Desenvolvimento]
+      C --> C2[2.2 Testes]
   </div>
 </section>
 
