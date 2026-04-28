@@ -1,0 +1,17 @@
+{
+  "subject": "banco-de-dados-i",
+  "subject_title": "Banco de Dados I",
+  "subject_description": "Esta disciplina introduz os fundamentos da modelagem de dados, desde a abstração conceitual até a implementação prática, preparando o aluno para o desenvolvimento de sistemas de informação robustos.",
+  "subject_status": "40 Aulas • 4 Bimestres",
+
+  "layout": "aula",
+
+  "tags": ["aula"],
+  "nav_text": "⮜ VOLTAR",
+  "bimester_titles": {
+    "bimestre-01": "O Processo de Abstração e Modelo Conceitual",
+    "bimestre-02": "Modelagem Avançada e Mapeamento Lógico",
+    "bimestre-03": "Qualidade de Dados - Normalização",
+    "bimestre-04": "Implementação Prática (Introdução à DDL)"
+  }
+}
