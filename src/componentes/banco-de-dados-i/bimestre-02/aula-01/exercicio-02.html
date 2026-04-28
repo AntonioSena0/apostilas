@@ -1,22 +1,367 @@
 ---
-layout: exercicio
-title: "Introdução aos Bancos de Dados: Evolução histórica e papel nas organizações."
+layout: questionario
+title: "Modelagem de Dados: Entidades Fortes, Fracas e Relacionamentos"
 exercicio_numero: "02"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 01."
+aula_numero: "11"
+description: "Questionário sobre entidades, dependência existencial e cardinalidade no Modelo Entidade-Relacionamento."
+perguntas:
+  - texto: "O que caracteriza uma entidade forte (ou regular) em um modelo de dados?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Sua existência depende de um relacionamento com outra entidade."
+      - letra: "b"
+        texto: "Ela é representada graficamente por retângulos de linha dupla."
+      - letra: "c"
+        texto: "Ela possui existência independente no mundo real e atributos que formam uma chave primária própria."
+      - letra: "d"
+        texto: "Ela não pode ser identificada unicamente através de seus próprios atributos."
+
+  - texto: "Como é definida tecnicamente uma entidade fraca?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Uma entidade que não possui existência própria individualizada e não tem atributos-chave próprios."
+      - letra: "b"
+        texto: "Uma entidade que possui apenas atributos multivalorados."
+      - letra: "c"
+        texto: "Um objeto que pode ser identificado unicamente sem recorrer a outras entidades."
+      - letra: "d"
+        texto: "Qualquer entidade que participe de um relacionamento 1:N."
+
+  - texto: "No Modelo Entidade-Relacionamento (notação Peter Chen), como se representa graficamente uma entidade fraca?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Um losango de linha simples."
+      - letra: "b"
+        texto: "Um retângulo com linhas duplas."
+      - letra: "c"
+        texto: "Uma elipse com linha tracejada."
+      - letra: "d"
+        texto: "Um retângulo de linha simples."
+
+  - texto: "O que é o 'proprietário da identificação' no contexto de entidades fracas?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "O administrador do banco de dados que cria as tabelas."
+      - letra: "b"
+        texto: "O atributo que identifica unicamente a entidade fraca."
+      - letra: "c"
+        texto: "Um relacionamento ternário entre três entidades fortes."
+      - letra: "d"
+        texto: "A entidade forte à qual a entidade fraca está subordinada para sua identificação."
+
+  - texto: "Qual é a função da 'chave parcial' (ou discriminador) em uma entidade fraca?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Substituir a chave primária da entidade forte."
+      - letra: "b"
+        texto: "Identificar univocamente as instâncias fracas relacionadas a uma mesma entidade proprietária."
+      - letra: "c"
+        texto: "Garantir que a entidade tenha participação parcial no relacionamento."
+      - letra: "d"
+        texto: "Indicar que o atributo é derivado de um cálculo."
+
+  - texto: "Como é formada a chave primária de uma entidade fraca no modelo lógico/relacional?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Apenas pelo seu discriminador (chave parcial)."
+      - letra: "b"
+        texto: "Por um código sequencial gerado pelo SGBD independentemente do dono."
+      - letra: "c"
+        texto: "Pela união da chave primária da entidade forte com a chave parcial da entidade fraca."
+      - letra: "d"
+        texto: "Pela concatenação de todos os seus atributos descritivos."
+
+  - texto: "O que define a participação total (ou dependência existencial) em um relacionamento?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Toda instância da entidade deve obrigatoriamente estar vinculada a uma instância da outra entidade no relacionamento."
+      - letra: "b"
+        texto: "Apenas algumas instâncias da entidade precisam estar relacionadas."
+      - letra: "c"
+        texto: "O relacionamento deve ser obrigatoriamente do tipo 1:1."
+      - letra: "d"
+        texto: "A entidade pode existir no banco de dados sem estar conectada a nenhuma outra."
+
+  - texto: "Como a participação total é representada graficamente no DER?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Por um pequeno círculo na linha do relacionamento."
+      - letra: "b"
+        texto: "Por uma elipse tracejada."
+      - letra: "c"
+        texto: "Por uma linha simples entre a entidade e o losango."
+      - letra: "d"
+        texto: "Por linhas duplas (paralelas) conectando a entidade ao relacionamento."
+
+  - texto: "Um exemplo clássico de entidade fraca e sua respectiva entidade forte é:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "CLIENTE e PRODUTO."
+      - letra: "b"
+        texto: "EMPREGADO e DEPENDENTE."
+      - letra: "c"
+        texto: "VENDEDOR e PEDIDO."
+      - letra: "d"
+        texto: "DEPARTAMENTO e PROJETO."
+
+  - texto: "Qual destas afirmações sobre o valor NULL é verdadeira em relacionamentos?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Uma chave primária de entidade fraca pode ser nula."
+      - letra: "b"
+        texto: "Opcionalidade total significa que a FK sempre será nula."
+      - letra: "c"
+        texto: "Em uma participação parcial, a chave estrangeira na tabela resultante pode aceitar valores nulos para indicar a ausência de vínculo."
+      - letra: "d"
+        texto: "Entidades fracas nunca usam FKs, apenas atributos atômicos."
+
+  - texto: "O que é um 'relacionamento de identificação'?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "O relacionamento que une uma entidade fraca à sua entidade proprietária."
+      - letra: "b"
+        texto: "Um relacionamento que liga duas entidades fortes através de uma tabela associativa."
+      - letra: "c"
+        texto: "A definição de um atributo como chave primária."
+      - letra: "d"
+        texto: "Um auto-relacionamento em uma tabela de pessoas."
+
+  - texto: "Graficamente, o relacionamento de identificação de uma entidade fraca é mostrado como:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Um retângulo de linha dupla."
+      - letra: "b"
+        texto: "Um losango com linhas duplas."
+      - letra: "c"
+        texto: "Uma elipse com o nome da chave."
+      - letra: "d"
+        texto: "Uma linha pontilhada sem símbolos."
+
+  - texto: "Na notação (min, max), o que indica uma participação parcial?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "min = 1."
+      - letra: "b"
+        texto: "min = 0."
+      - letra: "c"
+        texto: "max = N."
+      - letra: "d"
+        texto: "min > 0."
+
+  - texto: "Por que se utiliza 'ON DELETE CASCADE' em entidades fracas no modelo físico?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Para impedir que a entidade forte seja excluída."
+      - letra: "b"
+        texto: "Para permitir que a entidade fraca exista sem um dono."
+      - letra: "c"
+        texto: "Para transformar a entidade fraca em uma entidade forte automaticamente."
+      - letra: "d"
+        texto: "Para garantir a integridade referencial, removendo os dependentes quando o dono é excluído."
+
+  - texto: "Qual a diferença entre entidade fraca e atributo multivalorado?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "A entidade fraca pode ter seus próprios atributos e participar de outros relacionamentos independentes."
+      - letra: "b"
+        texto: "Não há diferença técnica entre os dois."
+      - letra: "c"
+        texto: "Atributos multivalorados sempre possuem chaves primárias."
+      - letra: "d"
+        texto: "Entidades fracas não podem ser mapeadas para tabelas no modelo relacional."
+
+  - texto: "Em um sistema de biblioteca, se EXEMPLAR é identificado pelo ISBN do LIVRO + Número da Cópia, EXEMPLAR é:"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Uma entidade independente."
+      - letra: "b"
+        texto: "Um atributo composto do Livro."
+      - letra: "c"
+        texto: "Uma entidade fraca."
+      - letra: "d"
+        texto: "Uma superclasse de Livro."
+
+  - texto: "A restrição de participação parcial significa que:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Todas as tuplas da entidade devem participar do relacionamento."
+      - letra: "b"
+        texto: "Algumas tuplas da entidade podem não participar do relacionamento."
+      - letra: "c"
+        texto: "O relacionamento é obrigatoriamente N:N."
+      - letra: "d"
+        texto: "A entidade não tem chave primária."
+
+  - texto: "O que acontece com uma entidade fraca se a entidade forte proprietária for removida (sem regras de cascata)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "O banco de dados fica em um estado inconsistente com registros órfãos."
+      - letra: "b"
+        texto: "A entidade fraca torna-se automaticamente a nova entidade forte."
+      - letra: "c"
+        texto: "O sistema gera uma nova chave primária para a entidade fraca."
+      - letra: "d"
+        texto: "Nada, pois entidades fracas não dependem fisicamente das fortes."
+
+  - texto: "Como é representada a chave parcial de uma entidade fraca em um DER?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Sublinhada com linha contínua."
+      - letra: "b"
+        texto: "Dentro de um retângulo duplo."
+      - letra: "c"
+        texto: "Sublinhada com linha tracejada."
+      - letra: "d"
+        texto: "Em itálico dentro de uma elipse."
+
+  - texto: "Um relacionamento ternário pode envolver uma entidade fraca?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Sim, e ela pode ter múltiplos tipos de entidades proprietárias da identificação."
+      - letra: "b"
+        texto: "Não, entidades fracas só participam de relacionamentos binários."
+      - letra: "c"
+        texto: "Sim, mas ela deixa de ser fraca ao se ligar a três entidades."
+      - letra: "d"
+        texto: "Não, pois relacionamentos ternários não existem no modelo conceitual."
+
+  - texto: "O termo 'Conectividade' em relacionamentos refere-se a:"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "A velocidade de acesso aos dados."
+      - letra: "b"
+        texto: "O número de atributos de uma entidade."
+      - letra: "c"
+        texto: "A existência de chaves estrangeiras nulas."
+      - letra: "d"
+        texto: "As restrições no mapeamento das associações (1:1, 1:N, M:N)."
+
+  - texto: "A dependência existencial é sinônimo de:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Participação Parcial."
+      - letra: "b"
+        texto: "Participação Total."
+      - letra: "c"
+        texto: "Auto-relacionamento."
+      - letra: "d"
+        texto: "Especialização Exclusiva."
+
+  - texto: "O que é o grau de um relacionamento?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "O número de tipos de entidades participantes no relacionamento."
+      - letra: "b"
+        texto: "A quantidade de registros na tabela associativa."
+      - letra: "c"
+        texto: "O número de chaves estrangeiras em uma tabela."
+      - letra: "d"
+        texto: "A hierarquia de subtipos de uma entidade."
+
+  - texto: "Em qual dessas situações a FK (chave estrangeira) deve estar obrigatoriamente na entidade do lado N?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Relacionamento M:N."
+      - letra: "b"
+        texto: "Relacionamento 1:1."
+      - letra: "c"
+        texto: "Relacionamento 1:N."
+      - letra: "d"
+        texto: "Entidades independentes sem relacionamento."
+
+  - texto: "O que define um relacionamento recursivo (ou reflexivo)?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Duas entidades diferentes que se referenciam mutuamente."
+      - letra: "b"
+        texto: "Uma entidade que não possui atributos."
+      - letra: "c"
+        texto: "Um relacionamento que exige três entidades fortes."
+      - letra: "d"
+        texto: "O mesmo tipo de entidade participa mais de uma vez no relacionamento com papéis diferentes."
+
+  - texto: "Ao converter uma entidade fraca para o modelo relacional, o discriminador torna-se:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "A única chave primária da tabela."
+      - letra: "b"
+        texto: "Parte da chave primária composta da tabela."
+      - letra: "c"
+        texto: "Uma chave estrangeira para uma tabela de sistema."
+      - letra: "d"
+        texto: "Um atributo derivado não armazenado."
+
+  - texto: "A restrição (0, 1) em um relacionamento indica:"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Participação opcional com cardinalidade máxima um."
+      - letra: "b"
+        texto: "Participação obrigatória com cardinalidade muitos."
+      - letra: "c"
+        texto: "Que a entidade é obrigatoriamente fraca."
+      - letra: "d"
+        texto: "Que o atributo chave é multivalorado."
+
+  - texto: "Qual a utilidade de se nomear papéis em relacionamentos?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Aumentar a performance das consultas SQL."
+      - letra: "b"
+        texto: "Substituir o nome dos atributos na tabela."
+      - letra: "c"
+        texto: "Distinguir o significado de cada participação, especialmente em relacionamentos recursivos."
+      - letra: "d"
+        texto: "Indicar quais usuários podem acessar os dados."
+
+  - texto: "Entidades fracas podem ser identificadas por outras entidades fracas?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Sim, criando uma hierarquia de dependência onde a PK vai sendo acumulada."
+      - letra: "b"
+        texto: "Não, uma entidade fraca só pode ter um dono forte."
+      - letra: "c"
+        texto: "Sim, mas elas perdem todos os seus atributos descritivos."
+      - letra: "d"
+        texto: "Não, o modelo relacional proíbe mais de um nível de dependência."
+
+  - texto: "No processo de abstração, o que deve ser feito com substantivos que não possuem atributos próprios?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Devem ser ignorados completamente."
+      - letra: "b"
+        texto: "Devem ser considerados candidatos a atributos de outras entidades."
+      - letra: "c"
+        texto: "Devem ser transformados em entidades fortes."
+      - letra: "d"
+        texto: "Devem ser definidos como chaves estrangeiras nulas."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
-  </ul>
-</div>
-
-
-
-
-

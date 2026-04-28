@@ -1,18 +1,28 @@
 ---
 layout: exercicio
-title: "Introdução aos Bancos de Dados: Evolução histórica e papel nas organizações."
+title: "Entidades Fracas e Opcionalidade: Dependência de existência e participação."
 exercicio_numero: "01"
-description: "Primeira atividade prática para consolidar os conhecimentos da aula 01."
+description: "Primeira atividade prática para consolidar os conhecimentos sobre entidades fracas e opcionalidade."
 ---
 
-<p>Enunciado do exercício 01 em desenvolvimento para a disciplina...</p>
+<p><strong>Atividade 1: Modelagem Conceitual</strong></p>
+<p>Desenhe o Diagrama Entidade-Relacionamento (DER) para um sistema hospitalar onde a entidade <strong>Quarto</strong> é forte e <strong>Leito</strong> é uma entidade fraca identificada pelo número do quarto e pelo número do leito.</p>
+
+<p>Considere os seguintes atributos:</p>
+<ul>
+  <li><strong>Quarto:</strong> numero_quarto (PK), andar, tipo_quarto</li>
+  <li><strong>Leito:</strong> numero_quarto (PK, FK), numero_leito (PK), status_ocupacao</li>
+</ul>
+
+<p>Represente graficamente a dependência existencial entre as entidades, indicando claramente qual é a entidade forte e qual é a fraca.</p>
 
 <div class="tip-box">
   <h4>Orientações</h4>
   <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
+    <li>Utilize a notação de Engenharia de Informação (pés de galinha).</li>
+    <li>Indique claramente as chaves primárias e estrangeiras.</li>
+    <li>Mostre a participação total do Leito em relação ao Quarto.</li>
+    <li>Consulte o conteúdo da aula sobre entidades fracas caso tenha dúvidas.</li>
   </ul>
 </div>
 

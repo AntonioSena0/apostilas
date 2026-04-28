@@ -1,8 +1,8 @@
 ---
-title: "Entidades Fracas e Opcionalidade: Dependência de existência e participação."
+title: "Entidades Fortes, Fracas e Opcionalidade: Dependência de existência e participação."
 aula_numero: "11"
 subject: "banco-de-dados-i"
-description: "Conteúdo da aula 11 do bimestre 2: Entidades Fracas e Opcionalidade: Dependência de existência e participação.."
+description: "Conteúdo da aula 11 do bimestre 2: Entidades Fracas e Opcionalidade: Dependência de existência e participação."
 tags:
 - aula
 - bimestre-02
@@ -10,19 +10,157 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo teórico da aula 01 em desenvolvimento...</p>
+  <p>A modelagem de dados fundamenta-se na percepção do mundo real como um conjunto de objetos básicos, chamados entidades, e as associações entre eles, chamadas relacionamentos. No processo de abstração do minimundo, é vital distinguir quais objetos possuem vida própria e quais são subordinados a outros para que a estrutura do banco de dados reflita fielmente a realidade observada.</p>
+
+  <h3>1. Entidade Forte (ou Regular)</h3>
+  <p>Uma entidade é considerada forte quando possui existência independente no ambiente modelado. Isso significa que ela representa um objeto do mundo real (físico como uma pessoa ou um carro, ou conceitual como um curso universitário) que pode ser identificado de forma exclusiva através de seus próprios atributos. Tecnicamente, uma entidade forte possui uma chave primária própria (identificador único) que não depende de nenhum outro objeto do sistema para ser distinguida.</p>
+
+  <h3>2. Entidade Fraca (ou Dependente)</h3>
+  <p>Diferente da forte, a entidade fraca não possui existência própria individualizada. Sua presença no banco de dados é subordinada à existência de uma entidade forte (chamada de proprietária da identificação) à qual ela está relacionada.</p>
+
+  <h4>Identificação:</h4>
+  <p>Por definição, a entidade fraca não possui atributos suficientes para formar uma chave primária completa sozinha.</p>
+
+  <h4>Chave Primária Composta:</h4>
+  <p>Para identificá-la no modelo lógico, utiliza-se a união da chave primária da entidade forte com um conjunto de atributos da própria entidade fraca, chamado de chave parcial (ou discriminador).</p>
+
+  <h4>Exemplo:</h4>
+  <p>Um Dependente é uma entidade fraca em relação ao Funcionário, pois sua identificação no sistema depende diretamente do registro do funcionário ao qual ele está vinculado.</p>
+
+  <h3>3. Opcionalidade de Relacionamento (Participação)</h3>
+  <p>A opcionalidade (ou restrição de participação) define se a existência de uma entidade depende de ela estar ou não vinculada a outra através de um relacionamento.</p>
+
+  <h4>Participação Total (Obrigatória):</h4>
+  <p>Ocorre quando cada instância da entidade deve, obrigatoriamente, estar relacionada a uma instância da outra entidade. É também chamada de dependência existencial.</p>
+
+  <h4>Participação Parcial (Opcional):</h4>
+  <p>Ocorre quando uma instância da entidade pode existir no banco de dados sem estar vinculada a nenhuma instância da outra entidade.</p>
 </section>
 
 <section class="section-box">
   <h2>Exemplo Prático</h2>
-  <p>Exemplo prático da aula 01 em desenvolvimento...</p>
+  <p>Abaixo, a implementação física da relação entre Funcionario (Entidade Forte) e Dependente (Entidade Fraca). Note que a entidade fraca herda o numero_seguro_social do funcionário como parte de sua própria identificação e como chave estrangeira.</p>
+
+  <h3>MySQL</h3>
+  <div class="code-container">
+
+    <pre><code class="language-sql">-- Criando a Entidade Forte
+  CREATE TABLE Funcionario (
+      numero_seguro_social CHAR(9) NOT NULL,
+      primeiro_nome VARCHAR(35) NOT NULL,
+      salario DECIMAL(10, 2),
+      -- Define o número do seguro social como a chave primária
+      CONSTRAINT PK_Funcionario PRIMARY KEY (numero_seguro_social)
+  );
+  
+  -- Criando a Entidade Fraca
+  CREATE TABLE Dependente (
+      -- Atributo herdado da entidade forte (chave estrangeira)
+      numero_seguro_social_funcionario CHAR(9) NOT NULL,
+      nome_dependente VARCHAR(50) NOT NULL, -- Chave parcial
+      sexo CHAR(1),
+      -- A Chave Primária é COMPOSTA (PK do Forte + Chave Parcial)
+      CONSTRAINT PK_Dependente PRIMARY KEY (numero_seguro_social_funcionario, nome_dependente),
+      -- Integridade Referencial com dependência existencial automática
+      CONSTRAINT FK_Funcionario_Dependente FOREIGN KEY (numero_seguro_social_funcionario)
+          REFERENCES Funcionario(numero_seguro_social)
+          ON DELETE CASCADE -- Se o funcionário for excluído, os dependentes também serão
+  );</code></pre>
+  </div>
+
+  <h3>PostgreSQL</h3>
+  <div class="code-container">
+
+    <pre><code class="language-sql">-- Criando a Entidade Forte
+  CREATE TABLE Funcionario (
+      numero_seguro_social CHAR(9) PRIMARY KEY,
+      primeiro_nome VARCHAR(35) NOT NULL,
+      salario NUMERIC(10, 2)
+  );
+  
+  -- Criando a Entidade Fraca
+  CREATE TABLE Dependente (
+      numero_seguro_social_funcionario CHAR(9) NOT NULL,
+      nome_dependente VARCHAR(50) NOT NULL,
+      sexo CHAR(1),
+      -- Definição da PK composta e FK com ação em cascata
+      PRIMARY KEY (numero_seguro_social_funcionario, nome_dependente),
+      FOREIGN KEY (numero_seguro_social_funcionario)
+          REFERENCES Funcionario(numero_seguro_social) ON DELETE CASCADE
+  );</code></pre>
+  </div>
 </section>
 
+<section class="section-box">
+  <h2>Representação Gráfica</h2>
+  <p>Abaixo, dois exemplos utilizando a notação de Engenharia de Informação (Pés de Galinha) para destacar a dependência entre entidades fortes e fracas.</p>
 
+  <h3>Exemplo 1: Gestão de Recursos Humanos (Funcionário e Dependente)</h3>
+  <p>Este diagrama ilustra a dependência existencial: o dependente tem participação total (indicada pela linha dupla e o traço perpendicular), enquanto o funcionário pode opcionalmente não ter dependentes (indicado pelo círculo).</p>
 
+  <div class="mermaid">
+    erDiagram
+        Funcionario ||--o{ Dependente : "possui"
+        Funcionario {
+            string numero_seguro_social PK
+            string primeiro_nome
+        }
+        Dependente {
+            string numero_seguro_social_funcionario PK, FK
+            string nome_dependente PK
+            string sexo
+        }
+  </div>
 
+  <h3>Exemplo 2: Acervo de Biblioteca (Livro e Exemplar)</h3>
+  <p>Um Exemplar físico é uma entidade fraca pois sua identificação depende do Livro (entidade forte). Não se identifica o exemplar "número 1" sem saber de qual livro ele é.</p>
 
+  <div class="mermaid">
+    erDiagram
+        Livro ||--o{ Exemplar : "tem"
+        Livro {
+            string isbn PK
+            string titulo
+        }
+        Exemplar {
+            string isbn_livro PK, FK
+            int numero_exemplar PK
+            string status_conservacao
+        }
+  </div>
+</section>
 
+<section class="section-box">
+  <h2>Dicas & Lembretes</h2>
+  <ul>
+    <li><strong>Notação de Peter Chen:</strong> Em diagramas clássicos de Peter Chen, as entidades fracas são representadas por retângulos de linha dupla e os relacionamentos identificadores por losangos de linha dupla.</li>
+    <li><strong>Chaves Parciais:</strong> A chave parcial de uma entidade fraca (como o nome do dependente) é o conjunto de atributos que identifica unicamente as instâncias fracas que pertencem a uma mesma instância forte.</li>
+    <li><strong>Integridade:</strong> Ao implementar entidades fracas, utilize sempre a cláusula ON DELETE CASCADE para evitar registros "órfãos" no hardware.</li>
+    <li><strong>Participação Total:</strong> Uma entidade fraca sempre terá restrição de participação total em relação ao seu relacionamento de identificação, pois não pode ser identificada sem o proprietário.</li>
+  </ul>
+</section>
 
+<section class="section-box">
+  <h2>Como Aplicar na Prática</h2>
+  <ul>
+    <li><strong>Itens de Pedido:</strong> Em sistemas comerciais, o Item_Pedido é sempre uma entidade fraca vinculada à entidade forte Pedido.</li>
+    <li><strong>Históricos de Salários:</strong> Tabelas que registram o Historico_Salarial de um colaborador são dependentes da existência da entidade forte Funcionario.</li>
+    <li><strong>Mapeamento Lógico:</strong> Ao converter do modelo conceitual para o relacional, a chave primária da entidade fraca obrigatoriamente deve incluir a chave primária da entidade forte.</li>
+  </ul>
+</section>
 
+<section class="section-box">
+  <h2>Referências</h2>
+  <ul>
+    <li>MACHADO, Felipe Nery Rodrigues. <em>Banco de Dados: Projeto e Implementação</em>. 3. ed. São Paulo: Érica, 2014.</li>
+    <li>TAKAI, Osvaldo Kotaro et al. <em>Introdução a Banco de Dados</em>. São Paulo: DCC-IME-USP, 2005.</li>
+    <li>CENTRO PAULA SOUZA. <em>Plano de Curso Técnico em Desenvolvimento de Sistemas</em>.</li>
+  </ul>
+</section>
 
+<section class="section-box">
+  <h2>7. Para Praticar</h2>
+  <ul>
+    <li><a href="./exercicio-02/">Exercício 02: Questionário</a></li>
+  </ul>
+</section>
