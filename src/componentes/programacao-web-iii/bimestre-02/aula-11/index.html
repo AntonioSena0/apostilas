@@ -219,25 +219,75 @@ $posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
 <section class="section-box">
   <h2>Representação Gráfica</h2>
   
-  <h3>Relacionamento 1:N com Fluxo de Dados</h3>
-  <p>Este diagrama mostra como o Laravel identifica as chaves estrangeiras automaticamente.</p>
+  <h3>1. Relacionamento Um-para-Muitos (One-to-Many)</h3>
+  <p>Este é o relacionamento mais comum (ex: um autor tem muitos livros). O diagrama mostra como o Model "Pai" enxerga a coleção e como o banco armazena a chave estrangeira.</p>
   <div class="mermaid">
     erDiagram
-        POST ||--o{ COMMENT : "tem muitos"
+        USER ||--o{ POST : "hasMany / belongsTo"
+        USER {
+            int id PK
+            string name
+        }
         POST {
             int id PK
+            int user_id FK "Chave Estrangeira"
             string title
         }
-        COMMENT {
-            int id PK
-            int post_id FK "Convenção: post + _id"
-            string body
-        }
   </div>
-  
-  <h3>Relacionamento N:N com Tabela Pivô</h3>
-  <p>Mostra a estrutura necessária para permitir que usuários tenham múltiplos papéis e vice-versa.</p>
-  <p>Em construção...</p>
+  <div class="tip-box" style="margin-top: 1rem;">
+    <p><strong>No Eloquent:</strong></p>
+    <ul>
+      <li><code>$user->posts</code> retorna uma Collection de objetos Post.</li>
+      <li><code>$post->user</code> retorna uma Instância única de User.</li>
+    </ul>
+  </div>
+
+  <h3>2. Relacionamento Muitos-para-Muitos (Many-to-Many)</h3>
+  <p>Aqui, a complexidade aumenta porque o Eloquent precisa de uma Tabela Pivô oculta para conectar as duas entidades.</p>
+  <div class="mermaid">
+    graph TD
+        subgraph "Camada de Banco de Dados"
+            S[Table: students] --- P[Table: course_student]
+            C[Table: courses] --- P
+        end
+
+        style P fill:#f9f,stroke:#333,stroke-width:2px
+  </div>
+  <div class="mermaid">
+    graph TD
+        subgraph "Camada de Aplicação (Models)"
+            A[Student Model] <--> B[Course Model]
+        end
+  </div>
+  <p><strong>O que acontece no PHP:</strong></p>
+  <p>Ao executar <code>$student->courses()->attach($id)</code>, o Eloquent não mexe na tabela <code>students</code> nem na <code>courses</code>, ele insere um novo registro apenas na tabela <code>course_student</code>.</p>
+
+  <h3>3. Ciclo de Persistência Complexa (Método sync)</h3>
+  <p>O método <code>sync()</code> é um dos diferenciais do Eloquent. Este diagrama de sequência mostra a lógica interna dele para manter o banco atualizado com o que você enviou.</p>
+  <div class="mermaid">
+    sequenceDiagram
+        autonumber
+        participant App as Código (Controller)
+        participant Elo as Eloquent ORM
+        participant DB as Banco de Dados (Pivot)
+
+        App->>Elo: sync([1, 3])
+        Note over Elo: Verifica o que já existe no banco
+        Elo->>DB: DELETE onde ID não é 1 ou 3
+        Elo->>DB: INSERT novos IDs (se não existirem)
+        Elo-->>App: Retorna IDs afetados
+  </div>
+
+  <h3>4. Relacionamento "Tem Um Através de" (Has One Through)</h3>
+  <p>Um exemplo avançado onde você quer acessar dados de uma tabela pulando uma tabela intermediária (ex: o Mecânico de um Carro através do Dono).</p>
+  <div class="mermaid">
+    flowchart LR
+        M[Mechanic] -- tem um --> O[Owner]
+        O -- possui um --> C[Car]
+        M -. can access .-> C
+  </div>
+  <p><strong>Como ler esse diagrama:</strong></p>
+  <p>Através do método <code>hasOneThrough</code>, o Eloquent permite que você faça <code>$mechanic->car</code> diretamente. Internamente, ele faz o JOIN: <code>mechanics</code> -> <code>owners</code> -> <code>cars</code>.</p>
 </section>
 
 <div class="tip-box">
@@ -268,6 +318,7 @@ $posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
     <li>STAUFFER, Matt. Laravel: Up & Running. O'Reilly Media.</li>
     <li>LARAVEL. Documentation 12.x and 13.x.</li>
     <li>ZANDSTRA, Matt. PHP 8 Objects, Patterns, and Practice. Apress.</li>
+    <li><a href="https://laravel.com/docs/13.x/eloquent-relationships">Documentação do Laravel: Eloquent: Relationships</a></li>
   </ul>
 </section>
 
