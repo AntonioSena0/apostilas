@@ -9,41 +9,492 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 11 em desenvolvimento...</p>
+  <p>
+    Esta aula foca nos Operadores Relacionais e Lógicos aplicados à linguagem
+    Java, fundamentais para a construção de expressões booleanas que permitem ao
+    programa tomar decisões e controlar o fluxo de execução.
+  </p>
+
+  <h3>1. Operadores Relacionais</h3>
+  <p>
+    Os operadores relacionais são utilizados para comparar dois valores do mesmo
+    tipo. O resultado dessas comparações é sempre um valor lógico
+    (<code>boolean</code>): <code>true</code> ou <code>false</code>.
+  </p>
+  <div class="code-container">
+    <pre><code class="language-java">// Exemplo em Java
+int idade = 18;
+double media = 7.5;
+
+System.out.println(idade >= 18); // Imprime: true
+System.out.println(media < 6.0);  // Imprime: false
+System.out.println(idade == 20); // Imprime: false</code></pre>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Operador</th>
+        <th>Significado</th>
+        <th>Exemplo em Java</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>==</code></td>
+        <td>Igual a</td>
+        <td><code>5 == 5</code></td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>!=</code></td>
+        <td>Diferente de</td>
+        <td><code>5 != 3</code></td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>&gt;</code></td>
+        <td>Maior que</td>
+        <td><code>10 > 20</code></td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>&lt;</code></td>
+        <td>Menor que</td>
+        <td><code>10 < 20</code></td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>&gt;=</code></td>
+        <td>Maior ou igual a</td>
+        <td><code>15 >= 15</code></td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>&lt;=</code></td>
+        <td>Menor ou igual a</td>
+        <td><code>7 <= 5</code></td>
+        <td>false</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Nota técnica:</strong> Em pseudocódigo, o símbolo de igualdade
+    costuma ser apenas <code>=</code>, mas em Java utilizamos <code>==</code>. O
+    símbolo de "diferente" em Java é <code>!=</code>, substituindo o
+    <code>&lt;&gt;</code> ou <code>≠</code> visto em algoritmos teóricos.
+  </p>
+
+  <h3>2. Operadores Lógicos</h3>
+  <p>
+    Os operadores lógicos, também chamados de conectivos lógicos, servem para
+    unir duas ou mais expressões simples em uma expressão composta.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Operador Java</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&&</code></td>
+        <td>E (Conjunção)</td>
+        <td>Resulta em <code>true</code> apenas se ambas as expressões forem verdadeiras.</td>
+      </tr>
+      <tr>
+        <td><code>||</code></td>
+        <td>OU (Disjunção)</td>
+        <td>Resulta em <code>true</code> se pelo menos uma das expressões for verdadeira.</td>
+      </tr>
+      <tr>
+        <td><code>!</code></td>
+        <td>NÃO (Negação)</td>
+        <td>Operador unário que inverte o valor lógico atual.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="code-container">
+    <pre><code class="language-java">boolean temIngresso = true;
+boolean temIdadeMinima = false;
+
+// Operador E (&&)
+System.out.println(temIngresso && temIdadeMinima); // false (precisa de ambos)
+
+// Operador OU (||)
+System.out.println(temIngresso || temIdadeMinima); // true (um deles é verdadeiro)
+
+// Operador NÃO (!)
+System.out.println(!temIngresso); // false (inverteu true para false)</code></pre>
+  </div>
+
+  <h3>3. Tabela-Verdade</h3>
+  <p>
+    A Tabela-Verdade resume todas as possibilidades de resultados para as
+    operações lógicas. Sendo P e Q sentenças lógicas:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>P</th>
+        <th>Q</th>
+        <th>P && Q</th>
+        <th>P || Q</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>V</td>
+        <td>V</td>
+        <td>V</td>
+        <td>V</td>
+      </tr>
+      <tr>
+        <td>V</td>
+        <td>F</td>
+        <td>F</td>
+        <td>V</td>
+      </tr>
+      <tr>
+        <td>F</td>
+        <td>V</td>
+        <td>F</td>
+        <td>V</td>
+      </tr>
+      <tr>
+        <td>F</td>
+        <td>F</td>
+        <td>F</td>
+        <td>F</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4. Precedência de Operadores</h3>
+  <p>
+    Quando uma expressão possui diversos tipos de operadores, o Java segue uma
+    ordem de prioridade para a avaliação:
+  </p>
+  <ul>
+    <li>
+      <strong>Parênteses ():</strong> Sempre avaliados primeiro, dos mais
+      internos para os externos.
+    </li>
+    <li>
+      <strong>Operadores Aritméticos:</strong> Multiplicação, divisão e resto
+      (<code>*, /, %</code>) antes de soma e subtração.
+    </li>
+    <li>
+      <strong>Operadores Relacionais:</strong>
+      <code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code>.
+    </li>
+    <li>
+      <strong>Operadores Lógicos:</strong> A ordem interna é
+      <code>!</code> (Negação), seguido de <code>&&</code> (E) e, por último,
+      <code>||</code> (OU).
+    </li>
+  </ul>
+  <div class="code-container">
+    <pre><code class="language-java">int x = 10, y = 5, z = 20;
+// Avaliação: (10 > 5) && (20 < 100) -> (true) && (true) -> true
+boolean resultado = x > y && z < 100;
+
+// Avaliação: (5 + 5 == 10) || (false) -> (10 == 10) || false -> true || false -> true
+boolean teste = (y + 5 == x) || !(z > 10);</code></pre>
+  </div>
+
+  <h3>Resumo</h3>
+  <ul>
+    <li>Relacionais comparam valores (números, caracteres).</li>
+    <li>Lógicos comparam condições (booleanos).</li>
+    <li>
+      Use parênteses para garantir que a lógica complexa seja avaliada na ordem
+      que você deseja, aumentando a clareza do código.
+    </li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Exemplo de Código</h2>
+  
+  <h3>Exemplo 1: Operadores Relacionais Básicos</h3>
+  <p>Este exemplo demonstra como comparar valores numéricos simples.</p>
   <div class="code-container">
-    <pre><code class="language-java">// Em breve...</code></pre>
+    <pre><code class="language-java">public class RelacionaisBasico {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+
+        System.out.println("a == b: " + (a == b)); // Igualdade (false)
+        System.out.println("a != b: " + (a != b)); // Diferença (true)
+        System.out.println("a > b: " + (a > b));   // Maior que (false)
+        System.out.println("a < b: " + (a < b));   // Menor que (true)
+        System.out.println("a >= 10: " + (a >= 10)); // Maior ou igual (true)
+    }
+}</code></pre>
+  </div>
+
+  <h3>Exemplo 2: Operador Lógico E (&&)</h3>
+  <p>Utilizado quando todas as condições precisam ser verdadeiras. Baseado no conceito de conjunção.</p>
+  <div class="code-container">
+    <pre><code class="language-java">public class VerificacaoAcesso {
+    public static void main(String[] args) {
+        int idade = 25;
+        boolean possuiConvite = true;
+
+        // Para entrar na festa, precisa ter idade >= 18 E possuir convite
+        boolean podeEntrar = (idade >= 18) && possuiConvite;
+
+        System.out.println("Pode entrar na festa? " + podeEntrar); // true
+    }
+}</code></pre>
+  </div>
+
+  <h3>Exemplo 3: Operador Lógico OU (||)</h3>
+  <p>Utilizado quando pelo menos uma das condições deve ser verdadeira. Baseado no conceito de disjunção.</p>
+  <div class="code-container">
+    <pre><code class="language-java">public class DescontoEstudante {
+    public static void main(String[] args) {
+        boolean eEstudante = false;
+        boolean temCupom = true;
+
+        // Tem desconto se for estudante OU se tiver cupom
+        boolean temDireitoADesconto = eEstudante || temCupom;
+
+        System.out.println("Tem desconto? " + temDireitoADesconto); // true
+    }
+}</code></pre>
+  </div>
+
+  <h3>Exemplo 4: Operador Lógico NÃO (!)</h3>
+  <p>Utilizado para inverter um valor booleano. Baseado no conceito de negação.</p>
+  <div class="code-container">
+    <pre><code class="language-java">public class StatusSistema {
+    public static void main(String[] args) {
+        boolean sistemaOffline = false;
+
+        // Se NÃO estiver offline, o sistema está online
+        if (!sistemaOffline) {
+            System.out.println("O sistema está ONLINE e operando.");
+        }
+    }
+}</code></pre>
+  </div>
+
+  <h3>Exemplo 5: Cenário Prático (Aprovação Escolar)</h3>
+  <p>Este exemplo combina múltiplos operadores para verificar a situação de um aluno, conforme sugerido nos fundamentos de lógica.</p>
+  <div class="code-container">
+    <pre><code class="language-java">public class SituacaoAluno {
+    public static void main(String[] args) {
+        double mediaFinal = 6.5;
+        double frequencia = 0.80; // 80% de presença
+
+        // Critério: Média >= 7.0 E Frequência >= 0.75
+        boolean aprovado = (mediaFinal >= 7.0) && (frequencia >= 0.75);
+
+        // Critério para Recuperação: Frequência ok, mas média entre 5.0 e 6.9
+        boolean recuperacao = (frequencia >= 0.75) && (mediaFinal >= 5.0 && mediaFinal < 7.0);
+
+        System.out.println("Aprovado: " + aprovado);       // false
+        System.out.println("Recuperação: " + recuperacao); // true
+    }
+}</code></pre>
+  </div>
+
+  <h3>Exemplo 6: Precedência e Parênteses</h3>
+  <p>Demonstra como a ordem de avaliação afeta o resultado final.</p>
+  <div class="code-container">
+    <pre><code class="language-java">public class TestePrecedencia {
+    public static void main(String[] args) {
+        boolean p = true;
+        boolean q = false;
+        boolean r = false;
+
+        // Sem parênteses: ! tem prioridade, depois &&, depois ||
+        // Avaliação: true || (false && false) -> true || false -> true
+        boolean resultado1 = p || q && r;
+
+        // Com parênteses alterando a ordem:
+        // Avaliação: (true || false) && false -> true && false -> false
+        boolean resultado2 = (p || q) && r;
+
+        System.out.println("Resultado 1: " + resultado1);
+        System.out.println("Resultado 2: " + resultado2);
+    }
+}</code></pre>
   </div>
 </section>
 
 <section class="section-box">
   <h2>Representação Gráfica</h2>
+  
+  <h3>1. Mapa Mental de Operadores Relacionais</h3>
+  <p>Este diagrama organiza visualmente os símbolos que o Java utiliza para comparar valores do mesmo tipo.</p>
   <div class="mermaid">
     graph TD
-    A[Início] --> B[Processamento]
-    B --> C[Fim]
+      %% Nó Principal
+      Root((Operadores Relacionais))
+
+      %% Relacionamentos
+      Root --> IG[Igualdade]
+      Root --> DF[Diferença]
+      Root --> MA[Maior que]
+      Root --> ME[Menor que]
+      Root --> MI[Maior ou igual]
+      Root --> MNI[Menor ou igual]
+
+      %% Símbolos
+      IG --> S1["=="]
+      DF --> S2["!="]
+      MA --> S3[">"]
+      ME --> S4["<"]
+      MI --> S5[">="]
+      MNI --> S6["<="]
+
+      %% Aplicação das Cores
+      class IG igual
+      class DF diferenca
+      class MA maior
+      class ME menor
+      class MI maior_igual
+      class MNI menor_igual
+
+      %% Definições de Estilo
+      classDef igual fill:#f96,stroke:#333,stroke-width:2px
+      classDef diferenca fill:#f66,stroke:#333,stroke-width:2px
+      classDef maior fill:#6cf,stroke:#333,stroke-width:2px
+      classDef menor fill:#6f9,stroke:#333,stroke-width:2px
+      classDef maior_igual fill:#ccf,stroke:#333,stroke-width:2px
+      classDef menor_igual fill:#ffc,stroke:#333,stroke-width:2px
+  </div>
+
+  <h3>2. Hierarquia de Precedência</h3>
+  <p>A ordem em que o Java avalia as expressões é crucial para evitar erros lógicos. O gráfico abaixo ilustra a prioridade, do topo (mais alto) para a base (mais baixo).</p>
+  <p>Quando temos operadores do mesmo nível (ex: uma expressão só com * e /), a execução acontece da esquerda para a direita.</p>
+  <div class="mermaid">
+    flowchart TD
+      P1["1º Parênteses ( )<br/>O que está dentro sempre vem primeiro"] 
+      P2["2º Aritméticos: Multiplicação, Divisão e Módulo<br/>* , / , %"]
+      P3["3º Aritméticos: Adição e Subtração<br/>+ , -"]
+      P4["4º Relacionais<br/>==, !=, >, <, >=, <="]
+      P5["5º Lógico: ! (NÃO)"]
+      P6["6º Lógico: && (E)"]
+      P7["7º Lógico: || (OU)"]
+
+      P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7
+  </div>
+
+  <h3>3. Fluxo de Decisão: Cenário de Aprovação Escolar</h3>
+  <p>Com base nos fundamentos de fluxogramas, este diagrama representa a lógica do Exemplo 5 discutido anteriormente, onde múltiplas condições (Média e Frequência) definem o status do aluno.</p>
+  <div class="mermaid">
+    flowchart TD
+        Start([Início]) --> Input[/Ler Média Final e Frequência/]
+        Input --> CondAprov{Média >= 7.0 <br/>E <br/>Frequência >= 0.75?}
+        
+        CondAprov -- Verdadeiro --> Aprov([APROVADO])
+        CondAprov -- Falso --> CondRec{Frequência >= 0.75 <br/>E <br/>Média entre 5.0 e 6.9?}
+        
+        CondRec -- Verdadeiro --> Recup([RECUPERAÇÃO])
+        CondRec -- Falso --> Rep([REPROVADO])
+
+        style Aprov fill:#d4edda,stroke:#28a745
+        style Recup fill:#fff3cd,stroke:#ffc107
+        style Rep fill:#f8d7da,stroke:#dc3545
+  </div>
+
+  <h3>4. Lógica Binária dos Operadores (AND vs OR)</h3>
+  <p>Este diagrama de fluxo simples ajuda o aluno a entender a diferença fundamental entre a conjunção (&&) e a disjunção (||).</p>
+  <p><strong>Operador && (E) - Ambas devem ser verdadeiras</strong></p>
+  <div class="mermaid">
+    flowchart LR
+        C1{Condição 1} -- Verdadeira --> C2{Condição 2}
+        C1 -- Falsa --> ResultF([Resultado FALSO])
+        C2 -- Verdadeira --> ResultV([Resultado VERDADEIRO])
+        C2 -- Falsa --> ResultF
+  </div>
+
+  <p><strong>Operador || (OU) - Apenas uma precisa ser verdadeira</strong></p>
+  <div class="mermaid">
+    flowchart LR
+        C1{Condição 1} -- Verdadeira --> ResultV([Resultado VERDADEIRO])
+        C1 -- Falsa --> C2{Condição 2}
+        C2 -- Verdadeira --> ResultV
+        C2 -- Falsa --> ResultF([Resultado FALSO])
   </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li><strong>Atribuição vs. Comparação:</strong> Nunca confunda o operador de atribuição (<code>=</code>), usado para guardar um valor em uma variável, com o operador de igualdade (<code>==</code>), usado para comparar se dois valores são iguais.</li>
+    <li><strong>Resultado Booleano:</strong> Lembre-se sempre que qualquer expressão que utilize operadores relacionais ou lógicos resultará obrigatoriamente em um valor do tipo lógico (<code>boolean</code>): <code>true</code> ou <code>false</code>.</li>
+    <li><strong>Hierarquia de Execução:</strong> Na falta de parênteses, o Java segue uma ordem de prioridade rigorosa: primeiro resolve a negação (<code>!</code>), depois a conjunção (<code>&&</code>) e, por fim, a disjunção (<code>||</code>).</li>
+    <li><strong>O Poder dos Parênteses:</strong> Utilize parênteses <code>()</code> não apenas para alterar a ordem de precedência, mas também para tornar o código mais legível para outros programadores.</li>
+    <li><strong>Proibição de Comparações em Cadeia:</strong> Diferente da matemática, você não pode escrever <code>10 < x < 20</code> diretamente no código; em Java, você deve separar as condições usando um operador lógico, como <code>(x > 10) && (x < 20)</code>.</li>
+    <li><strong>Curto-Circuito Lógico:</strong> O Java utiliza a avaliação de curto-circuito; em uma expressão <code>&&</code>, se a primeira parte for falsa, a segunda nem é avaliada, pois o resultado final será obrigatoriamente falso.</li>
+    <li><strong>Negação Inversora:</strong> O operador unário <code>!</code> tem a função simples de inverter o estado lógico; o que é verdadeiro torna-se falso e vice-versa.</li>
+    <li><strong>Diferença entre OU e XOR:</strong> Enquanto o operador OU (<code>||</code>) aceita que ambas as condições sejam verdadeiras, o OU Exclusivo (<code>^</code>) exige que os operandos sejam diferentes entre si para retornar <code>true</code>.</li>
+    <li><strong>Tipagem de Dados:</strong> Ao realizar comparações relacionais, certifique-se de que os dados são de tipos compatíveis para evitar erros de compilação.</li>
+    <li><strong>Prática com Tabelas-Verdade:</strong> Em caso de dúvida sobre lógica complexa, rascunhe uma Tabela-Verdade para validar todas as combinações possíveis de entrada e garantir que seu algoritmo tome a decisão correta.</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
-  <p>Aplicação real em desenvolvimento...</p>
+  <ul>
+    <li>
+      <strong>Sistemas de Autenticação e Segurança:</strong>
+      Cenário: Validar se um usuário pode acessar uma área administrativa.
+      <br />Lógica: <code>(usuarioValido == true) && (senhaCorreta == true) && (perfilAdmin == true)</code>.
+      <br />Aplicação: Uso do operador <code>&&</code> para garantir que múltiplos critérios de segurança sejam atendidos simultaneamente.
+    </li>
+    <li>
+      <strong>E-commerce e Promoções:</strong>
+      Cenário: Aplicar desconto em uma compra.
+      <br />Lógica: <code>(valorCompra > 500.0) || (cupomAtivo == true)</code>.
+      <br />Aplicação: Uso do operador <code>||</code>, onde o desconto é concedido se o cliente gastar muito ou se possuir um código promocional.
+    </li>
+    <li>
+      <strong>Controle de Acesso por Idade (Streaming/Jogos):</strong>
+      Cenário: Verificar se um conteúdo é adequado para o espectador.
+      <br />Lógica: <code>(idadeUsuario >= classificacaoIndicativa) || (autorizacaoPais == true)</code>.
+      <br />Aplicação: Operadores relacionais de maior ou igual combinados com a lógica de exceção.
+    </li>
+    <li>
+      <strong>Sistemas Acadêmicos (Aprovação):</strong>
+      Cenário: Decidir se um aluno foi aprovado, reprovado ou está em recuperação.
+      <br />Lógica: <code>(mediaFinal >= 7.0) && (frequencia >= 0.75)</code>.
+      <br />Aplicação: Conjunção lógica para verificar se o aluno atingiu o desempenho acadêmico e a presença mínima necessária.
+    </li>
+    <li>
+      <strong>Fintechs e Análise de Crédito:</strong>
+      Cenário: Aprovar um empréstimo bancário.
+      <br />Lógica: <code>(salario > limiteMinimo) && !(possuiRestricaoNome)</code>.
+      <br />Aplicação: Uso do operador de negação <code>!</code> para verificar se o cliente não possui restrições financeiras.
+    </li>
+    <li>
+      <strong>Desenvolvimento de Jogos (Colisão e Limites):</strong>
+      Cenário: Verificar se um personagem está dentro dos limites da tela.
+      <br />Lógica: <code>(posX >= 0) && (posX <= larguraTela)</code>.
+      <br />Aplicação: Delimitação de intervalos numéricos que o computador deve monitorar constantemente para atualizar a interface gráfica.
+    </li>
+    <li>
+      <strong>Sistemas de Logística e Estoque:</strong>
+      Cenário: Alertar sobre a necessidade de reposição de produtos.
+      <br />Lógica: <code>(quantidadeEstoque < estoqueMinimo) && (fornecedorDisponivel == true)</code>.
+      <br />Aplicação: Comparação relacional de menor que para automação de pedidos de compra.
+    </li>
+  </ul>
+  <p><strong>Resumo prático:</strong> Em projetos reais, você raramente usará um operador isolado. A &quot;mágica&quot; da programação acontece quando você encadeia essas comparações para modelar situações complexas do mundo real dentro do código Java.</p>
 </section>
 
 <section class="section-box">
   <h2>Referências</h2>
   <ul>
-    <li>Material de apoio em breve.</li>
+    <li><a href="https://docente.ifsc.edu.br/mello/livros/java/apostila-caelum-java-orientacao-objetos-FJ11.pdf">Java e Orientação a Objetos</a></li>
+    <li><a href="https://www.w3schools.com/java/default.asp">W3School - Java</a></li>
   </ul>
 </section>
 
@@ -54,4 +505,3 @@ tags:
     <li><a href="./exercicio-02/">Exercício 02: Desafio de Fixação</a></li>
   </ul>
 </section>
-
