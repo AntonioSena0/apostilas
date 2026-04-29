@@ -3,16 +3,126 @@ layout: exercicio
 title: "Exercício 01 - Operadores Relacionais e Lógicos"
 exercicio_numero: "01"
 aula_numero: "11"
-description: "Primeira atividade prática para consolidar os conhecimentos da aula 11."
+description: "Atividade Prática: Sistema de Elegibilidade para Bolsas de Estudo."
 ---
 
-<p>Enunciado do exercício 01 em desenvolvimento para a disciplina...</p>
+<section class="section-box">
+  <h2>1. Enunciado</h2>
+  <p>
+    Você foi contratado por uma instituição de ensino para automatizar a seleção
+    de candidatos a uma bolsa de estudos integral. O sistema deve receber os
+    dados acadêmicos e socioeconômicos de um aluno e informar, através de valores
+    lógicos (<code>true</code> ou <code>false</code>), se ele atende aos critérios de diferentes
+    modalidades de auxílio.
+  </p>
+</section>
+
+<section class="section-box">
+  <h2>2. Preparação</h2>
+  <ul>
+    <li>
+      <strong>Ambiente:</strong> Utilize uma IDE como VS Code (com extensão Java),
+      IntelliJ ou um compilador online (ex: OnlineGDB).
+    </li>
+    <li>
+      <strong>Conhecimento Prévio:</strong> Requer conhecimento sobre declaração
+      de variáveis (<code>double</code>, <code>int</code>, <code>boolean</code>) e comandos de entrada/saída
+      (<code>Scanner</code> e <code>System.out.println</code>).
+    </li>
+    <li>
+      <strong>Documentação:</strong> Consulte a tabela de precedência de
+      operadores (Parênteses > Relacionais > NOT > AND > OR) para estruturar as
+      expressões.
+    </li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>3. Código Base (Exemplo de Demonstração)</h2>
+  <p>
+    Este código demonstra como capturar dados e realizar uma comparação simples
+    utilizando operadores relacionais.
+  </p>
+  <div class="code-container">
+    <pre><code class="language-java">import java.util.Scanner;
+
+public class AnaliseBolsa {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        // Entrada de dados
+        System.out.print("Digite a média do aluno (0-10): ");
+        double media = leitor.nextDouble();
+        
+        System.out.print("Digite a frequência do aluno (0.0-1.0): ");
+        double frequencia = leitor.nextDouble();
+
+        // Exemplo básico: Elegível para Bolsa Desempenho (Média >= 9.0)
+        boolean bolsaDesempenho = media >= 9.0;
+
+        System.out.println("Elegível para Bolsa Desempenho? " + bolsaDesempenho);
+        
+        leitor.close();
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="section-box">
+  <h2>4. O Desafio</h2>
+  <p>
+    Expanda o programa acima para avaliar duas novas modalidades de auxílio,
+    utilizando operadores lógicos (<code>&&</code>, <code>||</code>, <code>!</code>) para combinar as condições:
+  </p>
+  <ul>
+    <li>
+      <strong>Bolsa Científica:</strong> O aluno deve ter uma média igual ou
+      superior a 8.0 E uma frequência de no mínimo 80% (0.80).
+    </li>
+    <li>
+      <strong>Auxílio Social:</strong> O aluno deve ter uma
+      <code>rendaFamiliar</code> menor que R$ 2.000,00 OU ser integrante de um
+      programa social (<code>boolean pertenceProgramaSocial</code>).
+    </li>
+    <li>
+      <strong>Bolsa Integral (Ouro):</strong> Para ganhar esta bolsa, o aluno
+      deve atender ao critério da Bolsa Científica (item 1) E ao critério do
+      Auxílio Social (item 2).
+    </li>
+  </ul>
+
+  <h3>Requisitos técnicos:</h3>
+  <ul>
+    <li>
+      Crie as variáveis necessárias para capturar a <code>rendaFamiliar</code> e
+      se <code>pertenceProgramaSocial</code>.
+    </li>
+    <li>
+      Utilize parênteses para garantir que a lógica da "Bolsa Integral" seja
+      avaliada corretamente, respeitando a hierarquia dos conectivos lógicos.
+    </li>
+    <li>
+      O programa deve exibir o resultado <code>true</code> ou <code>false</code> para cada uma das
+      três novas modalidades.
+    </li>
+  </ul>
+</section>
 
 <div class="tip-box">
-  <h4>Orientações</h4>
+  <h4>5. Orientações Finais</h4>
   <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
+    <li>
+      <strong>Indentação:</strong> Mantenha o código organizado com recuos para
+      facilitar a leitura.
+    </li>
+    <li>
+      <strong>Tipagem:</strong> Lembre-se que em Java o operador de igualdade é
+      <code>==</code> e o de atribuição é <code>=</code>.
+    </li>
+    <li>
+      <strong>Teste de Mesa:</strong> Antes de rodar, tente prever o resultado
+      para um aluno com Média 8.5, Frequência 0.85 e Renda de R$ 5.000,00.
+    </li>
   </ul>
 </div>
+
