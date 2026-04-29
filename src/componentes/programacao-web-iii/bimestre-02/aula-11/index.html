@@ -100,54 +100,119 @@ $user->roles()->sync([28, 29, 30]);
 
 <section class="section-box">
   <h2>Exemplo de Código</h2>
-  <p>Abaixo estão os cenários fundamentais, utilizando a sintaxe moderna de tipos do PHP 8.x integrada ao Laravel.</p>
-  
-  <h3>Cenário 1: Um-para-Um (1:1) – Usuário e Perfil</h3>
+  <p>A seguir estão exemplos práticos de CRUD relacional e otimização em Eloquent.</p>
+
+  <h3>Cenário 1: Um-para-Um (1:1) – Usuário e Configurações</h3>
+  <p>Neste cenário, cada usuário possui apenas um registro de configuração. É ideal para separar dados core de dados de preferência.</p>
   <div class="code-container">
     <pre><code class="language-php">// app/Models/User.php
-public function profile(): HasOne {
-    return $this->hasOne(Profile::class); // Define que um usuário possui um perfil
+public function setting(): HasOne {
+    // Define que o Usuário possui uma Configuração
+    return $this->hasOne(Setting::class);
 }
 
-// app/Models/Profile.php
+// app/Models/Setting.php
 public function user(): BelongsTo {
-    return $this->belongsTo(User::class); // Inverso do relacionamento
+    // Define que a Configuração pertence a um Usuário (Inverso)
+    return $this->belongsTo(User::class);
+}
+
+// CREATE: Criando a configuração vinculada ao usuário
+$user = User::find(1);
+$user->setting()->create([
+    'theme' => 'dark',
+    'notifications' => true
+]); // O Laravel preenche automaticamente a chave 'user_id'
+
+// READ: Acessando via Propriedade Dinâmica
+$tema = $user->setting->theme;
+
+// UPDATE: Atualizando o relacionamento existente
+$user->setting->update(['theme' => 'light']);</code></pre>
+  </div>
+
+  <h3>Cenário 2: Um-para-Muitos (1:N) – Categoria e Peças</h3>
+  <p>Baseado no sistema da "Bob's Auto Parts", uma categoria (ex: Pneus) pode ter muitas peças cadastradas.</p>
+  <div class="code-container">
+    <pre><code class="language-php">// app/Models/Category.php
+public function products(): HasMany {
+    // Uma categoria possui muitos produtos/peças
+    return $this->hasMany(Product::class);
+}
+
+// CREATE (Persistência Complexa): Salvando várias peças de uma vez
+$categoria = Category::where('name', 'Motor')->first();
+$categoria->products()->createMany([
+    ['name' => 'Vela de Ignição', 'price' => 25.50],
+    ['name' => 'Filtro de Óleo', 'price' => 40.00],
+]); // O createMany garante a integridade da FK categoria_id em lote
+
+// UPDATE (Vincular/Desvincular): O método associate()
+$peca = Product::find(10);
+$novaCategoria = Category::find(2);
+$peca->category()->associate($novaCategoria); // Define a FK na memória
+$peca->save(); // Persiste a alteração no banco</code></pre>
+  </div>
+
+  <h3>Cenário 3: Muitos-para-Muitos (N:N) – Alunos e Disciplinas</h3>
+  <p>O cenário mais complexo, onde usamos uma tabela pivô para cruzar os dados. No Laravel 13, podemos gerenciar dados extras na própria tabela de ligação.</p>
+  <div class="code-container">
+    <pre><code class="language-php">// app/Models/Student.php
+public function subjects(): BelongsToMany {
+    return $this->belongsToMany(Subject::class)
+                ->withPivot('grade', 'absences') // Define campos extras na tabela pivô
+                ->withTimestamps(); // Garante o preenchimento de created_at/updated_at na pivô
+}
+
+$student = Student::find(1);
+
+// CREATE (Vincular): O método attach() adiciona sem verificar duplicatas
+$student->subjects()->attach($subjectId, ['grade' => 9.5]);
+
+// UPDATE (Sincronizar): O método sync() é o mais utilizado em sistemas reais
+// Ele remove o que não está no array, mantém o que já existe e adiciona o novo
+$student->subjects()->sync([
+    1 => ['grade' => 8.0],
+    2 => ['grade' => 7.5],
+]); // Crucial para manter a integridade de formulários de múltipla escolha
+
+// READ: Acessando dados da Tabela Pivô
+foreach ($student->subjects as $subject) {
+    echo "Disciplina: {$subject->name} | Nota: {$subject->pivot->grade}";
 }</code></pre>
   </div>
-  
-  <h3>Cenário 2: Um-para-Muitos (1:N) – Post e Comentários</h3>
+
+  <h3>Cenário 4: Otimização de Performance (Eager Loading)</h3>
+  <p>Evitando o problema do N+1 ao realizar o CRUD de leitura em massa.</p>
   <div class="code-container">
-    <pre><code class="language-php">// app/Models/Post.php
-public function comments(): HasMany {
-    return $this->hasMany(Comment::class); // Um post pode ter múltiplos comentários
+    <pre><code class="language-php">// FORMA INCORRETA (Gera dezenas de consultas ao banco)
+$posts = Post::all();
+foreach ($posts as $post) {
+    echo $post->user->name; // Uma consulta extra por linha do loop!
 }
 
-// Persistência Complexa: Criando vários comentários de uma vez
-$post = Post::find(1);
-$post->comments()->createMany([
-    ['body' => 'Excelente post!'],
-    ['body' => 'Laravel 13 facilitou muito a vida.'],
-]);</code></pre>
+// FORMA PROFISSIONAL (Apenas 2 consultas totais)
+$posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
+</code></pre>
   </div>
-  
-  <h3>Cenário 3: Muitos-para-Muitos (N:N) – Usuários e Papéis (Roles)</h3>
-  <div class="code-container">
-    <pre><code class="language-php">// app/Models/User.php
-public function roles(): BelongsToMany {
-    return $this->belongsToMany(Role::class)->withTimestamps(); // Uso de tabela pivô
-}
 
-// Lógica de Persistência com sync()
-// O sync() remove o que não está no array e adiciona o que é novo, garantindo integridade
-$user->roles()->sync([31-33]);</code></pre>
-  </div>
-  
-  <h3>Cenário 4: Vinculação (Associate) em 1:N</h3>
-  <p>Para alterar o "pai" de um objeto sem deletá-lo:</p>
+  <h3>Cenário 5: Persistência de Atributos com Promoção (PHP 8)</h3>
+  <p>Exemplo de como o Laravel utiliza a sintaxe moderna para instanciar objetos de negócio antes de salvá-los.</p>
   <div class="code-container">
-    <pre><code class="language-php">$comment = Comment::find(10);
-$comment->post()->associate(Post::find(5)); // Define o novo post pai [30, 34, 35]
-$comment->save();</code></pre>
+    <pre><code class="language-php">class OrderService {
+    // Uso da Promoção de Propriedades do PHP 8 no construtor
+    public function __construct(
+        protected User $user,
+        protected array $items
+    ) {}
+
+    public function process(): void {
+        // Lógica complexa utilizando relacionamentos Eloquent
+        $order = $this->user->orders()->create();
+        $order->products()->sync($this->items);
+    }
+}
+</code></pre>
   </div>
 </section>
 
@@ -172,14 +237,7 @@ $comment->save();</code></pre>
   
   <h3>Relacionamento N:N com Tabela Pivô</h3>
   <p>Mostra a estrutura necessária para permitir que usuários tenham múltiplos papéis e vice-versa.</p>
-  <div class="mermaid">
-    graph LR
-        U[Table: users] -- 1 --- UP[Table: role_user]
-        R[Table: roles] -- 1 --- UP
-        UP -- N --- U
-        UP -- N --- R
-        style UP fill:#f9f,stroke:#333,stroke-width:2px
-  </div>
+  <p>Em construção...</p>
 </section>
 
 <div class="tip-box">
