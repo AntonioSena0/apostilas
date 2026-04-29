@@ -1,18 +1,307 @@
 ---
-layout: exercicio
-title: "Exercício 02 - Operadores Relacionais e Lógicos"
-exercicio_numero: "02"
+layout: questionario
+title: "Operadores Relacionais e Lógicos em Java"
+exercicio_numero: "03"
 aula_numero: "11"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 11."
+description: "Questionário para consolidar o uso de comparações, conectivos lógicos e precedência em Java."
+perguntas:
+  - texto: "Qual é o resultado da expressão (10 == 10) em Java?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "1"
+      - letra: "d"
+        texto: "Erro de compilação"
+
+  - texto: "Para verificar se dois valores são diferentes em Java, qual operador deve ser utilizado?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "<>"
+      - letra: "b"
+        texto: "not="
+      - letra: "c"
+        texto: "!="
+      - letra: "d"
+        texto: "!=="
+
+  - texto: "Qual o valor booleano resultante de (5 > 3 && 2 < 1)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "null"
+      - letra: "d"
+        texto: "1"
+
+  - texto: "O operador lógico 'OU' (disjunção) é representado em Java por:"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "&&"
+      - letra: "b"
+        texto: "AND"
+      - letra: "c"
+        texto: "!"
+      - letra: "d"
+        texto: "||"
+
+  - texto: "Na tabela-verdade do operador && (E), o resultado será 'true' apenas quando:"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Ambas as proposições forem verdadeiras."
+      - letra: "b"
+        texto: "Pelo menos uma proposição for verdadeira."
+      - letra: "c"
+        texto: "Ambas as proposições forem falsas."
+      - letra: "d"
+        texto: "A primeira proposição for verdadeira, independente da segunda."
+
+  - texto: "Qual a função do operador unário '!' em uma expressão booleana?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Comparar se dois valores são iguais."
+      - letra: "b"
+        texto: "Inverter o valor lógico atual."
+      - letra: "c"
+        texto: "Verificar se um valor é nulo."
+      - letra: "d"
+        texto: "Finalizar a execução do código."
+
+  - texto: "Considere x = 5 e y = 10. Qual o resultado de (x <= y)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "510"
+      - letra: "d"
+        texto: "Erro de sintaxe"
+
+  - texto: "De acordo com a precedência de operadores, qual deve ser avaliado primeiro?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Operadores Lógicos (&&, ||)"
+      - letra: "b"
+        texto: "Operadores Relacionais (==, >)"
+      - letra: "c"
+        texto: "Parênteses ()"
+      - letra: "d"
+        texto: "Operadores Aritméticos (+, -)"
+
+  - texto: "Qual o resultado de !(true || false)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "null"
+      - letra: "d"
+        texto: "Erro"
+
+  - texto: "Qual operador relacional verifica se o valor da esquerda é menor ou igual ao da direita?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "=<"
+      - letra: "b"
+        texto: "<="
+      - letra: "c"
+        texto: "<=="
+      - letra: "d"
+        texto: "!"
+
+  - texto: "Em Java, a expressão (true && !false) resulta em:"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "0"
+      - letra: "d"
+        texto: "1"
+
+  - texto: "Se P é falso e Q é verdadeiro, qual o resultado de P || Q?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "Falso"
+      - letra: "d"
+        texto: "Depende da linguagem"
+
+  - texto: "Qual a ordem correta de execução dos operadores lógicos (sem parênteses)?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "&&, ||, !"
+      - letra: "b"
+        texto: "||, &&, !"
+      - letra: "c"
+        texto: "!, &&, ||"
+      - letra: "d"
+        texto: "A ordem em que aparecerem no código."
+
+  - texto: "Qual o resultado de (15 >= 15) && (10 < 5)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "15"
+      - letra: "d"
+        texto: "Erro"
+
+  - texto: "O que acontece ao comparar (10 != 10)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "null"
+      - letra: "d"
+        texto: "0"
+
+  - texto: "Qual a diferença fundamental entre '=' e '==' em Java?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Não há diferença."
+      - letra: "b"
+        texto: "== é para atribuição e = para comparação."
+      - letra: "c"
+        texto: "== é usado apenas em strings."
+      - letra: "d"
+        texto: "= atribui um valor e == compara valores."
+
+  - texto: "Considere a expressão: (5 + 2 > 6 || 10 < 5). Qual o resultado?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "7"
+      - letra: "d"
+        texto: "Erro de precedência"
+
+  - texto: "O que a Tabela-Verdade representa na computação?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "O tempo de execução de um algoritmo."
+      - letra: "b"
+        texto: "Todas as combinações possíveis de entradas lógicas e seus resultados."
+      - letra: "c"
+        texto: "A lista de variáveis de um sistema."
+      - letra: "d"
+        texto: "O mapeamento de memória do Java."
+
+  - texto: "Qual o resultado de !(10 < 20)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "20"
+      - letra: "d"
+        texto: "10"
+
+  - texto: "Em uma expressão complexa, os operadores relacionais são avaliados ANTES ou DEPOIS dos aritméticos?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Antes"
+      - letra: "b"
+        texto: "Depois"
+      - letra: "c"
+        texto: "Ao mesmo tempo"
+      - letra: "d"
+        texto: "Depende se o número é inteiro ou real"
+
+  - texto: "A expressão (true || false && false) resulta em true. Por que?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Porque o OU ignorou o restante."
+      - letra: "b"
+        texto: "Porque o Java lê sempre da esquerda para a direita."
+      - letra: "c"
+        texto: "Porque o operador && tem precedência sobre o ||."
+      - letra: "d"
+        texto: "Porque existem dois valores falsos."
+
+  - texto: "Qual o resultado de (Math.sqrt(16) == 4 && 2 * 3 > 5)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "4"
+      - letra: "d"
+        texto: "6"
+
+  - texto: "O operador 'Diferente de' em algoritmos (pseudocódigo) costuma ser <> ou ≠. Como ele é em Java?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "not="
+      - letra: "b"
+        texto: "!="
+      - letra: "c"
+        texto: "<>"
+      - letra: "d"
+        texto: "=="
+
+  - texto: "Se um aluno precisa de (media >= 7 && frequencia >= 75) para passar, e ele tem media 8 e frequencia 70, qual o resultado?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "Aprovado"
+      - letra: "d"
+        texto: "8"
+
+  - texto: "Qual a melhor prática para evitar confusão em expressões lógicas muito longas?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Não usar mais de dois operadores."
+      - letra: "b"
+        texto: "Escrever tudo em uma única linha sem espaços."
+      - letra: "c"
+        texto: "Utilizar parênteses para delimitar a ordem desejada."
+      - letra: "d"
+        texto: "Usar apenas o operador OU (||)."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Aplique os conceitos de lógica e sintaxe aprendidos.</li>
-    <li>Verifique se o resultado atende aos requisitos propostos.</li>
-    <li>Documente seu código para facilitar o entendimento.</li>
-  </ul>
-</div>
