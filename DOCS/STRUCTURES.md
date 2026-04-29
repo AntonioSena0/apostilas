@@ -155,3 +155,65 @@ O arquivo `.json` deve definir o `subject` e os títulos dos bimestres para que 
   }
 }
 ```
+
+## 6. Estrutura do Exercício Prático
+
+Os arquivos de exercícios (`exercicio-XX.html`) devem seguir uma estrutura modular para facilitar a leitura e execução das tarefas:
+
+### Metadados (Front-matter)
+```yaml
+---
+layout: exercicio
+title: "Título do Exercício"
+exercicio_numero: "XX"
+aula_numero: "XX"
+description: "Breve resumo da atividade"
+---
+```
+
+### Seções Obrigatórias
+
+| Seção | Descrição |
+| :--- | :--- |
+| **Enunciado** | Descrição clara do problema ou objetivo final da atividade. |
+| **Preparação** | Requisitos técnicos, configuração de ambiente ou arquivos necessários. |
+| **Código Base** | Snippets de referência ou código inicial que o aluno deve utilizar. |
+| **O Desafio** | Lista de tarefas específicas (Tarefa A, B, C...) a serem realizadas. |
+| **Orientações Finais** | Dicas de depuração, links úteis e orientações de entrega/teste. |
+
+### Exemplo de Código HTML
+```html
+<section class="section-box">
+  <h2>Enunciado</h2>
+  <p>Descrição...</p>
+</section>
+
+<section class="section-box">
+  <h2>Preparação</h2>
+  <ul>
+    <li>Configuração 1...</li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>1. Código Base: [Nome do Arquivo]</h2>
+  <div class="code-container">
+    <pre><code class="language-php">...</code></pre>
+  </div>
+</section>
+
+<section class="section-box">
+  <h2>O Desafio (Atividades)</h2>
+  <h4>Tarefa A: ...</h4>
+  <ul>
+    <li>Passo 1</li>
+  </ul>
+</section>
+
+<div class="tip-box">
+  <h4>Orientações Finais</h4>
+  <ul>
+    <li>Lembrete importante...</li>
+  </ul>
+</div>
+```

@@ -3,16 +3,83 @@ layout: exercicio
 title: "Exercício 01 - Eloquent Avançado"
 exercicio_numero: "01"
 aula_numero: "11"
-description: "Primeira atividade prática para consolidar os conhecimentos da aula 11."
+description: "Atividade Prática: Gestão de Relacionamentos com Tinker."
 ---
 
-<p>Enunciado do exercício 01 em desenvolvimento para a disciplina...</p>
+<section class="section-box">
+  <h2>Enunciado</h2>
+  <p>O objetivo desta atividade é simular o backend de um sistema de gestão de cursos. Você deverá configurar e manipular três tipos de relações:</p>
+  <ul>
+    <li><strong>Um-para-Um:</strong> Um Aluno (Student) possui um Cartão de Estudante (StudentCard).</li>
+    <li><strong>Um-para-Muitos:</strong> Um Professor (Teacher) ministra muitos Cursos (Course).</li>
+    <li><strong>Muitos-para-Muitos:</strong> Alunos (Student) inscrevem-se em muitos Cursos (Course), com uma coluna extra de "nota" (grade) na tabela intermediária.</li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>Preparação</h2>
+  <p>Antes de abrir o terminal, certifique-se de que as suas Migrations e Models estão configuradas corretamente:</p>
+  <ul>
+    <li><strong>Migrations:</strong> Devem conter as chaves estrangeiras (<code>foreignId</code>).</li>
+    <li><strong>Models:</strong> Devem conter os métodos <code>hasOne</code>, <code>belongsTo</code>, <code>hasMany</code> e <code>belongsToMany</code> (este último com <code>withPivot('grade')</code>).</li>
+    <li><strong>Factories:</strong> Devem estar prontas para gerar dados fictícios.</li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>1. Código Base: Tinker (Exemplos de Referência)</h2>
+  <p>Para realizar os desafios, você utilizará os seguintes comandos padrão no Tinker:</p>
+  <div class="code-container">
+    <pre><code class="language-php">// Abrir o Tinker
+php artisan tinker
+
+// Exemplo 1: Criar com relacionamento automático (Factory)
+$student = Student::factory()->has(StudentCard::factory())->create();
+
+// Exemplo 2: Associar Um-para-Muitos
+$teacher = Teacher::factory()->create();
+$course = Course::factory()->for($teacher)->create();
+
+// Exemplo 3: Sincronizar Muitos-para-Muitos com dados Pivot
+$student->courses()->sync([
+    $courseId => ['grade' => 9.5]
+]);</code></pre>
+  </div>
+</section>
+
+<section class="section-box">
+  <h2>O Desafio (Atividades)</h2>
+  <p>Realize as seguintes operações dentro do terminal <code>php artisan tinker</code>:</p>
+
+  <h4>Tarefa A: Identidade Estudantil (1:1)</h4>
+  <ul>
+    <li>Crie um <strong>Student</strong> usando a factory.</li>
+    <li>Crie um <strong>StudentCard</strong> e associe-o manualmente ao aluno criado.</li>
+    <li><strong>Teste:</strong> Tente acessar o código do cartão a partir do objeto aluno: <code>$student->studentCard->code</code>.</li>
+  </ul>
+
+  <h4>Tarefa B: Grade Escolar (1:N)</h4>
+  <ul>
+    <li>Crie um <strong>Teacher</strong> chamado "Mestre Laravel".</li>
+    <li>Utilize a factory para gerar 3 <strong>Course</strong> vinculados a este professor de uma só vez.</li>
+    <li><strong>Teste:</strong> Liste apenas os nomes dos cursos desse professor usando <code>$teacher->courses->pluck('name')</code>.</li>
+  </ul>
+
+  <h4>Tarefa C: Inscrições e Notas (N:N)</h4>
+  <ul>
+    <li>Crie 2 alunos e 2 cursos.</li>
+    <li>Inscreva o Aluno 1 nos dois cursos, atribuindo notas diferentes via <code>sync</code>.</li>
+    <li>Inscreva o Aluno 2 apenas no primeiro curso.</li>
+    <li><strong>Teste:</strong> Recupere a nota do Aluno 1 no curso específico usando <code>$student->courses->first()->pivot->grade</code>.</li>
+  </ul>
+</section>
 
 <div class="tip-box">
-  <h4>Orientações</h4>
+  <h4>Orientações Finais</h4>
   <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
+    <li><strong>Persistência:</strong> Lembre-se que comandos no Tinker gravam dados reais no seu banco de dados. Use <code>DatabaseTransactions</code> se estiver num ambiente de testes.</li>
+    <li><strong>Erros Comuns:</strong> Se receber um erro de "Class not found", verifique os namespaces no topo dos seus arquivos Models.</li>
+    <li><strong>Refresh:</strong> Se alterar o código PHP de um Model enquanto o Tinker estiver aberto, você deve sair (<code>exit</code>) e entrar novamente para que as mudanças façam efeito.</li>
+    <li><strong>Dica:</strong> Use o comando <code>vanderloost/tinker-companion</code> ou simplesmente o método <code>dd()</code> (dump and die) para inspecionar coleções complexas se necessário.</li>
   </ul>
 </div>

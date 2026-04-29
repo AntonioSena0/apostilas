@@ -1,18 +1,307 @@
 ---
-layout: exercicio
-title: "Exercício 02 - Eloquent Avançado"
+layout: questionario
+title: "Eloquent Avançado: Relacionamentos e Persistência Complexa"
 exercicio_numero: "02"
 aula_numero: "11"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 11."
+description: "Questionário para consolidar os conhecimentos sobre relacionamentos 1:1, 1:N, N:N e otimização de consultas no Laravel 13."
+perguntas:
+  - texto: "Qual a função do Eloquent ORM no desenvolvimento de sistemas multicamadas?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Atuar como um servidor web para hospedar o banco de dados."
+      - letra: "b"
+        texto: "Converter código SQL puro em HTML para o navegador."
+      - letra: "c"
+        texto: "Atuar como uma ponte entre o modelo conceitual (PHP) e o modelo físico (Banco de Dados)."
+      - letra: "d"
+        texto: "Substituir a necessidade de utilizar Models no padrão MVC."
+
+  - texto: "No Laravel, como os relacionamentos são declarados dentro de um Model?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Como propriedades estáticas protegidas."
+      - letra: "b"
+        texto: "Como métodos que retornam objetos de relacionamento (hasOne, hasMany, etc)."
+      - letra: "c"
+        texto: "Como comentários especiais (docblocks) acima da classe."
+      - letra: "d"
+        texto: "Dentro do arquivo de configuração config/database.php."
+
+  - texto: "Qual método é utilizado para definir um relacionamento Um-para-Um no modelo pai?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "hasOne()"
+      - letra: "b"
+        texto: "belongsTo()"
+      - letra: "c"
+        texto: "hasMany()"
+      - letra: "d"
+        texto: "oneToOne()"
+
+  - texto: "O que o Laravel busca automaticamente por convenção ao definir uma chave estrangeira para o modelo 'User'?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Uma coluna chamada id_user."
+      - letra: "b"
+        texto: "Uma coluna chamada users_id."
+      - letra: "c"
+        texto: "Uma coluna chamada FK_user."
+      - letra: "d"
+        texto: "Uma coluna chamada user_id."
+
+  - texto: "Para que serve o método belongsTo() no modelo filho?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Para indicar que o modelo possui vários filhos."
+      - letra: "b"
+        texto: "Para indicar que o modelo pertence a um registro pai (relação inversa)."
+      - letra: "c"
+        texto: "Para deletar automaticamente o pai quando o filho for removido."
+      - letra: "d"
+        texto: "Para criar uma tabela pivô automaticamente."
+
+  - texto: "Qual a principal característica de um relacionamento Um-para-Muitos (1:N)?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Um pai pode ter apenas um filho e vice-versa."
+      - letra: "b"
+        texto: "Vários pais podem compartilhar obrigatoriamente o mesmo registro filho."
+      - letra: "c"
+        texto: "Um único modelo pai pode estar ligado a múltiplos registros filhos."
+      - letra: "d"
+        texto: "O relacionamento exige obrigatoriamente uma tabela pivô."
+
+  - texto: "Qual método do Eloquent permite inserir vários registros relacionados de uma só vez a partir do pai, garantindo a chave estrangeira?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "createMany()"
+      - letra: "b"
+        texto: "saveMany()"
+      - letra: "c"
+        texto: "insertBulk()"
+      - letra: "d"
+        texto: "push()"
+
+  - texto: "O que é uma 'Tabela Pivô' no contexto do Eloquent?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Uma tabela que armazena apenas logs de erro do servidor."
+      - letra: "b"
+        texto: "A tabela principal onde as senhas de usuários são salvas."
+      - letra: "c"
+        texto: "Uma tabela temporária para cache de consultas Blade."
+      - letra: "d"
+        texto: "Uma tabela intermediária necessária para gerir relacionamentos Muitos-para-Muitos."
+
+  - texto: "Seguindo a convenção do Laravel, qual seria o nome da tabela pivô para os modelos 'Role' e 'User'?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "user_role"
+      - letra: "b"
+        texto: "role_user"
+      - letra: "c"
+        texto: "users_roles"
+      - letra: "d"
+        texto: "pivot_roles"
+
+  - texto: "Qual a função do método sync() em relacionamentos Muitos-para-Muitos?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Sincronizar os ficheiros do projeto com o repositório Git."
+      - letra: "b"
+        texto: "Adicionar novos IDs à tabela pivô sem remover nenhum anterior."
+      - letra: "c"
+        texto: "Manter na tabela pivô apenas os IDs fornecidos no array, removendo os outros."
+      - letra: "d"
+        texto: "Atualizar apenas o campo 'updated_at' da tabela pivô."
+
+  - texto: "Como podemos acessar colunas extras (como 'active') em uma tabela pivô?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Utilizando o método withPivot('active') na definição do relacionamento."
+      - letra: "b"
+        texto: "O Laravel permite acesso automático a qualquer coluna da pivô via ->pivot."
+      - letra: "c"
+        texto: "Criando um Model para a tabela pivô e usando um JOIN manual."
+      - letra: "d"
+        texto: "Usando a propriedade $fillable na pivô."
+
+  - texto: "O que caracteriza o problema de performance 'N+1'?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Quando o banco de dados tem mais tabelas que o limite permitido."
+      - letra: "b"
+        texto: "Quando é feita 1 consulta para o pai e N consultas adicionais para os filhos dentro de um loop."
+      - letra: "c"
+        texto: "Quando uma consulta demora mais de 1 segundo para ser executada."
+      - letra: "d"
+        texto: "Quando o servidor PHP não consegue ler o ficheiro .env."
+
+  - texto: "Qual método resolve o problema N+1 através do 'Eager Loading'?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "join()"
+      - letra: "b"
+        texto: "attach()"
+      - letra: "c"
+        texto: "loadAfter()"
+      - letra: "d"
+        texto: "with()"
+
+  - texto: "Para que serve o método as('membership') em um relacionamento Many-to-Many?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Para renomear o atributo 'pivot' para 'membership' no acesso aos dados."
+      - letra: "b"
+        texto: "Para definir que o relacionamento é um alias (apelido) de outro."
+      - letra: "c"
+        texto: "Para converter o resultado da consulta em uma String."
+      - letra: "d"
+        texto: "Para definir o nome da base de dados secundária."
+
+  - texto: "Na migration, o que faz a instrução ->onDelete('cascade')?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Impede a eliminação do registro pai se existirem filhos."
+      - letra: "b"
+        texto: "Elimina automaticamente os registros filhos quando o registro pai é apagado."
+      - letra: "c"
+        texto: "Faz um backup dos dados antes de apagá-los."
+      - letra: "d"
+        texto: "Apenas remove a chave estrangeira, mantendo o registro filho órfão."
+
+  - texto: "Qual a vantagem de tratar relacionamentos como métodos (ex: $user->posts())?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Os métodos ocupam menos memória que as propriedades."
+      - letra: "b"
+        texto: "O PHP exige que relacionamentos sejam sempre funções."
+      - letra: "c"
+        texto: "Permite encadear filtros (Query Builder) antes de executar a consulta final."
+      - letra: "d"
+        texto: "Esconde os nomes das tabelas de possíveis atacantes."
+
+  - texto: "Ao executar $usuario->pedidos()->where('status', 'pago')->get(), o filtro ocorre em que nível?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "No nível do Banco de Dados (SQL)."
+      - letra: "b"
+        texto: "No nível da Coleção PHP (após trazer todos os dados)."
+      - letra: "c"
+        texto: "No nível do Front-end (JavaScript)."
+      - letra: "d"
+        texto: "No ficheiro de rotas do Laravel."
+
+  - texto: "Em qual cenário o uso do método withTimestamps() é aplicado?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Para converter horas de UTC para o fuso horário local."
+      - letra: "b"
+        texto: "Para manter as colunas created_at e updated_at atualizadas na tabela pivô."
+      - letra: "c"
+        texto: "Para medir o tempo de execução de uma query Eloquent."
+      - letra: "d"
+        texto: "Para garantir que o cache expire no tempo correto."
+
+  - texto: "Qual o método correto para associar um modelo filho ao pai definindo apenas a chave estrangeira na memória?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "link()"
+      - letra: "b"
+        texto: "sync()"
+      - letra: "c"
+        texto: "attach()"
+      - letra: "d"
+        texto: "associate()"
+
+  - texto: "Onde o método hasMany() deve ser obrigatoriamente definido?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "No modelo pai (que não possui a chave estrangeira)."
+      - letra: "b"
+        texto: "No modelo filho (que possui a chave estrangeira)."
+      - letra: "c"
+        texto: "Dentro da migration de criação da tabela."
+      - letra: "d"
+        texto: "No AppServiceProvider.php."
+
+  - texto: "Quantas consultas ao banco o Laravel faz ao usar User::with('posts')->get() para 50 utilizadores?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "51 consultas."
+      - letra: "b"
+        texto: "1 consulta gigante com JOIN."
+      - letra: "c"
+        texto: "2 consultas (uma para utilizadores e outra para todos os posts relacionados)."
+      - letra: "d"
+        texto: "50 consultas."
+
+  - texto: "O que o método toggle() faz em um relacionamento Many-to-Many?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Adiciona o ID se ele não existir na pivô, ou remove se ele já existir."
+      - letra: "b"
+        texto: "Inverte a ordem alfabética da tabela pivô."
+      - letra: "c"
+        texto: "Desativa temporariamente o relacionamento sem apagar os dados."
+      - letra: "d"
+        texto: "Sincroniza os dados com uma API externa."
+
+  - texto: "Se você acessar $user->posts (como propriedade), o que o Eloquent retorna?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "O objeto Query Builder para continuar a consulta."
+      - letra: "b"
+        texto: "Uma coleção (Collection) com os resultados da relação."
+      - letra: "c"
+        texto: "Uma string com o comando SQL gerado."
+      - letra: "d"
+        texto: "Um erro de execução, pois faltam os parênteses."
+
+  - texto: "Qual a importância de definir chaves estrangeiras via 'constrained()' nas Migrations?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "É apenas estético para o código ficar mais curto."
+      - letra: "b"
+        texto: "Para que o Laravel crie automaticamente as Views do sistema."
+      - letra: "c"
+        texto: "Para garantir integridade referencial e segurança diretamente no motor do Banco de Dados."
+      - letra: "d"
+        texto: "Para que o Composer possa atualizar os pacotes corretamente."
+
+  - texto: "O que acontece se você tentar salvar um relacionamento N:N usando create() diretamente no pai?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "O Laravel cria o registro na pivô automaticamente."
+      - letra: "b"
+        texto: "O Laravel gera um erro de 'Mass Assignment'."
+      - letra: "c"
+        texto: "Os dados são salvos apenas na tabela pai."
+      - letra: "d"
+        texto: "O Eloquent exige o uso de métodos específicos como attach() ou sync() para a pivô."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Aplique os conceitos de lógica e sintaxe aprendidos.</li>
-    <li>Verifique se o resultado atende aos requisitos propostos.</li>
-    <li>Documente seu código para facilitar o entendimento.</li>
-  </ul>
-</div>

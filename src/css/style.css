@@ -440,3 +440,7 @@ footer {
   display: none;
   margin-top: 2rem;
 }
+
+.tip-box-instruction {
+  margin-top: 0;
+}
