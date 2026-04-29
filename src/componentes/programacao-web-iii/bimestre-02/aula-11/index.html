@@ -1,7 +1,7 @@
 ---
-title: "Eloquent Avançado"
+title: "Eloquent Avançado – Relacionamentos e Persistência Complexa"
 aula_numero: "11"
-description: "Relacionamentos (Um-para-um, Um-para-muitos) e persistência complexa."
+description: "Relacionamentos (Um-para-um, Um-para-muitos, Muitos-para-muitos) e persistência complexa no Eloquent ORM."
 tags:
 - aula
 - bimestre-02
@@ -9,41 +9,207 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 11 em desenvolvimento...</p>
+  
+  <h3>1. A Filosofia do Mapeamento Objeto-Relacional (ORM)</h3>
+  <p>No desenvolvimento de sistemas multicamadas, o Eloquent ORM atua como uma ponte entre o Modelo Conceitual (objetos em PHP) e o Modelo Físico (tabelas no banco de dados). Em vez de manipular linhas e colunas através de SQL puro, você interage com classes que possuem "identidades e responsabilidades".</p>
+  <p>A grande vantagem de definir relacionamentos no Laravel é que eles são declarados como métodos. Isso permite que o relacionamento funcione como um Query Builder, possibilitando o encadeamento de filtros antes da execução da consulta. Por exemplo: <code>$usuario->pedidos()->where('status', 'pago')->get();</code>.</p>
+
+  <h3>2. Relacionamento Um-para-Um (1:1)</h3>
+  <p>Este é o tipo mais básico de associação, onde um registro em uma tabela está ligado a exatamente um registro em outra.</p>
+  <ul>
+    <li><strong>Conceito:</strong> Frequentemente usado para estender dados de um modelo sem sobrecarregar a tabela principal (ex: um Usuario e seu PerfilSettings).</li>
+    <li><strong>Implementação:</strong> Usa-se o método <code>hasOne()</code> no modelo pai e <code>belongsTo()</code> no modelo filho.</li>
+    <li><strong>Convenção de Chave Estrangeira:</strong> O Laravel busca automaticamente por uma coluna chamada <code>model_id</code> (ex: <code>user_id</code>) na tabela do modelo relacionado.</li>
+  </ul>
+  <p><strong>Exemplo de Código:</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">// Modelo User (Pai)
+public function phone(): HasOne {
+    return $this->hasOne(Phone::class); // Um usuário tem um telefone
+}
+
+// Modelo Phone (Filho)
+public function user(): BelongsTo {
+    return $this->belongsTo(User::class); // O telefone pertence a um usuário
+}</code></pre>
+  </div>
+
+  <h3>3. Relacionamento Um-para-Muitos (1:N)</h3>
+  <p>É o relacionamento mais comum em aplicações web, onde um único modelo pai possui um ou mais modelos filhos.</p>
+  <ul>
+    <li><strong>Conceito:</strong> Um pai (como um Post) pode ter um número infinito de filhos (como Comments).</li>
+    <li><strong>Persistência Complexa:</strong> Para vincular um filho a um pai, você pode usar o método <code>associate()</code> no modelo filho (que define a chave estrangeira na memória) ou o método <code>save()</code> a partir do pai.</li>
+  </ul>
+  <p><strong>Exemplo de Código:</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">// Modelo Post
+public function comments(): HasMany {
+    return $this->hasMany(Comment::class); // Um post tem muitos comentários
+}
+
+// Lógica de Persistência com createMany (Laravel 5.4+)
+$post = Post::find(1);
+$post->comments()->createMany([
+    ['body' => 'Dica excelente!'],
+    ['body' => 'Laravel 13 é muito produtivo.']
+]); // Inserção em lote garantindo o post_id correto</code></pre>
+  </div>
+
+  <h3>4. Relacionamento Muitos-para-Muitos (N:N)</h3>
+  <p>Este é o cenário mais complexo, onde múltiplos registros em uma tabela estão ligados a múltiplos registros em outra.</p>
+  <ul>
+    <li><strong>O Papel da Tabela Pivô:</strong> Como as tabelas relacionais não podem armazenar listas de IDs diretamente, utiliza-se uma tabela intermediária (tabela pivô).</li>
+    <li><strong>Convenção de Nomenclatura:</strong> Por padrão, o nome da tabela pivô deve ser o nome dos dois modelos no singular, em ordem alfabética, separados por underline (ex: <code>role_user</code> para os modelos Role e User).</li>
+    <li><strong>Atributos de Pivô:</strong> Tabelas pivô podem conter dados extras (como <code>created_at</code> ou <code>status</code>) que podem ser acessados via atributo <code>pivot</code> ou renomeados usando o método <code>as()</code>.</li>
+  </ul>
+  <p><strong>Exemplo de Código:</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">// Modelo User
+public function roles(): BelongsToMany {
+    return $this->belongsToMany(Role::class)
+                ->as('membership') // Nome personalizado para o objeto de pivô
+                ->withPivot('active') // Permite acessar colunas extras na pivô
+                ->withTimestamps(); // Mantém campos created_at/updated_at na pivô
+}
+
+// Manipulação Automática com sync()
+$user->roles()->sync([28, 29, 30]); 
+// O sync() é a forma mais poderosa de persistência N:N: ele remove o que não está 
+// na lista, mantém o que já existia e adiciona apenas o novo.</code></pre>
+  </div>
+
+  <h3>5. Otimização e Segurança: Eager Loading (Problema N+1)</h3>
+  <p>Um erro crítico em conceitos de ORM é carregar dados relacionados dentro de um loop, o que gera o problema de performance "N+1".</p>
+  <ul>
+    <li><strong>O Problema:</strong> Se você listar 25 contatos e buscar os telefones de cada um dentro do loop, o sistema fará 1 consulta para os contatos + 25 consultas individuais para os telefones.</li>
+    <li><strong>A Solução:</strong> Use o método <code>with()</code> para carregar preventivamente os dados em apenas 2 consultas totais.</li>
+  </ul>
+  <p><strong>Exemplo:</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">$contatos = Contact::with('phoneNumbers')->get(); 
+// Carregamento ansioso (Eager Loading) - apenas 2 consultas totais</code></pre>
+  </div>
+
+  <h3>6. Persistência de Integridade (Foreign Keys)</h3>
+  <p>Ao projetar bancos de dados, garantir a integridade referencial é fundamental. O Laravel facilita isso através das Migrations, onde você define que uma chave estrangeira deve ser removida em cascata caso o pai seja deletado:</p>
+  <div class="code-container">
+    <pre><code class="language-php">$table->foreignId('user_id')->constrained()->onDelete('cascade');</code></pre>
+  </div>
+  <p>Isso garante que quando um usuário for deletado, todos os seus registros relacionados também sejam, mantendo a consistência dos dados.</p>
 </section>
 
 <section class="section-box">
   <h2>Exemplo de Código</h2>
+  <p>Abaixo estão os cenários fundamentais, utilizando a sintaxe moderna de tipos do PHP 8.x integrada ao Laravel.</p>
+  
+  <h3>Cenário 1: Um-para-Um (1:1) – Usuário e Perfil</h3>
   <div class="code-container">
-    <pre><code class="language-php">// Em breve...</code></pre>
+    <pre><code class="language-php">// app/Models/User.php
+public function profile(): HasOne {
+    return $this->hasOne(Profile::class); // Define que um usuário possui um perfil
+}
+
+// app/Models/Profile.php
+public function user(): BelongsTo {
+    return $this->belongsTo(User::class); // Inverso do relacionamento
+}</code></pre>
+  </div>
+  
+  <h3>Cenário 2: Um-para-Muitos (1:N) – Post e Comentários</h3>
+  <div class="code-container">
+    <pre><code class="language-php">// app/Models/Post.php
+public function comments(): HasMany {
+    return $this->hasMany(Comment::class); // Um post pode ter múltiplos comentários
+}
+
+// Persistência Complexa: Criando vários comentários de uma vez
+$post = Post::find(1);
+$post->comments()->createMany([
+    ['body' => 'Excelente post!'],
+    ['body' => 'Laravel 13 facilitou muito a vida.'],
+]);</code></pre>
+  </div>
+  
+  <h3>Cenário 3: Muitos-para-Muitos (N:N) – Usuários e Papéis (Roles)</h3>
+  <div class="code-container">
+    <pre><code class="language-php">// app/Models/User.php
+public function roles(): BelongsToMany {
+    return $this->belongsToMany(Role::class)->withTimestamps(); // Uso de tabela pivô
+}
+
+// Lógica de Persistência com sync()
+// O sync() remove o que não está no array e adiciona o que é novo, garantindo integridade
+$user->roles()->sync([31-33]);</code></pre>
+  </div>
+  
+  <h3>Cenário 4: Vinculação (Associate) em 1:N</h3>
+  <p>Para alterar o "pai" de um objeto sem deletá-lo:</p>
+  <div class="code-container">
+    <pre><code class="language-php">$comment = Comment::find(10);
+$comment->post()->associate(Post::find(5)); // Define o novo post pai [30, 34, 35]
+$comment->save();</code></pre>
   </div>
 </section>
 
 <section class="section-box">
   <h2>Representação Gráfica</h2>
+  
+  <h3>Relacionamento 1:N com Fluxo de Dados</h3>
+  <p>Este diagrama mostra como o Laravel identifica as chaves estrangeiras automaticamente.</p>
   <div class="mermaid">
-    graph TD
-    A[Início] --> B[Processamento]
-    B --> C[Fim]
+    erDiagram
+        POST ||--o{ COMMENT : "tem muitos"
+        POST {
+            int id PK
+            string title
+        }
+        COMMENT {
+            int id PK
+            int post_id FK "Convenção: post + _id"
+            string body
+        }
+  </div>
+  
+  <h3>Relacionamento N:N com Tabela Pivô</h3>
+  <p>Mostra a estrutura necessária para permitir que usuários tenham múltiplos papéis e vice-versa.</p>
+  <div class="mermaid">
+    graph LR
+        U[Table: users] -- 1 --- UP[Table: role_user]
+        R[Table: roles] -- 1 --- UP
+        UP -- N --- U
+        UP -- N --- R
+        style UP fill:#f9f,stroke:#333,stroke-width:2px
   </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li><strong>Evite o Problema N+1:</strong> Sempre que for listar modelos com seus filhos, use with() (Eager Loading). Em vez de 26 consultas para 25 livros, o Laravel fará apenas 2.</li>
+    <li><strong>Sintaxe de Atributos:</strong> No Laravel 12/13, você pode usar PHP Attributes para configurar o comportamento da model diretamente acima da declaração da classe, como o atributo #[Fillable].</li>
+    <li><strong>Propriedades Dinâmicas vs Métodos:</strong> Acesse como propriedade ($user->posts) para obter o resultado (Coleção); acesse como método ($user->posts()) para obter a instância da consulta e continuar filtrando.</li>
+    <li><strong>Segurança (Mass Assignment):</strong> Lembre-se de definir $fillable ou $guarded na sua Model antes de usar o método create() para evitar vulnerabilidades.</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
-  <p>Aplicação real em desenvolvimento...</p>
+  <p>O domínio de relacionamentos Eloquent é o que permite construir os sistemas multicamadas exigidos pelo mercado:</p>
+  <ul>
+    <li><strong>E-commerce:</strong> Relacionar Order (Pedido) com muitos Products através de uma tabela pivô order_items, armazenando preço e quantidade na pivô.</li>
+    <li><strong>Sistemas de Permissão:</strong> Controlar o acesso a rotas verificando se o usuário possui a Role (Papel) necessária no banco de dados.</li>
+    <li><strong>Blogs e Redes Sociais:</strong> Implementar sistemas de tags (N:N) onde um post tem muitas tags e uma tag pertence a muitos posts.</li>
+    <li><strong>Gestão de Inventário:</strong> Modelar peças de automóveis (como no sistema de Bob's Auto Parts) vinculadas a fornecedores e categorias.</li>
+    <li><strong>Aplicações Escolares:</strong> Vincular Alunos a Disciplinas e Professores, gerenciando notas na tabela de relacionamento.</li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Referências</h2>
   <ul>
-    <li>Material de apoio em breve.</li>
+    <li>STAUFFER, Matt. Laravel: Up & Running. O'Reilly Media.</li>
+    <li>LARAVEL. Documentation 12.x and 13.x.</li>
+    <li>ZANDSTRA, Matt. PHP 8 Objects, Patterns, and Practice. Apress.</li>
   </ul>
 </section>
 
