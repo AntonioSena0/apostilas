@@ -144,20 +144,101 @@ tags:
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
-  <p>Cenários de aplicação profissional em breve...</p>
+  
+  <h3>1. Comunicação em Reuniões Técnicas (Whiteboarding)</h3>
+  <p>Esta é a aplicação mais frequente. Em vez de criar arquivos complexos, os desenvolvedores desenham versões simplificadas de Diagramas de Classe ou Sequência em quadros brancos (ou ferramentas digitais como Excalidraw) para:</p>
+  <ul>
+    <li>Alinhar como dois serviços vão interagir.</li>
+    <li>Decidir onde uma nova lógica de negócio deve ser encaixada.</li>
+    <li>Explicar um fluxo complexo para um novo membro da equipe (onboarding).</li>
+  </ul>
+
+  <h3>2. Documentação de Arquitetura de Alto Nível</h3>
+  <p>Em sistemas distribuídos ou microserviços, o Diagrama de Componentes e o Diagrama de Implantação (Deployment) são vitais. Eles mostram:</p>
+  <ul>
+    <li>Quais bancos de dados cada serviço acessa.</li>
+    <li>Como as APIs se comunicam (REST, gRPC, Filas).</li>
+    <li>Onde os artefatos estão hospedados (AWS, Azure, Docker).</li>
+  </ul>
+
+  <h3>3. Mapeamento de Regras de Negócio Complexas</h3>
+  <p>Quando um processo tem muitas ramificações e condições (ex: um sistema de aprovação de crédito ou um checkout de e-commerce), o Diagrama de Atividades substitui fluxogramas genéricos. Ele ajuda a:</p>
+  <ul>
+    <li>Identificar gargalos no processo.</li>
+    <li>Garantir que todos os cenários de erro foram tratados pelos desenvolvedores.</li>
+  </ul>
+
+  <h3>4. Engenharia Reversa e Documentação de APIs</h3>
+  <p>Muitas ferramentas modernas (como extensões do VS Code ou plugins do IntelliJ) permitem gerar diagramas UML a partir de código existente. Isso é usado para:</p>
+  <ul>
+    <li>Entender sistemas legados com milhares de linhas de código.</li>
+    <li>Gerar documentação técnica automática que acompanha o repositório (usando arquivos .mermaid ou .puml).</li>
+  </ul>
+
+  <h3>5. Definição de Requisitos com Stakeholders</h3>
+  <p>O Diagrama de Casos de Uso é excelente para conversar com quem não é da área técnica (Product Owners, Clientes). Ele define:</p>
+  <ul>
+    <li>Quem interage com o sistema (Atores).</li>
+    <li>O que o sistema faz (Funcionalidades), sem entrar no detalhe de como faz.</li>
+  </ul>
+
+  <h3>Resumo de Uso por Fase do Projeto</h3>
+  <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th>Fase</th>
+        <th>Diagrama Mais Comum</th>
+        <th>Objetivo Principal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Levantamento</td>
+        <td>Casos de Uso</td>
+        <td>Definir escopo e limites do sistema.</td>
+      </tr>
+      <tr>
+        <td>Design/Arquitetura</td>
+        <td>Classe e Componentes</td>
+        <td>Estruturar o banco de dados e módulos.</td>
+      </tr>
+      <tr>
+        <td>Desenvolvimento</td>
+        <td>Sequência</td>
+        <td>Detalhar a ordem de chamadas entre objetos/APIs.</td>
+      </tr>
+      <tr>
+        <td>Implantação</td>
+        <td>Deployment</td>
+        <td>Mapear servidores, redes e containers.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Exemplo de Workflow Ágil</h3>
+  <ol>
+    <li>O desenvolvedor recebe uma tarefa complexa.</li>
+    <li>Escreve um pequeno arquivo Mermaid no README do projeto para validar o raciocínio com o Tech Lead.</li>
+    <li>Após a aprovação do "desenho", o código é implementado.</li>
+    <li>O diagrama fica como documentação viva para futuras manutenções.</li>
+  </ol>
 </section>
 
 <section class="section-box">
   <h2>Referências</h2>
   <ul>
-    <li>Documentação oficial e bibliografia recomendada.</li>
+    <li><strong>Análise e Projeto de Sistemas:</strong> Livro de Enyo José Tavares Gonçalves e Mariela Inés Cortés (3ª edição, 2015), publicado pela EdUECE.</li>
+    <li><strong>The Unified Modeling Language Reference Manual:</strong> Obra de referência de James Rumbaugh, Ivar Jacobson e Grady Booch (2ª edição, 2004).</li>
+    <li><strong>Systems Analysis and Design:</strong> Livro-texto de Alan Dennis, Barbara Haley Wixom e Roberta M. Roth (5ª edição, 2012).</li>
+    <li><strong>UML 2.0 in a Nutshell:</strong> Guia rápido de Dan Pilone e Neil Pitman (2009).</li>
+    <li><strong>UML Essencial:</strong> Um breve guia para a linguagem-padrão de modelagem de objetos, de Martin Fowler (3ª edição, 2007).</li>
   </ul>
 </section>
 
 <section class="section-box">
   <h2>Para Praticar</h2>
   <ul>
-    <li><a href="./exercicio-01/">Exercício 01: Atividade Prática</a></li>
+    <!-- <li><a href="./exercicio-01/">Exercício 01: Atividade Prática</a></li> -->
     <li><a href="./exercicio-02/">Exercício 02: Questionário</a></li>
   </ul>
 </section>
