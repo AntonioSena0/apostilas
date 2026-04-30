@@ -450,3 +450,8 @@ footer {
 .tip-box-instruction {
   margin-top: 0;
 }
+
+#incorrect-feedback {
+  border: 2px solid red;
+  padding: 1rem;
+}

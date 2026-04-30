@@ -38,13 +38,19 @@ layout: base
     <h2>Resultado:</h2>
     <p id="pontuacao"></p>
     <p id="feedback"></p>
+    <div id="incorrect-feedback">
+      <h4>Respostas Incorretas</h4>
+      <p id="incorrect-questions"></p>
+    </div>
   </div>
 
   <script>
     function verificarRespostas() {
+      document.getElementById('incorrect-feedback').style.display = 'block';
       const resultSection = document.getElementById('resultado');
       const closeResultSectionText = "Fechar Respostas";
       const showResultSectionText = "Verificar Respostas";
+      let incorrectFeedback = '';
 
       if(resultSection.style.display === 'block') {
         resultSection.style.display = 'none';
@@ -65,6 +71,8 @@ layout: base
         const selecionada = document.querySelector(`input[name="${pergunta}"]:checked`);
         if (selecionada && selecionada.value === respostasCorretas[pergunta]) {
           pontuacao++;
+        } else if(selecionada) {
+          incorrectFeedback += `${selecionada.name.slice(1)}, `;
         }
       }
 
@@ -81,6 +89,11 @@ layout: base
 
       document.getElementById('pontuacao').textContent = `Você acertou ${pontuacao} de ${totalPerguntas} perguntas (${porcentagem.toFixed(0)}%).`;
       document.getElementById('feedback').textContent = feedback;
+      document.getElementById('incorrect-questions').textContent = incorrectFeedback.slice(0, -2);
+
+      if(!incorrectFeedback) {
+        document.getElementById('incorrect-feedback').style.display = 'none';
+      }
       
       // Resetar todas as seleções dos radio buttons
       const radioButtons = document.querySelectorAll('#quiz-form input[type="radio"]');
