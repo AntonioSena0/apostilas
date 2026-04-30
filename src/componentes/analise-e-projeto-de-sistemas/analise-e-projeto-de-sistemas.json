@@ -1,0 +1,12 @@
+{
+  "subject": "analise-e-projeto-de-sistemas",
+  "subject_title": "Análise e Projeto de Sistemas",
+  "subject_description": "Estudo dos processos, técnicas e ferramentas para análise, modelagem e projeto de sistemas de software orientados a objetos e arquitetura moderna.",
+  "tags": ["aula"],
+  "bimester_titles": {
+    "bimestre-01": "Fundamentos e Engenharia de Requisitos",
+    "bimestre-02": "Modelagem Estática (Estrutura)",
+    "bimestre-03": "Modelagem Dinâmica (Comportamento)",
+    "bimestre-04": "Arquitetura, Design e Padrões"
+  }
+}
