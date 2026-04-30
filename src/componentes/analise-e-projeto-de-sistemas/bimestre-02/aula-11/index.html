@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Introdução à UML e Modelagem de Objetos"
 aula_numero: "11"
 description: "Conteúdo da aula 11 : Introdução à UML e Modelagem de Objetos"
@@ -9,23 +9,136 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo teórico da aula 11 em desenvolvimento...</p>
+  
+  <h3>1. O que é Modelagem? (Uma Analogia)</h3>
+  <p>Antes de entrar nos detalhes técnicos, é útil comparar a criação de software com a construção civil:</p>
+  <ul>
+    <li><strong>A Planta Baixa:</strong> Assim como um arquiteto cria uma planta baixa para definir a estrutura hidráulica e o tamanho dos cômodos, o analista de sistemas cria modelos estruturais para definir como os dados serão organizados.</li>
+    <li><strong>O Projeto 3D:</strong> Para visualizar a estética e a experiência do usuário, cria-se um projeto 3D; na computação, usamos modelos comportamentais para ver como o sistema funcionará na prática.</li>
+  </ul>
+  <p><strong>Definição:</strong> Modelagem é a construção de modelos (diagramas) que simplificam a realidade para descrever um sistema através de representação gráfica.</p>
+
+  <h3>2. Histórico da UML: Da "Guerra dos Métodos" à Unificação</h3>
+  <p>A Orientação a Objetos surgiu nos anos 60, mas a necessidade de uma linguagem padrão só se tornou crítica nos anos 90.</p>
+  <ul>
+    <li><strong>A "Guerra dos Métodos" (Início dos anos 90):</strong> Diversos autores propuseram suas próprias linguagens de modelagem, como Grady Booch (OOAD), Ivar Jacobson (OOSE) e James Rumbaugh (OMT). Esses métodos eram similares, mas as notações diferentes dificultavam a padronização na indústria.</li>
+    <li><strong>A Unificação (1995):</strong> Rumbaugh e Booch, trabalhando na Rational Software, decidiram fundir seus métodos, criando o Método Unificado. Jacobson juntou-se a eles pouco depois.</li>
+    <li><strong>Padronização (1997):</strong> O grupo OMG (Object Management Group) assumiu a gestão da linguagem para evitar que ela fosse propriedade de uma única empresa, e em 1997 a UML 1.1 foi aprovada como padrão mundial. Atualmente, a versão 2.x é a referência principal do mercado.</li>
+  </ul>
+
+  <h3>3. Conceitos de Orientação a Objetos aplicados à Modelagem</h3>
+  <p>Para modelar com UML, você precisa "pensar em objetos". Os pilares fundamentais são:</p>
+  <ul>
+    <li><strong>Classes e Objetos:</strong> Uma Classe é um molde ou template geral (ex: "Carro"); um Objeto é uma instância específica desse molde (ex: "O fusca azul da placa ABC-123"). O estado de um objeto é definido pelos valores de seus atributos em um dado momento.</li>
+    <li><strong>Métodos e Mensagens:</strong> Métodos são as ações que um objeto pode realizar (comportamentos); Mensagens são as informações enviadas para disparar esses métodos.</li>
+    <li><strong>Encapsulamento e Ocultação de Informação:</strong> Consiste em combinar dados e processos em uma única unidade (o objeto) e esconder os detalhes internos de funcionamento. O objeto é tratado como uma "caixa preta": você sabe o que ele faz, mas não precisa saber como ele faz internamente.</li>
+    <li><strong>Herança:</strong> Permite organizar classes em hierarquias. Uma Superclasse (geral) passa seus atributos e métodos para uma Subclasse (específica). É a relação do tipo "é um" (ex: um Vendedor é um Funcionário).</li>
+    <li><strong>Polimorfismo:</strong> É a capacidade de uma mesma mensagem ser interpretada de forma diferente por classes diferentes. Por exemplo, a mensagem "desenhar" produzirá um resultado diferente se enviada a um objeto "Círculo" ou a um objeto "Quadrado".</li>
+  </ul>
+
+  <h3>4. Introdução à UML e Categorias de Diagramas</h3>
+  <p>A UML não é uma metodologia nem um processo de desenvolvimento; ela é apenas uma linguagem gráfica para especificar, visualizar e documentar sistemas. Ela é independente de linguagem de programação (funciona para Java, C++, PHP, etc.).</p>
+  <p>Os diagramas da UML são divididos em três grandes categorias:</p>
+  <ul>
+    <li><strong>Diagramas Estruturais (Estáticos):</strong> Focam no "esqueleto" do sistema, representando o que existe (Classes, Objetos, Componentes, Pacotes, Implantação).</li>
+    <li><strong>Diagramas Comportamentais (Dinâmicos):</strong> Descrevem o sistema em execução e como ele reage a eventos (Casos de Uso, Atividades, Máquina de Estados).</li>
+    <li><strong>Diagramas de Interação:</strong> Um subgrupo dos comportamentais que foca especificamente na troca de mensagens entre entidades (Sequência, Comunicação).</li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Exemplo Prático</h2>
-  <p>Exemplos e demonstrações da aula 11 em desenvolvimento...</p>
-</section>
+  
+  <h3>1. Diagrama de Casos de Uso</h3>
+  <p>Este diagrama é o ponto de partida. Ele foca no "o que" o sistema faz e quem interage com ele, sem se preocupar com detalhes técnicos internos.</p>
+  <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/what-is-a-use-case-diagram-in-UML/UML_use_case_example-800x707.PNG" alt="Diagrama de Caso de Uso">
 
-<section class="section-box">
-  <h2>Representação Gráfica</h2>
-  <p>Diagramas e esquemas visuais em construção...</p>
+  <h3>2. Diagrama de Classes</h3>
+  <p>É a espinha dorsal da Programação Orientada a Objetos (POO). Ele descreve a estrutura do sistema, mostrando as classes, seus atributos, métodos e como elas se relacionam.</p>
+  <div class="mermaid">
+    classDiagram
+        class Usuario {
+            +String nome
+            +String email
+            +fazerLogin()
+        }
+
+        class Professor {
+            +String registroFuncional
+            +postarMaterial()
+        }
+
+        class Aluno {
+            +String matricula
+            +entregarTarefa()
+        }
+
+        class Disciplina {
+            +String nome
+            +int cargaHoraria
+        }
+
+        Usuario <|-- Professor : Herança
+        Usuario <|-- Aluno : Herança
+        Professor "1" --> "*" Disciplina : Ministra
+        Aluno "*" o-- "*" Disciplina : Matriculado
+  </div>
+
+  <h3>3. Diagrama de Sequência</h3>
+  <p>Este diagrama foca no comportamento e na troca de mensagens entre objetos ao longo do tempo. É excelente para explicar fluxos de autenticação ou processos de negócio.</p>
+  <div class="mermaid">
+    sequenceDiagram
+        participant U as Usuário
+        participant S as Sistema
+        participant BD as Banco de Dados
+
+        U->>S: Informa usuário e senha
+        S->>BD: Valida credenciais
+        alt Credenciais Válidas
+            BD-->>S: Retorna Sucesso
+            S-->>U: Redireciona para Dashboard
+        else Credenciais Inválidas
+            BD-->>S: Retorna Erro
+            S-->>U: Exibe mensagem "Acesso Negado"
+        end
+  </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
+  
+  <h5>Sobre a Natureza da UML</h5>
   <ul>
-    <li>Conteúdo em breve.</li>
+    <li><strong>UML não é Metodologia:</strong> Lembre-se que a UML é apenas uma linguagem gráfica para especificar, visualizar e documentar. Ela não define as fases do seu projeto ou como você deve trabalhar; isso é papel do processo (como RUP, Cascata ou Ágil).</li>
+    <li><strong>Independência Técnica:</strong> A UML é independente de linguagens de programação (funciona para Java, C++, PHP, etc.) e de métodos de desenvolvimento.</li>
+    <li><strong>O Princípio da Supressão:</strong> Em qualquer diagrama, a informação pode ser suprimida para torná-lo mais legível. Portanto, você nunca pode inferir algo pela sua ausência (ex: se uma multiplicidade não aparece, não significa que ela não exista; ela pode apenas ter sido ocultada).</li>
+  </ul>
+
+  <h5>Sobre o Ato de Modelar</h5>
+  <ul>
+    <li><strong>Abstração é Essencial:</strong> Modelar é construir modelos que simplificam a realidade. O objetivo é identificar as características essenciais de um item, omitindo detalhes irrelevantes para o ponto de vista atual.</li>
+    <li><strong>Modelagem não é apenas Documentação:</strong> O ato de modelar serve para ajudar você a pensar sobre o projeto, explorar designs de forma econômica e descobrir erros antes da implementação.</li>
+    <li><strong>Maneiras de usar (Fowler):</strong> Você pode usar a UML como um <strong>Esboço</strong> (comunicação seletiva em quadros brancos), como um <strong>Projeto/Blueprint</strong> (detalhamento completo para programadores) ou como <strong>Linguagem de Programação</strong> (executável via ferramentas MDA).</li>
+  </ul>
+
+  <h5>Sobre a Orientação a Objetos (OO)</h5>
+  <ul>
+    <li><strong>Pense em "Caixa Preta":</strong> Aplique o Encapsulamento. O mundo externo deve saber o que o objeto faz (interface), mas não precisa saber como ele faz internamente (ocultação de informação).</li>
+    <li><strong>Classes vs. Objetos:</strong> Uma Classe é o molde ou template (ex: "Carro"); um Objeto é uma instância específica desse molde com estado próprio (ex: "o Fusca azul da placa ABC-123").</li>
+    <li><strong>Substituibilidade (Liskov):</strong> Na Herança, uma subclasse deve ser capaz de substituir sua superclasse em qualquer lugar do sistema sem causar erros.</li>
+    <li><strong>Polimorfismo:</strong> É a capacidade de uma mesma mensagem (ex: "desenhar") ser interpretada de formas diferentes por objetos de classes distintas.</li>
+  </ul>
+
+  <h5>Lembretes Históricos e Organizacionais</h5>
+  <ul>
+    <li><strong>A Unificação:</strong> A UML surgiu da fusão dos métodos de Booch, Rumbaugh e Jacobson (os "Três Amigos") para acabar com a "guerra dos métodos" da década de 90.</li>
+    <li><strong>Categorias de Diagramas:</strong>
+      <ul>
+        <li><strong>Estruturais (Estáticos):</strong> Focam no "esqueleto" e na organização do sistema (ex: Classes, Objetos, Pacotes).</li>
+        <li><strong>Comportamentais (Dinâmicos):</strong> Descrevem o sistema em execução e a troca de mensagens (ex: Casos de Uso, Sequência, Atividades).</li>
+      </ul>
+    </li>
+    <li><strong>Perspectivas:</strong> Um diagrama pode ser lido na <strong>Perspectiva Conceitual</strong> (regras do negócio e domínio) ou na <strong>Perspectiva de Software</strong> (focada em elementos reais do código).</li>
   </ul>
 </div>
 
