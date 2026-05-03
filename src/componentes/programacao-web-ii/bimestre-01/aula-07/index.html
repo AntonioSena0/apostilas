@@ -9,13 +9,73 @@ tags:
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 07 em desenvolvimento...</p>
+  <p>A segurança em PHP baseia-se em uma regra de ouro: <strong>Nunca confie nos dados que vêm do usuário</strong>. Dados externos (formulários, URLs, cookies) são "sujos" por natureza e podem conter desde erros de digitação até códigos maliciosos.</p>
+
+  <h3>1. Validação vs. Sanitização</h3>
+  <p>Embora pareçam iguais, elas possuem objetivos distintos e complementares:</p>
+  <ul>
+    <li>
+      <strong>Sanitização (A Limpeza):</strong> É o processo de remover ou transformar caracteres indesejados. O PHP faz uma "faxina" no dado para torná-lo seguro para exibição ou armazenamento.
+      <ul>
+        <li><em>Cenário:</em> O usuário envia <code>&lt;h1&gt;Olá&lt;/h1&gt;</code> em um campo de nome.</li>
+        <li><em>Ação:</em> A sanitização remove as tags, restando apenas <strong>Olá</strong>.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Validação (A Verificação):</strong> É o processo de checar se o dado segue uma regra específica (tipo, tamanho, formato). O PHP pergunta: "Este dado é aceitável?".
+      <ul>
+        <li><em>Cenário:</em> O sistema espera uma idade (número). O usuário digita "vinte".</li>
+        <li><em>Ação:</em> A validação falha e o sistema recusa o dado.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>2. O perigo da Manipulação de Tipos (Type Juggling)</h3>
+  <p>O PHP é uma linguagem fracamente tipada, o que pode ser uma armadilha de segurança. Ele tenta "adivinhar" o que você quer fazer, mas um atacante pode usar isso a favor dele.</p>
+  <p><strong>O Problema:</strong> Se você espera uma string e o PHP recebe um <code>Array</code> ou um <code>Boolean</code>, funções que manipulam strings podem gerar erros fatais (Fatal Errors) e derrubar o site.</p>
+  <p><strong>Exemplo Prático do Perigo:</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">// Código inseguro
+$nome = $_POST['nome']; 
+echo strtoupper($nome); // Se o atacante enviar 'nome[]' via formulário, $nome vira um array e o PHP trava.</code></pre>
+  </div>
+  <p>A solução é validar não apenas o conteúdo, mas garantir que o dado seja do tipo esperado (ex: garantir que ID seja sempre um int).</p>
+
+  <h3>3. A solução moderna: filter_input()</h3>
+  <p>Acessar <code>$_POST</code> ou <code>$_GET</code> diretamente é considerado uma má prática hoje em dia. O <code>filter_input()</code> é a ferramenta oficial do PHP para lidar com entradas externas de forma segura.</p>
+  <ul>
+    <li><strong>Vantagem 1 (Existência):</strong> Ele não gera erro se o campo não foi enviado (retorna <code>NULL</code>).</li>
+    <li><strong>Vantagem 2 (Filtro Nativo):</strong> Ele permite sanitizar ou validar o dado no exato momento em que ele "entra" no seu script.</li>
+  </ul>
+
+  <p><strong>Comparação rápida:</strong></p>
+  <ul>
+    <li><strong>Jeito Antigo:</strong> <code>$email = $_POST['email'];</code> (Inseguro e gera aviso se o campo estiver vazio).</li>
+    <li><strong>Jeito Moderno:</strong> <code>$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);</code> (Seguro, limpo e profissional).</li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Exemplo de Código</h2>
   <div class="code-container">
-    <pre><code class="language-php">// Em breve...</code></pre>
+    <pre><code class="language-php">&lt;?php
+// 1. Sanitização de Nome (Remove tags HTML)
+$nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+
+// 2. Validação de Idade (Garante que é um número entre 18 e 100)
+$idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT, [
+    "options" => ["min_range" => 18, "max_range" => 100]
+]);
+
+// 3. Validação de E-mail
+$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+
+if ($email === false) {
+    echo "E-mail inválido!";
+} else {
+    echo "E-mail válido: $email";
+}
+?&gt;</code></pre>
   </div>
 </section>
 
@@ -23,21 +83,26 @@ tags:
   <h2>Representação Gráfica</h2>
   <div class="mermaid">
     graph TD
-    A[Início] --> B[Processamento]
-    B --> C[Fim]
+    User([Entrada do Usuário]) -- "Sujo" --> Untrusted{Dado Não Confiável}
+    Untrusted -- "Sanitizar" --> S[Limpeza dos Dados]
+    Untrusted -- "Validar" --> V[Verificação de Regras]
+    S --> Safe[Dado Seguro]
+    V --> Safe
+    Safe --> Storage[(Banco de Dados / Exibição)]
   </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li>Sempre use <code>filter_input()</code> em vez de acessar globais como <code>$_POST</code> diretamente.</li>
+    <li>Sanitização limpa o que entra; Validação decide se pode entrar.</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
-  <p>Aplicação real em desenvolvimento...</p>
+  <p>Ao criar formulários de cadastro ou login, utilize o <code>filter_input</code> para cada campo. Isso previne ataques de XSS (Cross-Site Scripting) e garante que o banco de dados não receba lixo eletrônico.</p>
 </section>
 
 <section class="section-box">
