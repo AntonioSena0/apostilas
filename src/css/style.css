@@ -78,8 +78,16 @@ li {
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
+  margin: auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
 }
 
 .nav-header {
@@ -327,7 +335,7 @@ header a {
 }
 
 pre {
-  padding: 1.5rem;
+  padding: 0.5rem;
   overflow-x: auto;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.9rem;
