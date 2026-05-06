@@ -27,23 +27,128 @@ description: "Atividade Prática: Gestão de Relacionamentos com Tinker."
 </section>
 
 <section class="section-box">
-  <h2>1. Código Base: Tinker (Exemplos de Referência)</h2>
-  <p>Para realizar os desafios, você utilizará os seguintes comandos padrão no Tinker:</p>
+  <h2>1. Código Base</h2>
+  <p>
+    Abaixo, você encontra o código que deve ser utilizado como base para a resolução do exercício.
+  </p>
+  <h3>Models</h3>
+  <p>Os models definem como o Laravel deve interpretar os relacionamentos do banco de dados.</p>
   <div class="code-container">
-    <pre><code class="language-php">// Abrir o Tinker
-php artisan tinker
+    <pre><code class="language-php">
+// app/Models/Student.php
+class Student extends Model {
+    use HasFactory;
 
-// Exemplo 1: Criar com relacionamento automático (Factory)
-$student = Student::factory()->has(StudentCard::factory())->create();
+    // Relacionamento 1:1
+    public function studentCard() {
+        return $this->hasOne(StudentCard::class);
+    }
 
-// Exemplo 2: Associar Um-para-Muitos
-$teacher = Teacher::factory()->create();
-$course = Course::factory()->for($teacher)->create();
+    // Relacionamento N:N
+    public function courses() {
+        return $this->belongsToMany(Course::class)->withPivot('grade')->withTimestamps();
+    }
+}
 
-// Exemplo 3: Sincronizar Muitos-para-Muitos com dados Pivot
-$student->courses()->sync([
-    $courseId => ['grade' => 9.5]
-]);</code></pre>
+// app/Models/StudentCard.php
+class StudentCard extends Model {
+    use HasFactory;
+
+    public function student() {
+        return $this->belongsTo(Student::class);
+    }
+}
+
+// app/Models/Teacher.php
+class Teacher extends Model {
+    use HasFactory;
+
+    // Relacionamento 1:N
+    public function courses() {
+        return $this->hasMany(Course::class);
+    }
+}
+
+// app/Models/Course.php
+class Course extends Model {
+    use HasFactory;
+
+    public function teacher() {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function students() {
+        return $this->belongsToMany(Student::class)->withPivot('grade')->withTimestamps();
+    }
+}</code></pre>
+  </div>
+  <h3>Factories</h3>
+  <p>As factories são usadas para gerar dados fictícios para os models.</p>
+  <div class="code-container">
+    <pre><code class="language-php">
+// app/Models/Teacher.php
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TeacherFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->name(),
+        ];
+    }
+}
+
+// app/Models/Course.php
+namespace Database\Factories;
+
+use App\Models\Teacher;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CourseFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->jobTitle() . ' Mastery',
+            'teacher_id' => Teacher::factory(), // Cria um professor automaticamente se necessário
+        ];
+    }
+}
+
+// app/Models/Student.php
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class StudentFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->name(),
+        ];
+    }
+}
+
+// app/Models/StudentCard.php
+namespace Database\Factories;
+
+use App\Models\Student;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class StudentCardFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'code' => 'STU-' . $this->faker->unique()->numberBetween(10000, 99999),
+            'student_id' => Student::factory(),
+        ];
+    }
+}</code></pre>
   </div>
 </section>
 
@@ -80,6 +185,6 @@ $student->courses()->sync([
     <li><strong>Persistência:</strong> Lembre-se que comandos no Tinker gravam dados reais no seu banco de dados. Use <code>DatabaseTransactions</code> se estiver num ambiente de testes.</li>
     <li><strong>Erros Comuns:</strong> Se receber um erro de "Class not found", verifique os namespaces no topo dos seus arquivos Models.</li>
     <li><strong>Refresh:</strong> Se alterar o código PHP de um Model enquanto o Tinker estiver aberto, você deve sair (<code>exit</code>) e entrar novamente para que as mudanças façam efeito.</li>
-    <li><strong>Dica:</strong> Use o comando <code>vanderloost/tinker-companion</code> ou simplesmente o método <code>dd()</code> (dump and die) para inspecionar coleções complexas se necessário.</li>
+    <li><strong>Dica:</strong> Use o método <code>dd()</code> (dump and die) ou o método <code>dump()</code> (para que o código continue sendo executado) para inspecionar coleções complexas se necessário.</li>
   </ul>
 </div>
