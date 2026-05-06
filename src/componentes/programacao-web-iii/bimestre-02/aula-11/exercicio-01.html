@@ -20,8 +20,8 @@ description: "Atividade Prática: Gestão de Relacionamentos com Tinker."
   <h2>Preparação</h2>
   <p>Antes de abrir o terminal, certifique-se de que as suas Migrations e Models estão configuradas corretamente:</p>
   <ul>
-    <li><strong>Migrations:</strong> Devem conter as chaves estrangeiras (<code>foreignId</code>).</li>
-    <li><strong>Models:</strong> Devem conter os métodos <code>hasOne</code>, <code>belongsTo</code>, <code>hasMany</code> e <code>belongsToMany</code> (este último com <code>withPivot('grade')</code>).</li>
+    <li><strong>Migrations:</strong> Devem conter as chaves estrangeiras (<code class="one-line-code">foreignId</code>).</li>
+    <li><strong>Models:</strong> Devem conter os métodos <code class="one-line-code">hasOne</code>, <code class="one-line-code">belongsTo</code>, <code class="one-line-code">hasMany</code> e <code class="one-line-code">belongsToMany</code> (este último com <code class="one-line-code">withPivot('grade')</code>).</li>
     <li><strong>Factories:</strong> Devem estar prontas para gerar dados fictícios.</li>
   </ul>
 </section>
@@ -154,37 +154,37 @@ class StudentCardFactory extends Factory
 
 <section class="section-box">
   <h2>O Desafio (Atividades)</h2>
-  <p>Realize as seguintes operações dentro do terminal <code>php artisan tinker</code>:</p>
+  <p>Realize as seguintes operações dentro do terminal <code class="one-line-code">php artisan tinker</code>:</p>
 
   <h4>Tarefa A: Identidade Estudantil (1:1)</h4>
   <ul>
     <li>Crie um <strong>Student</strong> usando a factory.</li>
     <li>Crie um <strong>StudentCard</strong> e associe-o manualmente ao aluno criado.</li>
-    <li><strong>Teste:</strong> Tente acessar o código do cartão a partir do objeto aluno: <code>$student->studentCard->code</code>.</li>
+    <li><strong>Teste:</strong> Tente acessar o código do cartão a partir do objeto aluno: <code class="one-line-code">$student->studentCard->code</code>.</li>
   </ul>
 
   <h4>Tarefa B: Grade Escolar (1:N)</h4>
   <ul>
     <li>Crie um <strong>Teacher</strong> chamado "Mestre Laravel".</li>
     <li>Utilize a factory para gerar 3 <strong>Course</strong> vinculados a este professor de uma só vez.</li>
-    <li><strong>Teste:</strong> Liste apenas os nomes dos cursos desse professor usando <code>$teacher->courses->pluck('name')</code>.</li>
+    <li><strong>Teste:</strong> Liste apenas os nomes dos cursos desse professor usando <code class="one-line-code">$teacher->courses->pluck('name')</code>.</li>
   </ul>
 
   <h4>Tarefa C: Inscrições e Notas (N:N)</h4>
   <ul>
     <li>Crie 2 alunos e 2 cursos.</li>
-    <li>Inscreva o Aluno 1 nos dois cursos, atribuindo notas diferentes via <code>sync</code>.</li>
+    <li>Inscreva o Aluno 1 nos dois cursos, atribuindo notas diferentes via <code class="one-line-code">sync</code>.</li>
     <li>Inscreva o Aluno 2 apenas no primeiro curso.</li>
-    <li><strong>Teste:</strong> Recupere a nota do Aluno 1 no curso específico usando <code>$student->courses->first()->pivot->grade</code>.</li>
+    <li><strong>Teste:</strong> Recupere a nota do Aluno 1 no curso específico usando <code class="one-line-code">$student->courses->first()->pivot->grade</code>.</li>
   </ul>
 </section>
 
 <div class="tip-box">
   <h4>Orientações Finais</h4>
   <ul>
-    <li><strong>Persistência:</strong> Lembre-se que comandos no Tinker gravam dados reais no seu banco de dados. Use <code>DatabaseTransactions</code> se estiver num ambiente de testes.</li>
+    <li><strong>Persistência:</strong> Lembre-se que comandos no Tinker gravam dados reais no seu banco de dados. Use <code class="one-line-code">DatabaseTransactions</code> se estiver num ambiente de testes.</li>
     <li><strong>Erros Comuns:</strong> Se receber um erro de "Class not found", verifique os namespaces no topo dos seus arquivos Models.</li>
-    <li><strong>Refresh:</strong> Se alterar o código PHP de um Model enquanto o Tinker estiver aberto, você deve sair (<code>exit</code>) e entrar novamente para que as mudanças façam efeito.</li>
-    <li><strong>Dica:</strong> Use o método <code>dd()</code> (dump and die) ou o método <code>dump()</code> (para que o código continue sendo executado) para inspecionar coleções complexas se necessário.</li>
+    <li><strong>Refresh:</strong> Se alterar o código PHP de um Model enquanto o Tinker estiver aberto, você deve sair (<code class="one-line-code">exit</code>) e entrar novamente para que as mudanças façam efeito.</li>
+    <li><strong>Dica:</strong> Use o método <code class="one-line-code">dd()</code> (dump and die) ou o método <code class="one-line-code">dump()</code> (para que o código continue sendo executado) para inspecionar coleções complexas se necessário.</li>
   </ul>
 </div>

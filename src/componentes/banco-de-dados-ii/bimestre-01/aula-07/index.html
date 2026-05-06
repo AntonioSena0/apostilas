@@ -72,20 +72,20 @@ tags:
       </tr>
       <tr>
         <td><strong>Armazenamento</strong></td>
-        <td>Privilégios globais são armazenados na tabela de sistema <code>mysql.user</code>.</td>
-        <td>Privilégios são gerenciados via catálogos como <code>pg_authid</code> e <code>pg_roles</code>.</td>
+        <td>Privilégios globais são armazenados na tabela de sistema <code class="one-line-code">mysql.user</code>.</td>
+        <td>Privilégios são gerenciados via catálogos como <code class="one-line-code">pg_authid</code> e <code class="one-line-code">pg_roles</code>.</td>
       </tr>
       <tr>
         <td><strong>Acesso a Objetos</strong></td>
         <td>Dar privilégio em um database permite acesso imediato às tabelas.</td>
-        <td>Exige o privilégio de <code>USAGE</code> no <code>SCHEMA</code> (esquema) antes que o usuário possa
+        <td>Exige o privilégio de <code class="one-line-code">USAGE</code> no <code class="one-line-code">SCHEMA</code> (esquema) antes que o usuário possa
           acessar qualquer tabela dentro dele.</td>
       </tr>
       <tr>
         <td><strong>Propriedade</strong></td>
         <td>O criador da tabela é o Owner e possui controle total sobre ela por padrão.</td>
         <td>Segue o rigor do Owner, mas permite a transferência de posse de forma mais granular através de
-          <code>ALTER OWNER</code>.
+          <code class="one-line-code">ALTER OWNER</code>.
         </td>
       </tr>
     </tbody>
@@ -218,13 +218,13 @@ GRANT dev_pleno TO aluno;</code></pre>
   <ul>
     <li><strong>MySQL Host:</strong> 'aluno'@'localhost' é diferente de 'aluno'@'%'.</li>
     <li><strong>PostgreSQL Host:</strong> O controle de acesso por IP e método de conexão é feito no arquivo externo
-      <code>pg_hba.conf</code>.
+      <code class="one-line-code">pg_hba.conf</code>.
     </li>
-    <li><strong>Princípio do Privilégio Mínimo:</strong> Nunca conceda <code>ALL PRIVILEGES</code> ou
-      <code>SUPERUSER</code> se apenas <code>SELECT</code> for necessário.
+    <li><strong>Princípio do Privilégio Mínimo:</strong> Nunca conceda <code class="one-line-code">ALL PRIVILEGES</code> ou
+      <code class="one-line-code">SUPERUSER</code> se apenas <code class="one-line-code">SELECT</code> for necessário.
     </li>
     <li><strong>Esquemas no PG:</strong> Lembre-se que no PostgreSQL, dar grant em uma tabela exige também permissão
-      de <code>USAGE</code> no <code>SCHEMA</code> correspondente.</li>
+      de <code class="one-line-code">USAGE</code> no <code class="one-line-code">SCHEMA</code> correspondente.</li>
     <li><strong>FLUSH PRIVILEGES (MySQL):</strong> Só é necessário se você alterar as tabelas de sistema manualmente
       (via DML). Comandos DCL (GRANT, REVOKE) recarregam as permissões automaticamente.</li>
   </ul>
@@ -233,7 +233,7 @@ GRANT dev_pleno TO aluno;</code></pre>
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
   <ul>
-    <li><strong>Auditoria:</strong> Utilize <code>SELECT User, Host, plugin FROM mysql.user;</code> para listar
+    <li><strong>Auditoria:</strong> Utilize <code class="one-line-code">SELECT User, Host, plugin FROM mysql.user;</code> para listar
       todos os usuários.</li>
     <li><strong>Fraquezas:</strong> Procure por usuários sem senha ou que utilizam plug-ins depreciados.</li>
     <li><strong>Segregação de Funções:</strong> Crie usuários distintos para desenvolvedor, analista e sistema de

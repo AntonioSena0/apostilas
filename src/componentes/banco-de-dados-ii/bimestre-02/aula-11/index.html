@@ -11,18 +11,18 @@ tags:
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
   <p>Os predicados são filtros lógicos que determinam a "sobrevivência" de um registro no conjunto de resultados,
-    funcionando como a camada de inteligência da cláusula <code>WHERE</code>.</p>
+    funcionando como a camada de inteligência da cláusula <code class="one-line-code">WHERE</code>.</p>
 
   <h3>1. LIKE (Busca de Padrões)</h3>
-  <p>Diferente do operador de igualdade (<code>=</code>), o <code>LIKE</code> trabalha com aproximação e padrões de
+  <p>Diferente do operador de igualdade (<code class="one-line-code">=</code>), o <code class="one-line-code">LIKE</code> trabalha com aproximação e padrões de
     texto.</p>
   <ul>
-    <li><strong>Cenário Básico:</strong> "Quero todos os nomes que começam com A". &rarr; <code>LIKE 'A%'</code></li>
+    <li><strong>Cenário Básico:</strong> "Quero todos os nomes que começam com A". &rarr; <code class="one-line-code">LIKE 'A%'</code></li>
     <li><strong>Cenário Avançado:</strong> "Quero códigos de produto que seguem o padrão: começe com AB, qualquer coisa
       no
-      meio e terminam com o número 5". &rarr; <code>LIKE 'AB%5'</code></li>
-    <li><strong>O Curinga <code>_</code> (Underline):</strong> Frequentemente negligenciado, ele é vital para padrões de
-      tamanho fixo. Ex: <code>LIKE '___-2024'</code> encontra qualquer código de 3 caracteres que seja do ano de 2024.
+      meio e terminam com o número 5". &rarr; <code class="one-line-code">LIKE 'AB%5'</code></li>
+    <li><strong>O Curinga <code class="one-line-code">_</code> (Underline):</strong> Frequentemente negligenciado, ele é vital para padrões de
+      tamanho fixo. Ex: <code class="one-line-code">LIKE '___-2024'</code> encontra qualquer código de 3 caracteres que seja do ano de 2024.
     </li>
   </ul>
 
@@ -44,12 +44,12 @@ tags:
       <tr>
         <td><strong>Busca Insensível</strong></td>
         <td>Padrão do sistema na maioria das instalações.</td>
-        <td>Exige o operador específico <code>ILIKE</code>.</td>
+        <td>Exige o operador específico <code class="one-line-code">ILIKE</code>.</td>
       </tr>
       <tr>
         <td><strong>Performance</strong></td>
-        <td>Otimizado para <code>LIKE 'Prefixo%'</code> usando índices, vai direto na letra inicial do texto (letra P
-          nesse exemplo). Se usar <code>LIKE '%Prefixo'</code>, não usa índice, vai comparar letra por letra.</td>
+        <td>Otimizado para <code class="one-line-code">LIKE 'Prefixo%'</code> usando índices, vai direto na letra inicial do texto (letra P
+          nesse exemplo). Se usar <code class="one-line-code">LIKE '%Prefixo'</code>, não usa índice, vai comparar letra por letra.</td>
         <td>Utiliza índices B-tree (Prefixo) ou GIN/GIST para buscas complexas. Faz uso de técnicas de otimização
           como trigramas para buscas mais eficientes, sem depender somente do texto em si, mas também de pedaços de
           texto.</td>
@@ -58,27 +58,27 @@ tags:
   </table>
 
   <h3>2. BETWEEN (Faixa de Valores)</h3>
-  <p>O grande diferencial do <code>BETWEEN</code> é a legibilidade e a limpeza do código.</p>
+  <p>O grande diferencial do <code class="one-line-code">BETWEEN</code> é a legibilidade e a limpeza do código.</p>
   <ul>
-    <li><strong>Inclusividade:</strong> Ele sempre inclui os limites (muros) da busca. <code>BETWEEN 10 AND 20</code>
+    <li><strong>Inclusividade:</strong> Ele sempre inclui os limites (muros) da busca. <code class="one-line-code">BETWEEN 10 AND 20</code>
       é
-      exatamente <code>valor >= 10 AND valor <= 20</code>.</li>
+      exatamente <code class="one-line-code">valor >= 10 AND valor <= 20</code>.</li>
     <li><strong>Datas:</strong> É a forma mais elegante de filtrar períodos. Ex:
-      <code>BETWEEN '2024-01-01' AND '2024-01-31'</code>.
+      <code class="one-line-code">BETWEEN '2024-01-01' AND '2024-01-31'</code>.
     </li>
-    <li><strong>Atenção:</strong> Em campos do tipo <code>DATETIME</code>, o limite superior <code>'2024-01-31'</code> é
-      lido como <code>'2024-01-31 00:00:00'</code>. Registros do final do dia podem ser excluídos se você não considerar
+    <li><strong>Atenção:</strong> Em campos do tipo <code class="one-line-code">DATETIME</code>, o limite superior <code class="one-line-code">'2024-01-31'</code> é
+      lido como <code class="one-line-code">'2024-01-31 00:00:00'</code>. Registros do final do dia podem ser excluídos se você não considerar
       o horário.</li>
   </ul>
 
   <h3>3. IN (Membros de um Conjunto)</h3>
-  <p>O <code>IN</code> atua como um "redutor de múltiplos operadores OR".</p>
+  <p>O <code class="one-line-code">IN</code> atua como um "redutor de múltiplos operadores OR".</p>
   <ul>
     <li><strong>Cenário Básico:</strong> Substitui a repetição cansativa de
-      <code>estado = 'SP' OR estado = 'RJ' OR estado = 'MG'</code> por apenas <code>estado IN ('SP', 'RJ', 'MG')</code>.
+      <code class="one-line-code">estado = 'SP' OR estado = 'RJ' OR estado = 'MG'</code> por apenas <code class="one-line-code">estado IN ('SP', 'RJ', 'MG')</code>.
     </li>
     <li><strong>Cenário Avançado:</strong> Funciona como uma "ponte" entre tabelas via **Subconsultas**. Você pode
-      perguntar: "Quem são os clientes que compraram o produto X?", e o <code>IN</code> resolve a lista de IDs
+      perguntar: "Quem são os clientes que compraram o produto X?", e o <code class="one-line-code">IN</code> resolve a lista de IDs
       dinamicamente para você.</li>
   </ul>
 </section>
@@ -166,13 +166,13 @@ WHERE codigo_vendedor NOT IN (
 <div class="tip-box">
   <h3>Dicas & Lembretes</h3>
   <ul>
-    <li><strong>Performance:</strong> Prefira <code>LIKE 'Padrão%'</code> a <code>LIKE '%Padrão'</code> para permitir o
+    <li><strong>Performance:</strong> Prefira <code class="one-line-code">LIKE 'Padrão%'</code> a <code class="one-line-code">LIKE '%Padrão'</code> para permitir o
       uso de índices B-tree.</li>
     <li><strong>Sensibilidade:</strong> PostgreSQL é case-sensitive (LIKE vs ILIKE), MySQL depende do collation.</li>
-    <li><strong>Valores Nulos:</strong> Predicados como LIKE, IN e BETWEEN não capturam <code>NULL</code>. Use
-      <code>IS NULL</code> explicitamente se necessário.
+    <li><strong>Valores Nulos:</strong> Predicados como LIKE, IN e BETWEEN não capturam <code class="one-line-code">NULL</code>. Use
+      <code class="one-line-code">IS NULL</code> explicitamente se necessário.
     </li>
-    <li><strong>Limites:</strong> O <code>BETWEEN</code> sempre inclui os valores das extremidades (inclusivo).</li>
+    <li><strong>Limites:</strong> O <code class="one-line-code">BETWEEN</code> sempre inclui os valores das extremidades (inclusivo).</li>
   </ul>
 </div>
 
@@ -180,17 +180,17 @@ WHERE codigo_vendedor NOT IN (
   <h2>Como aplicar na Prática</h2>
   <ul>
     <li><strong>E-commerce (Busca Inteligente):</strong> Implemente uma barra de pesquisa que utiliza
-      <code>LIKE '%termo%'</code> para buscar em títulos e descrições, permitindo que o cliente encontre o produto mesmo
+      <code class="one-line-code">LIKE '%termo%'</code> para buscar em títulos e descrições, permitindo que o cliente encontre o produto mesmo
       sem saber o nome exato.
     </li>
-    <li><strong>Relatórios Financeiros (Fechamento Mensal):</strong> Utilize o <code>BETWEEN</code> para extrair todas
+    <li><strong>Relatórios Financeiros (Fechamento Mensal):</strong> Utilize o <code class="one-line-code">BETWEEN</code> para extrair todas
       as vendas ocorridas entre o primeiro e o último dia do mês, garantindo um relatório preciso para a contabilidade.
     </li>
     <li><strong>Sistemas de Filtros (Checkboxes):</strong> Quando um usuário seleciona várias categorias (ex:
-      Eletrônicos, Livros, Games) em um filtro lateral, utilize o operador <code>IN</code> para passar essa lista de IDs
+      Eletrônicos, Livros, Games) em um filtro lateral, utilize o operador <code class="one-line-code">IN</code> para passar essa lista de IDs
       diretamente para o banco em uma única consulta.</li>
     <li><strong>Segurança (Blacklist):</strong> Bloqueie o acesso de uma lista específica de IPs ou IDs de usuários
-      suspeitos utilizando <code>NOT IN (lista_bloqueada)</code>.</li>
+      suspeitos utilizando <code class="one-line-code">NOT IN (lista_bloqueada)</code>.</li>
   </ul>
 </section>
 

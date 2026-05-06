@@ -23,7 +23,7 @@ tags:
   <h2>Exemplo de Código</h2>
   <p>Criação de uma procedure para registrar uma venda e atualizar o estoque:</p>
   <div class="code-container">
-    <pre><code>CREATE PROCEDURE RegistrarVenda
+    <pre><code class="one-line-code">CREATE PROCEDURE RegistrarVenda
     @ProdutoID INT,
     @Quantidade INT
 AS
@@ -57,7 +57,7 @@ END;</code></pre>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
-  <p>Sempre use <code>BEGIN TRANSACTION</code> e <code>COMMIT/ROLLBACK</code> dentro de procedures que alteram
+  <p>Sempre use <code class="one-line-code">BEGIN TRANSACTION</code> e <code class="one-line-code">COMMIT/ROLLBACK</code> dentro de procedures que alteram
     dados, garantindo a atomicidade da operação.</p>
 </div>
 

@@ -14,11 +14,11 @@ tags:
   <h3>1. Anatomia de um Método</h3>
   <p>Um método é um bloco de construção composto por um cabeçalho e um corpo. Sua estrutura básica inclui:</p>
   <ul>
-    <li><strong>Modificador de acesso:</strong> Define a visibilidade (ex: <code>public</code> ou <code>private</code>).</li>
+    <li><strong>Modificador de acesso:</strong> Define a visibilidade (ex: <code class="one-line-code">public</code> ou <code class="one-line-code">private</code>).</li>
     <li><strong>Tipo de retorno:</strong> Especifica a qualidade da informação que o método devolve ao chamador.</li>
     <li><strong>Nome do método:</strong> Deve seguir a convenção <em>camelCase</em> (iniciar com letra minúscula).</li>
     <li><strong>Lista de parâmetros:</strong> Localizada entre parênteses, contém as informações que o método exige para realizar sua tarefa.</li>
-    <li><strong>Corpo:</strong> Delimitado por chaves <code>{ }</code>, contém as instruções que executam a tarefa.</li>
+    <li><strong>Corpo:</strong> Delimitado por chaves <code class="one-line-code">{ }</code>, contém as instruções que executam a tarefa.</li>
   </ul>
 
   <h3>2. O Fluxo de Informação: Parâmetros e Argumentos</h3>
@@ -39,7 +39,7 @@ tags:
   <p>O método deve sempre declarar o que retorna:</p>
   <ul>
     <li><strong>void:</strong> Indica que o método realiza uma tarefa, mas não envia nenhuma informação de volta ao chamador.</li>
-    <li><strong>Tipos de dados (ex: int, boolean, String):</strong> Exigem o uso da palavra-chave <code>return</code> para enviar um resultado ao chamador.</li>
+    <li><strong>Tipos de dados (ex: int, boolean, String):</strong> Exigem o uso da palavra-chave <code class="one-line-code">return</code> para enviar um resultado ao chamador.</li>
   </ul>
 
   <h3>4. Exemplos Conceituais e Práticos</h3>
@@ -83,7 +83,7 @@ tags:
   <h3>6. Tópicos Especiais e Avançados</h3>
   <ul>
     <li><strong>A Referência this:</strong> Utilizada para referenciar o próprio objeto atual. É essencial quando o nome do parâmetro é idêntico ao nome do atributo, evitando o sombreamento (shadowing) da variável de instância.</li>
-    <li><strong>Métodos static:</strong> Também chamados de métodos de classe, podem ser chamados sem a necessidade de criar um objeto (ex: <code>Math.sqrt()</code>). Eles não podem acessar atributos ou métodos de instância nem usar a palavra-chave <code>this</code>.</li>
+    <li><strong>Métodos static:</strong> Também chamados de métodos de classe, podem ser chamados sem a necessidade de criar um objeto (ex: <code class="one-line-code">Math.sqrt()</code>). Eles não podem acessar atributos ou métodos de instância nem usar a palavra-chave <code class="one-line-code">this</code>.</li>
     <li><strong>Sobrecarga de Métodos (Overloading):</strong> Permite criar vários métodos com o mesmo nome, desde que possuam listas de parâmetros diferentes (em número, tipo ou ordem).</li>
     <li><strong>Recursão:</strong> Ocorre quando um método chama a si mesmo para resolver problemas complexos dividindo-os em versões menores.</li>
   </ul>
@@ -93,7 +93,7 @@ tags:
   <h2>Demonstração Prática</h2>
 
   <h3>1. Comportamento Básico: Método sem Retorno (void)</h3>
-  <p>Um método <code>void</code> realiza uma tarefa, mas não fornece nenhuma informação de volta ao chamador. É ideal para ações como exibir dados no console.</p>
+  <p>Um método <code class="one-line-code">void</code> realiza uma tarefa, mas não fornece nenhuma informação de volta ao chamador. É ideal para ações como exibir dados no console.</p>
   <div class="code-container">
     <pre><code class="language-java">public class Livro {
     String nome;
@@ -121,7 +121,7 @@ tags:
   </div>
 
   <h3>3. Métodos com Retorno: Recuperando Informações</h3>
-  <p>Quando um método especifica um tipo de retorno diferente de <code>void</code>, ele deve utilizar a instrução <code>return</code> para passar um resultado de volta ao chamador.</p>
+  <p>Quando um método especifica um tipo de retorno diferente de <code class="one-line-code">void</code>, ele deve utilizar a instrução <code class="one-line-code">return</code> para passar um resultado de volta ao chamador.</p>
   <div class="code-container">
     <pre><code class="language-java">public class Conta {
     private double saldo;
@@ -202,7 +202,7 @@ tags:
         style B fill:#f9f,stroke:#333,stroke-width:2px
         style C fill:#bbf,stroke:#333,stroke-width:2px
   </div>
-  <p>A chave esquerda <code>{</code> inicia o corpo e a direita <code>}</code> o termina.</p>
+  <p>A chave esquerda <code class="one-line-code">{</code> inicia o corpo e a direita <code class="one-line-code">}</code> o termina.</p>
 
   <h3>2. Fluxo de Informação: Parâmetros vs. Argumentos</h3>
   <p>Os parâmetros são variáveis locais declaradas no cabeçalho do método que representam a informação necessária para a tarefa. Os argumentos são os valores reais passados pelo chamador no momento da invocação.</p>
@@ -220,7 +220,7 @@ tags:
   <p>No Java, todos os argumentos são passados por valor, ou seja, o método recebe uma cópia da informação.</p>
 
   <h3>3. Lógica do Retorno e a palavra-chave return</h3>
-  <p>O tipo de retorno especifica a "qualidade" do dado que será devolvido. Se um método não devolve nada, ele é marcado como <code>void</code>. Se houver retorno, a instrução <code>return</code> encerra o método e passa o valor de volta ao chamador.</p>
+  <p>O tipo de retorno especifica a "qualidade" do dado que será devolvido. Se um método não devolve nada, ele é marcado como <code class="one-line-code">void</code>. Se houver retorno, a instrução <code class="one-line-code">return</code> encerra o método e passa o valor de volta ao chamador.</p>
   <div class="mermaid">
     graph LR
         subgraph "Método com Retorno"
@@ -263,7 +263,7 @@ tags:
   <ul>
     <li><strong>Modularização:</strong> Divida programas grandes em métodos pequenos que realizam uma única tarefa bem definida.</li>
     <li><strong>Nomenclatura:</strong> Nomes de métodos devem expressar sua tarefa efetivamente e iniciar com letra minúscula (camelCase).</li>
-    <li><strong>Encapsulamento:</strong> Utilize métodos <code>get</code> e <code>set</code> para controlar como os dados de variáveis privadas são acessados ou modificados.</li>
+    <li><strong>Encapsulamento:</strong> Utilize métodos <code class="one-line-code">get</code> e <code class="one-line-code">set</code> para controlar como os dados de variáveis privadas são acessados ou modificados.</li>
     <li><strong>Escopo:</strong> Lembre-se que parâmetros e variáveis declaradas dentro de um método são locais e deixam de existir quando a execução termina.</li>
   </ul>
 </div>

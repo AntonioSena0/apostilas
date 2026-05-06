@@ -24,8 +24,8 @@ tags:
     instruções contidas no bloco e segue para a próxima instrução fora da estrutura.
   </p>
   <ul>
-    <li><strong>Sintaxe e Funcionamento:</strong> Em Java, utiliza-se a palavra-chave <code>if</code> seguida pela
-      condição entre parênteses. Embora as chaves <code>{ }</code> sejam opcionais para instruções de uma única linha,
+    <li><strong>Sintaxe e Funcionamento:</strong> Em Java, utiliza-se a palavra-chave <code class="one-line-code">if</code> seguida pela
+      condição entre parênteses. Embora as chaves <code class="one-line-code">{ }</code> sejam opcionais para instruções de uma única linha,
       seu uso é uma prática recomendada para garantir a clareza e evitar erros semânticos.</li>
   </ul>
 
@@ -74,7 +74,7 @@ System.out.println("O juro ganho é: " + juros);</code></pre>
   </p>
 
 
-  <p>Quando existem múltiplas opções mutuamente exclusivas, a estrutura <code>if-else if</code> é a mais adequada. Este
+  <p>Quando existem múltiplas opções mutuamente exclusivas, a estrutura <code class="one-line-code">if-else if</code> é a mais adequada. Este
     cenário simula um sistema que processa diferentes unidades de medida.</p>
 
   <div class="code-container">
@@ -97,7 +97,7 @@ if (unidade.equalsIgnoreCase("polegadas") || unidade.equalsIgnoreCase("in")) {
   </div>
 
   <p><strong>Encadeamento (Ninhos):</strong> Uma estrutura if-else pode ser colocada dentro de outra, permitindo
-    refinamentos lógicos sucessivos. Em Java, isso é frequentemente escrito como uma sequência de <code>else if</code>,
+    refinamentos lógicos sucessivos. Em Java, isso é frequentemente escrito como uma sequência de <code class="one-line-code">else if</code>,
     o que torna o código mais legível.</p>
   <p>O aninhamento é útil quando uma decisão depende do resultado de uma anterior. Abaixo, a lógica para imprimir três
     números em ordem crescente.</p>
@@ -128,17 +128,17 @@ if (x < y) {
     lógica do programa.</p>
   <ul>
     <li><strong>Expressões Lógicas Compostas:</strong> É possível unir múltiplas comparações em um único if utilizando
-      operadores como E (<code>&&</code>) e OU (<code>||</code>). Por exemplo, para aprovação, pode-se exigir média
+      operadores como E (<code class="one-line-code">&&</code>) e OU (<code class="one-line-code">||</code>). Por exemplo, para aprovação, pode-se exigir média
       maior que 7 E frequência superior a 75%.</li>
     <li><strong>Curto-Circuito Lógico:</strong> O Java utiliza avaliação de curto-circuito; em um teste
-      <code>(x != 0) && (y/x > 1)</code>, se x for zero, a segunda parte nem é avaliada, evitando erros de divisão por
+      <code class="one-line-code">(x != 0) && (y/x > 1)</code>, se x for zero, a segunda parte nem é avaliada, evitando erros de divisão por
       zero.
     </li>
     <li><strong>Precondições:</strong> Bons programadores utilizam estruturas de condição para verificar precondições
       antes de cálculos críticos. Por exemplo, antes de calcular raízes quadradas, verifica-se se o discriminante
       (delta) é maior ou igual a zero.</li>
     <li><strong>O Problema do "Dangling else":</strong> Em aninhamentos sem chaves, o Java associa o else ao if mais
-      próximo, o que pode causar erros de lógica se o programador não utilizar blocos <code>{ }</code> corretamente para
+      próximo, o que pode causar erros de lógica se o programador não utilizar blocos <code class="one-line-code">{ }</code> corretamente para
       definir a hierarquia das decisões.</li>
   </ul>
 </section>
@@ -213,7 +213,7 @@ if (usuarioAtivo) {
   </div>
 
   <h3>5. Exemplo Avançado: Operadores Lógicos e Cenários Complexos</h3>
-  <p>Utilizando operadores como <code>&&</code> (E) e <code>||</code> (OU) para validar múltiplas condições
+  <p>Utilizando operadores como <code class="one-line-code">&&</code> (E) e <code class="one-line-code">||</code> (OU) para validar múltiplas condições
     simultaneamente.</p>
   <ul>
     <li><strong>Cenário:</strong> Verificação de elegibilidade para bônus salarial (Salário < 3000 E tempo de casa> 2
@@ -241,7 +241,7 @@ if (salario < 3000.0 && anosDeEmpresa >= 2) {
   
   <p><strong>Componentes do Diagrama:</strong></p>
   <ul>
-    <li><strong>Decisão (Losango):</strong> Representa o teste lógico (ex: <code>if (idade >= 18)</code>).</li>
+    <li><strong>Decisão (Losango):</strong> Representa o teste lógico (ex: <code class="one-line-code">if (idade >= 18)</code>).</li>
     <li><strong>Caminho Verdadeiro:</strong> Onde o código "entra" no bloco if.</li>
     <li><strong>Caminho Falso:</strong> Salta diretamente para o final da estrutura.</li>
   </ul>
@@ -308,17 +308,17 @@ if (salario < 3000.0 && anosDeEmpresa >= 2) {
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li><strong>Blocos de Código:</strong> Lembre-se que, embora o Java permita omitir as chaves <code>{}</code> para
+    <li><strong>Blocos de Código:</strong> Lembre-se que, embora o Java permita omitir as chaves <code class="one-line-code">{}</code> para
       apenas uma linha de comando, é uma boa prática sempre usá-las para evitar erros lógicos futuros.</li>
     <li><strong>Identação:</strong> Sempre manter o código organizado utilizando identação para que ele fique fácil
       de ler e entender, pois a identação ajuda a visualizar qual
-      <code>else</code>
-      pertence a qual <code>if</code> em estruturas aninhadas.
+      <code class="one-line-code">else</code>
+      pertence a qual <code class="one-line-code">if</code> em estruturas aninhadas.
     </li>
-    <li><strong>Expressões Lógicas:</strong> Lembre-se que a condição dentro do <code>if</code> deve sempre resultar em
+    <li><strong>Expressões Lógicas:</strong> Lembre-se que a condição dentro do <code class="one-line-code">if</code> deve sempre resultar em
       um
-      valor <code>boolean</code> (verdadeiro ou falso).</li>
-    <li>O operador ternário (<code>? :</code>) pode ser usado como uma alternativa compacta para <code>if-else</code>
+      valor <code class="one-line-code">boolean</code> (verdadeiro ou falso).</li>
+    <li>O operador ternário (<code class="one-line-code">? :</code>) pode ser usado como uma alternativa compacta para <code class="one-line-code">if-else</code>
       simples.</li>
   </ul>
 </div>
@@ -330,7 +330,7 @@ if (salario < 3000.0 && anosDeEmpresa >= 2) {
   <p>Em aplicações financeiras, as condições são usadas para definir regras de negócio variáveis.</p>
   <ul>
     <li><strong>Aplicação:</strong> Cálculo de taxas de juros diferenciadas. Por exemplo, se o valor de um investimento principal for superior a um limite (ex: 10.000), o sistema aplica uma taxa de 5%; caso contrário, aplica 4%.</li>
-    <li><strong>Lógica:</strong> <code>if (principal > 10000) interest = principal * 0.05; else interest = principal * 0.04;</code>.</li>
+    <li><strong>Lógica:</strong> <code class="one-line-code">if (principal > 10000) interest = principal * 0.05; else interest = principal * 0.04;</code>.</li>
   </ul>
 
   <h3>2. Sistemas Acadêmicos e de Gestão de Alunos</h3>

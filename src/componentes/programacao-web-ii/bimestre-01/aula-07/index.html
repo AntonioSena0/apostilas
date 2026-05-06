@@ -34,21 +34,21 @@ tags:
   </ul>
 
   <h3>1.3. O Uso de filter_input()</h3>
-  <p>A função <code>filter_input()</code> é a maneira recomendada de obter variáveis externas em PHP. Ela combina a
-    obtenção do dado com a filtragem, evitando o acesso direto a superglobais como <code>$_GET</code> ou
-    <code>$_POST</code>, o que é uma prática de segurança mais robusta.
+  <p>A função <code class="one-line-code">filter_input()</code> é a maneira recomendada de obter variáveis externas em PHP. Ela combina a
+    obtenção do dado com a filtragem, evitando o acesso direto a superglobais como <code class="one-line-code">$_GET</code> ou
+    <code class="one-line-code">$_POST</code>, o que é uma prática de segurança mais robusta.
   </p>
 
-  <p><strong>Sintaxe:</strong> <code>filter_input(tipo_origem, nome_variavel, filtro, opcoes)</code></p>
+  <p><strong>Sintaxe:</strong> <code class="one-line-code">filter_input(tipo_origem, nome_variavel, filtro, opcoes)</code></p>
   <ul>
-    <li><strong>Tipos de Origem:</strong> <code>INPUT_GET</code>, <code>INPUT_POST</code>, <code>INPUT_COOKIE</code>,
-      <code>INPUT_SERVER</code>, <code>INPUT_ENV</code>.
+    <li><strong>Tipos de Origem:</strong> <code class="one-line-code">INPUT_GET</code>, <code class="one-line-code">INPUT_POST</code>, <code class="one-line-code">INPUT_COOKIE</code>,
+      <code class="one-line-code">INPUT_SERVER</code>, <code class="one-line-code">INPUT_ENV</code>.
     </li>
-    <li><strong>Filtros de Sanitização:</strong> Ex: <code>FILTER_SANITIZE_EMAIL</code>,
-      <code>FILTER_SANITIZE_SPECIAL_CHARS</code>.
+    <li><strong>Filtros de Sanitização:</strong> Ex: <code class="one-line-code">FILTER_SANITIZE_EMAIL</code>,
+      <code class="one-line-code">FILTER_SANITIZE_SPECIAL_CHARS</code>.
     </li>
-    <li><strong>Filtros de Validação:</strong> Ex: <code>FILTER_VALIDATE_INT</code>, <code>FILTER_VALIDATE_EMAIL</code>,
-      <code>FILTER_VALIDATE_URL</code>.
+    <li><strong>Filtros de Validação:</strong> Ex: <code class="one-line-code">FILTER_VALIDATE_INT</code>, <code class="one-line-code">FILTER_VALIDATE_EMAIL</code>,
+      <code class="one-line-code">FILTER_VALIDATE_URL</code>.
     </li>
   </ul>
 
@@ -64,38 +64,38 @@ echo $nome; // Se o usuário enviou "&lt;h1&gt;Olá&lt;/h1&gt;", resultará em "
     <p><strong>Por que funciona assim?</strong></p>
     <p>Quando você aplica a sanitização de caracteres especiais:</p>
     <ul>
-      <li><strong>O dado original:</strong> <code>&lt;h1&gt;Olá&lt;/h1&gt;</code></li>
+      <li><strong>O dado original:</strong> <code class="one-line-code">&lt;h1&gt;Olá&lt;/h1&gt;</code></li>
       <li><strong>A ação do filtro:</strong> Ele identifica caracteres que têm significado especial em HTML (como
-        <code>&lt;</code> e <code>&gt;</code>) e os converte em suas respectivas <strong>Entidades HTML</strong>.
+        <code class="one-line-code">&lt;</code> e <code class="one-line-code">&gt;</code>) e os converte em suas respectivas <strong>Entidades HTML</strong>.
       </li>
       <li><strong>A conversão:</strong>
         <ul>
-          <li><code>&lt;</code> vira <code>&amp;#60;</code> (ou <code>&amp;lt;</code>)</li>
-          <li><code>&gt;</code> vira <code>&amp;#62;</code> (ou <code>&amp;gt;</code>)</li>
+          <li><code class="one-line-code">&lt;</code> vira <code class="one-line-code">&amp;#60;</code> (ou <code class="one-line-code">&amp;lt;</code>)</li>
+          <li><code class="one-line-code">&gt;</code> vira <code class="one-line-code">&amp;#62;</code> (ou <code class="one-line-code">&amp;gt;</code>)</li>
         </ul>
       </li>
-      <li><strong>O resultado no código-fonte:</strong> <code>&amp;#60;h1&amp;#62;Olá&amp;#60;/h1&amp;#62;</code></li>
+      <li><strong>O resultado no código-fonte:</strong> <code class="one-line-code">&amp;#60;h1&amp;#62;Olá&amp;#60;/h1&amp;#62;</code></li>
     </ul>
 
     <p><strong>Qual o benefício disso? (Segurança)</strong></p>
     <p>Ao fazer essa conversão, o navegador não interpretará mais o texto como uma tag de título
-      (<code>&lt;h1&gt;</code>). Em vez de deixar o texto grande e em negrito, o navegador exibirá literalmente os
-      caracteres <code>&lt;h1&gt;Olá&lt;/h1&gt;</code> na tela do usuário.</p>
+      (<code class="one-line-code">&lt;h1&gt;</code>). Em vez de deixar o texto grande e em negrito, o navegador exibirá literalmente os
+      caracteres <code class="one-line-code">&lt;h1&gt;Olá&lt;/h1&gt;</code> na tela do usuário.</p>
     <p>Isso impede ataques de <strong>XSS (Cross-Site Scripting)</strong>, pois se um usuário mal-intencionado enviasse
       um
       script como:<br>
-      <code>&lt;script&gt;alert('Ataque!')&lt;/script&gt;</code>
+      <code class="one-line-code">&lt;script&gt;alert('Ataque!')&lt;/script&gt;</code>
     </p>
     <p>O PHP converteria para:<br>
-      <code>&amp;#60;script&amp;#62;alert('Ataque!')&amp;#60;/script&amp;#62;</code>
+      <code class="one-line-code">&amp;#60;script&amp;#62;alert('Ataque!')&amp;#60;/script&amp;#62;</code>
     </p>
     <p>
       E o script <strong>não seria executado</strong> pelo navegador.
     </p>
 
-    <p><strong>Lembrete importante:</strong> Se você usar o filtro <code>FILTER_SANITIZE_STRING</code> (descontinuado no
+    <p><strong>Lembrete importante:</strong> Se você usar o filtro <code class="one-line-code">FILTER_SANITIZE_STRING</code> (descontinuado no
       PHP 8.1), o comportamento seria remover as tags completamente, restando apenas "Olá". Por isso, o uso de
-      <code>FILTER_SANITIZE_SPECIAL_CHARS</code> ou a função <code>htmlspecialchars()</code> é o padrão atual e mais
+      <code class="one-line-code">FILTER_SANITIZE_SPECIAL_CHARS</code> ou a função <code class="one-line-code">htmlspecialchars()</code> é o padrão atual e mais
       seguro.
     </p>
   </div>
@@ -120,15 +120,15 @@ if ($idade === false) {
     a falhas de segurança se não forem tratadas.</p>
 
   <p><strong>O Problema: Comparações Flexíveis (==)</strong></p>
-  <p>Muitas vezes, desenvolvedores usam <code>==</code> para comparar dados, mas o PHP pode converter strings em números
-    de forma inesperada. O uso de <code>===</code> ainda é a regra de ouro para evitar comportamentos imprevisíveis.</p>
+  <p>Muitas vezes, desenvolvedores usam <code class="one-line-code">==</code> para comparar dados, mas o PHP pode converter strings em números
+    de forma inesperada. O uso de <code class="one-line-code">===</code> ainda é a regra de ouro para evitar comportamentos imprevisíveis.</p>
 
   <p><strong>A Solução: Comparações Estritas e Tipagem no PHP 8</strong></p>
   <ul>
-    <li><strong>Operadores de Identidade (===):</strong> Sempre use <code>===</code> para comparar valor e tipo,
+    <li><strong>Operadores de Identidade (===):</strong> Sempre use <code class="one-line-code">===</code> para comparar valor e tipo,
       garantindo que "0" (string) não seja igual a 0 (inteiro).</li>
     <li><strong>Strict Types:</strong> No PHP 8, você pode forçar a tipagem estrita no início do arquivo. Isso impede
-      que uma função que espera um <code>int</code> aceite uma string numérica silenciosamente.</li>
+      que uma função que espera um <code class="one-line-code">int</code> aceite uma string numérica silenciosamente.</li>
   </ul>
 
   <p><strong>Exemplo de Proteção com Tipagem Estrita:</strong></p>
@@ -150,11 +150,11 @@ try {
   <h3>1.5. Boas Práticas no Fluxo de Dados</h3>
   <p>Para uma segurança completa, siga este fluxo:</p>
   <ol>
-    <li><strong>Entrada:</strong> Use <code>filter_input()</code> para sanitizar e validar assim que o dado entrar no
+    <li><strong>Entrada:</strong> Use <code class="one-line-code">filter_input()</code> para sanitizar e validar assim que o dado entrar no
       script.</li>
     <li><strong>Processamento:</strong> Trabalhe com variáveis validadas e tipos estritos (PHP 8).</li>
     <li><strong>Saída (Escaping):</strong> Ao exibir dados de volta no HTML, use funções como
-      <code>htmlspecialchars()</code> para impedir ataques de Cross-Site Scripting (XSS).
+      <code class="one-line-code">htmlspecialchars()</code> para impedir ataques de Cross-Site Scripting (XSS).
     </li>
   </ol>
 </section>
@@ -220,7 +220,7 @@ try {
   </div>
 
   <h3>4. Proteção na Exibição (XSS)</h3>
-  <p>Sempre que exibir dados vindos de fora no navegador, use <code>htmlspecialchars</code> para impedir a execução de scripts maliciosos.</p>
+  <p>Sempre que exibir dados vindos de fora no navegador, use <code class="one-line-code">htmlspecialchars</code> para impedir a execução de scripts maliciosos.</p>
   <div class="code-container">
     <pre><code class="language-php">$comentario_usuario = "&lt;script&gt;alert('ataque!');&lt;/script&gt;";
 
@@ -313,10 +313,10 @@ echo htmlspecialchars($comentario_usuario, ENT_QUOTES, 'UTF-8');
   <h4>Dicas & Lembretes</h4>
   <ul>
     <li><strong>Nunca confie em dados externos:</strong> Trate toda e qualquer entrada vinda do usuário ou de fontes externas — como formulários HTML, parâmetros de URL (query strings), cookies e cabeçalhos HTTP — como potencialmente maliciosa.</li>
-    <li><strong>Utilize sempre o filter_input():</strong> Evite acessar diretamente superglobais como <code>$_POST</code> ou <code>$_GET</code>. O uso desta função é a prática recomendada para obter dados externos de forma mais segura.</li>
+    <li><strong>Utilize sempre o filter_input():</strong> Evite acessar diretamente superglobais como <code class="one-line-code">$_POST</code> ou <code class="one-line-code">$_GET</code>. O uso desta função é a prática recomendada para obter dados externos de forma mais segura.</li>
     <li><strong>Combine Sanitização e Validação:</strong> Primeiro, realize a Sanitização para "limpar" o dado (remover caracteres desnecessários ou perigosos) e, em seguida, aplique a Validação para verificar se o resultado final cumpre as regras de negócio ou técnicas exigidas.</li>
-    <li><strong>Ative a Tipagem Estrita:</strong> Utilize a declaração <code>declare(strict_types=1)</code> no topo dos seus arquivos PHP. Isso impede que o PHP realize conversões de tipos silenciosas que podem levar a comportamentos inesperados e falhas de segurança.</li>
-    <li><strong>Proteja a Exibição de Dados (XSS):</strong> Ao exibir qualquer dado vindo de fora no navegador, utilize sempre a função <code>htmlspecialchars()</code>. Isso converte caracteres especiais em entidades HTML, impedindo que scripts maliciosos sejam executados no browser do usuário.</li>
+    <li><strong>Ative a Tipagem Estrita:</strong> Utilize a declaração <code class="one-line-code">declare(strict_types=1)</code> no topo dos seus arquivos PHP. Isso impede que o PHP realize conversões de tipos silenciosas que podem levar a comportamentos inesperados e falhas de segurança.</li>
+    <li><strong>Proteja a Exibição de Dados (XSS):</strong> Ao exibir qualquer dado vindo de fora no navegador, utilize sempre a função <code class="one-line-code">htmlspecialchars()</code>. Isso converte caracteres especiais em entidades HTML, impedindo que scripts maliciosos sejam executados no browser do usuário.</li>
     <li><strong>Entenda a diferença técnica:</strong>
       <ul>
         <li><strong>Sanitização:</strong> Focada em limpar o que está "sujo" (ex: remover tags HTML de um comentário).</li>
@@ -332,24 +332,24 @@ echo htmlspecialchars($comentario_usuario, ENT_QUOTES, 'UTF-8');
   <h3>1. Sistema de Comentários ou Fórum (Prevenção de XSS)</h3>
   <p>Em um projeto real, usuários podem tentar enviar scripts maliciosos em campos de texto.</p>
   <ul>
-    <li><strong>Ação:</strong> Ao receber o comentário, utilize <code>FILTER_SANITIZE_SPECIAL_CHARS</code> para converter caracteres como <code>&lt;</code> e <code>&gt;</code> em entidades HTML.</li>
-    <li><strong>Exibição:</strong> Antes de imprimir no navegador, reforce com <code>htmlspecialchars()</code>.</li>
+    <li><strong>Ação:</strong> Ao receber o comentário, utilize <code class="one-line-code">FILTER_SANITIZE_SPECIAL_CHARS</code> para converter caracteres como <code class="one-line-code">&lt;</code> e <code class="one-line-code">&gt;</code> em entidades HTML.</li>
+    <li><strong>Exibição:</strong> Antes de imprimir no navegador, reforce com <code class="one-line-code">htmlspecialchars()</code>.</li>
     <li><strong>Resultado:</strong> O navegador exibe o código do script como texto puro em vez de executá-lo.</li>
   </ul>
 
   <h3>2. Cadastro de Usuários (Integridade de Dados)</h3>
   <p>Ao criar um formulário de cadastro, você precisa garantir que os campos técnicos (e-mail, idade, site) sejam legítimos.</p>
   <ul>
-    <li><strong>E-mail:</strong> Use <code>filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)</code>. Se retornar <code>false</code>, o cadastro deve ser interrompido com uma mensagem de erro.</li>
-    <li><strong>Idade:</strong> Use <code>FILTER_VALIDATE_INT</code> com a opção <code>min_range</code> para garantir que apenas maiores de 18 anos se cadastrem.</li>
-    <li><strong>URL do Perfil:</strong> Use <code>FILTER_VALIDATE_URL</code> para garantir que o link enviado seja um endereço web válido.</li>
+    <li><strong>E-mail:</strong> Use <code class="one-line-code">filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)</code>. Se retornar <code class="one-line-code">false</code>, o cadastro deve ser interrompido com uma mensagem de erro.</li>
+    <li><strong>Idade:</strong> Use <code class="one-line-code">FILTER_VALIDATE_INT</code> com a opção <code class="one-line-code">min_range</code> para garantir que apenas maiores de 18 anos se cadastrem.</li>
+    <li><strong>URL do Perfil:</strong> Use <code class="one-line-code">FILTER_VALIDATE_URL</code> para garantir que o link enviado seja um endereço web válido.</li>
   </ul>
 
   <h3>3. Painel Administrativo com Busca (Proteção de URL)</h3>
-  <p>Muitos sistemas utilizam parâmetros via GET para filtrar resultados (ex: <code>lista.php?status=ativo</code>).</p>
+  <p>Muitos sistemas utilizam parâmetros via GET para filtrar resultados (ex: <code class="one-line-code">lista.php?status=ativo</code>).</p>
   <ul>
-    <li><strong>Ação:</strong> Um atacante pode mudar a URL para <code>?status=123</code> tentando burlar a lógica.</li>
-    <li><strong>Prática:</strong> Sempre sanitize o parâmetro da URL com <code>FILTER_SANITIZE_FULL_SPECIAL_CHARS</code> e valide se o valor recebido pertence a uma lista de opções permitidas (<em>whitelist</em>).</li>
+    <li><strong>Ação:</strong> Um atacante pode mudar a URL para <code class="one-line-code">?status=123</code> tentando burlar a lógica.</li>
+    <li><strong>Prática:</strong> Sempre sanitize o parâmetro da URL com <code class="one-line-code">FILTER_SANITIZE_FULL_SPECIAL_CHARS</code> e valide se o valor recebido pertence a uma lista de opções permitidas (<em>whitelist</em>).</li>
   </ul>
 
   <h3>4. Integração com Banco de Dados (Prevenção de Injeção)</h3>
@@ -357,9 +357,9 @@ echo htmlspecialchars($comentario_usuario, ENT_QUOTES, 'UTF-8');
   <ul>
     <li><strong>Fluxo Real:</strong>
       <ol>
-        <li>O dado chega (ex: <code>$_POST['id']</code>).</li>
-        <li>Você valida se é um inteiro com <code>filter_input</code>.</li>
-        <li>Você envia o dado validado para o banco de dados usando PDO com <code>bindParam</code>.</li>
+        <li>O dado chega (ex: <code class="one-line-code">$_POST['id']</code>).</li>
+        <li>Você valida se é um inteiro com <code class="one-line-code">filter_input</code>.</li>
+        <li>Você envia o dado validado para o banco de dados usando PDO com <code class="one-line-code">bindParam</code>.</li>
       </ol>
     </li>
   </ul>
@@ -367,8 +367,8 @@ echo htmlspecialchars($comentario_usuario, ENT_QUOTES, 'UTF-8');
   <h3>5. Cálculo de Frete ou E-commerce (Proteção de Tipos)</h3>
   <p>Em sistemas que lidam com cálculos financeiros, a manipulação de tipos (ex: tratar uma string como número) pode gerar erros graves.</p>
   <ul>
-    <li><strong>Prática:</strong> Use <code>declare(strict_types=1)</code> no topo dos arquivos de lógica de negócio.</li>
-    <li><strong>Benefício:</strong> Se uma função espera um <code>float</code> (preço) e recebe acidentalmente uma string, o PHP interrompe a execução imediatamente, evitando que um cálculo errado seja processado e salvo no banco.</li>
+    <li><strong>Prática:</strong> Use <code class="one-line-code">declare(strict_types=1)</code> no topo dos arquivos de lógica de negócio.</li>
+    <li><strong>Benefício:</strong> Se uma função espera um <code class="one-line-code">float</code> (preço) e recebe acidentalmente uma string, o PHP interrompe a execução imediatamente, evitando que um cálculo errado seja processado e salvo no banco.</li>
   </ul>
 </section>
 

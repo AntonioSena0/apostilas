@@ -15,7 +15,7 @@ description: "Atividade prática sobre gestão de identidade, concessão de priv
   <h2>2. Preparação</h2>
   <ul>
     <li><strong>Ferramenta:</strong> MySQL Workbench, <a href="https://dbeaver.io/download/">DBeaver</a>, PHPMyAdmin ou no terminal MySQL.</li>
-    <li><strong>Usuário:</strong> Você deve estar logado como <code>root</code> para realizar as configurações.</li>
+    <li><strong>Usuário:</strong> Você deve estar logado como <code class="one-line-code">root</code> para realizar as configurações.</li>
     <li><strong>Ambiente:</strong> Certifique-se de que o servidor MySQL está rodando localmente.</li>
   </ul>
 </section>
@@ -61,38 +61,38 @@ INSERT INTO prontuarios (paciente_nome, diagnostico, medicacao_prescrita) VALUES
   
   <h3>Parte 1: Gestão de Identidade</h3>
   <ol>
-    <li>Crie um usuário chamado <code>'recepcao_central'@'localhost'</code> com a senha <code>'SenhaRec#123'</code>.</li>
-    <li>Crie um usuário chamado <code>'medico_geral'@'localhost'</code> com a senha <code>'Med@Secure!2026'</code>.</li>
+    <li>Crie um usuário chamado <code class="one-line-code">'recepcao_central'@'localhost'</code> com a senha <code class="one-line-code">'SenhaRec#123'</code>.</li>
+    <li>Crie um usuário chamado <code class="one-line-code">'medico_geral'@'localhost'</code> com a senha <code class="one-line-code">'Med@Secure!2026'</code>.</li>
   </ol>
   
   <h3>Parte 2: Concessão de Privilégios</h3>
   <ol>
-    <li>Dê ao usuário da recepção apenas a permissão de consultar (<code>SELECT</code>) e inserir (<code>INSERT</code>) na tabela de <code>agendamentos</code>. Ele não deve ver a tabela de <code>prontuarios</code>.</li>
-    <li>Dê ao médico permissão total (<code>ALL PRIVILEGES</code>) em ambas as tabelas do banco <code>hospital_db</code>.</li>
+    <li>Dê ao usuário da recepção apenas a permissão de consultar (<code class="one-line-code">SELECT</code>) e inserir (<code class="one-line-code">INSERT</code>) na tabela de <code class="one-line-code">agendamentos</code>. Ele não deve ver a tabela de <code class="one-line-code">prontuarios</code>.</li>
+    <li>Dê ao médico permissão total (<code class="one-line-code">ALL PRIVILEGES</code>) em ambas as tabelas do banco <code class="one-line-code">hospital_db</code>.</li>
   </ol>
   
   <h3>Parte 3: Teste de Restrições</h3>
   <ol>
     <li>Abra uma nova conexão no seu SGBD com o usuário da recepção.</li>
-    <li>Tente executar um <code>SELECT * FROM prontuarios;</code>. O que aconteceu?</li>
+    <li>Tente executar um <code class="one-line-code">SELECT * FROM prontuarios;</code>. O que aconteceu?</li>
     <li>Tente inserir um novo agendamento. Funcionou?</li>
   </ol>
   
   <h3>Parte 4: Auditoria e Refinamento</h3>
   <ol>
-    <li>Como <code>root</code>, utilize uma query na tabela <code>mysql.user</code> para listar todos os usuários e verificar quais plugins de autenticação eles estão usando.</li>
-    <li>Revogue o privilégio de <code>DELETE</code> do médico na tabela de <code>prontuarios</code> (ele pode ler e editar, mas nunca apagar um histórico médico).</li>
-    <li>Verifique as permissões finais de ambos os usuários utilizando o comando <code>SHOW GRANTS</code>.</li>
+    <li>Como <code class="one-line-code">root</code>, utilize uma query na tabela <code class="one-line-code">mysql.user</code> para listar todos os usuários e verificar quais plugins de autenticação eles estão usando.</li>
+    <li>Revogue o privilégio de <code class="one-line-code">DELETE</code> do médico na tabela de <code class="one-line-code">prontuarios</code> (ele pode ler e editar, mas nunca apagar um histórico médico).</li>
+    <li>Verifique as permissões finais de ambos os usuários utilizando o comando <code class="one-line-code">SHOW GRANTS</code>.</li>
   </ol>
 </section>
 
 <div class="tip-box">
   <h4>5. Orientações Finais</h4>
   <ul>
-    <li><strong>Evite o %:</strong> Nesta atividade, foque no <code>localhost</code> para garantir que o acesso seja estritamente local.</li>
+    <li><strong>Evite o %:</strong> Nesta atividade, foque no <code class="one-line-code">localhost</code> para garantir que o acesso seja estritamente local.</li>
     <li><strong>Logs de Erro:</strong> Preste atenção nas mensagens de erro do MySQL (como o Error 1142). Elas são suas melhores amigas para entender se o privilégio funcionou.</li>
-    <li><strong>Entregável:</strong> Salve todos os comandos utilizados em um arquivo <code>.sql</code> e anote os resultados dos testes de acesso (o que foi bloqueado e o que foi permitido).</li>
-    <li>Use <code>SHOW GRANTS FOR 'usuario'@'localhost';</code> frequentemente para validar suas configurações.</li>
+    <li><strong>Entregável:</strong> Salve todos os comandos utilizados em um arquivo <code class="one-line-code">.sql</code> e anote os resultados dos testes de acesso (o que foi bloqueado e o que foi permitido).</li>
+    <li>Use <code class="one-line-code">SHOW GRANTS FOR 'usuario'@'localhost';</code> frequentemente para validar suas configurações.</li>
     <li>Teste cada restrição cuidadosamente — erros são oportunidades de aprendizado!</li>
   </ul>
 </div>

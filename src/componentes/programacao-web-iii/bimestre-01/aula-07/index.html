@@ -17,7 +17,7 @@ tags:
   <h3>2. A Estrutura do CRUD no Laravel</h3>
   <p>O desenvolvimento de um CRUD no framework é distribuído entre as camadas da arquitetura MVC (Model-View-Controller):</p>
   <ul>
-    <li><strong>Model (Modelo):</strong> Representa a tabela no banco de dados. Utiliza o Eloquent para realizar as operações sem a necessidade de escrever SQL puro. Por exemplo, o comando <code>Produto::all()</code> substitui um <code>SELECT * FROM produtos</code>.</li>
+    <li><strong>Model (Modelo):</strong> Representa a tabela no banco de dados. Utiliza o Eloquent para realizar as operações sem a necessidade de escrever SQL puro. Por exemplo, o comando <code class="one-line-code">Produto::all()</code> substitui um <code class="one-line-code">SELECT * FROM produtos</code>.</li>
     <li><strong>Controller (Controlador):</strong> Atua como o "policial de trânsito", recebendo a requisição do usuário, validando os dados, solicitando que a Model salve a informação e, por fim, retornando uma resposta (view ou redirecionamento).</li>
     <li><strong>View (Visão):</strong> Utiliza o motor de templates Blade para renderizar os formulários de cadastro e as tabelas de listagem de dados.</li>
   </ul>
@@ -37,56 +37,56 @@ tags:
       <tbody>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">GET</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>index</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">index</code></td>
           <td style="padding: 10px;">Listar todos os registros.</td>
         </tr>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">GET</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos/create</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>create</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos/create</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">create</code></td>
           <td style="padding: 10px;">Exibir o formulário de novo cadastro.</td>
         </tr>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">POST</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>store</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">store</code></td>
           <td style="padding: 10px;">Salvar os dados no banco de dados.</td>
         </tr>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">GET</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos/{id}</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>show</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos/{id}</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">show</code></td>
           <td style="padding: 10px;">Exibir um registro específico.</td>
         </tr>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">GET</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos/{id}/edit</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>edit</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos/{id}/edit</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">edit</code></td>
           <td style="padding: 10px;">Exibir o formulário de edição.</td>
         </tr>
         <tr style="border-bottom: 1px solid #ddd;">
           <td style="padding: 10px; border-right: 1px solid #ddd;">PUT/PATCH</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos/{id}</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>update</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos/{id}</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">update</code></td>
           <td style="padding: 10px;">Atualizar os dados no banco de dados.</td>
         </tr>
         <tr>
           <td style="padding: 10px; border-right: 1px solid #ddd;">DELETE</td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>/produtos/{id}</code></td>
-          <td style="padding: 10px; border-right: 1px solid #ddd;"><code>destroy</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">/produtos/{id}</code></td>
+          <td style="padding: 10px; border-right: 1px solid #ddd;"><code class="one-line-code">destroy</code></td>
           <td style="padding: 10px;">Remover o registro do banco.</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p>Para gerar essa estrutura completa de uma só vez, utilizamos o comando Artisan: <code>php artisan make:controller ProdutoController --resource</code>.</p>
+  <p>Para gerar essa estrutura completa de uma só vez, utilizamos o comando Artisan: <code class="one-line-code">php artisan make:controller ProdutoController --resource</code>.</p>
 
   <h3>4. Persistência e Segurança Automática</h3>
   <p>Ao realizar um CRUD com Laravel, o desenvolvedor ganha camadas de proteção integradas:</p>
   <ul>
-    <li><strong>Proteção CSRF:</strong> O Laravel exige um token de segurança em todos os formulários POST/PUT/DELETE para evitar ataques de falsificação de solicitação entre sites. No Blade, basta usar a diretiva <code>@csrf</code>.</li>
-    <li><strong>Mass Assignment (Atribuição em Massa):</strong> Para evitar que usuários malintencionados enviem dados extras que não deveriam ser alterados (como um campo <code>is_admin</code>), o Laravel exige que você defina quais campos são "preenchíveis" através da propriedade <code>$fillable</code> na sua Model.</li>
+    <li><strong>Proteção CSRF:</strong> O Laravel exige um token de segurança em todos os formulários POST/PUT/DELETE para evitar ataques de falsificação de solicitação entre sites. No Blade, basta usar a diretiva <code class="one-line-code">@csrf</code>.</li>
+    <li><strong>Mass Assignment (Atribuição em Massa):</strong> Para evitar que usuários malintencionados enviem dados extras que não deveriam ser alterados (como um campo <code class="one-line-code">is_admin</code>), o Laravel exige que você defina quais campos são "preenchíveis" através da propriedade <code class="one-line-code">$fillable</code> na sua Model.</li>
     <li><strong>Prepared Statements:</strong> O Eloquent utiliza internamente o PDO com consultas parametrizadas, o que neutraliza automaticamente ataques de SQL Injection.</li>
   </ul>
 
@@ -94,17 +94,17 @@ tags:
   <p>No Laravel, o processo de criação segue uma lógica fluida:</p>
   <ol>
     <li><strong>Captura:</strong> O Controller recebe um objeto Request contendo todos os dados do formulário.</li>
-    <li><strong>Validação:</strong> Os dados são validados (ex: <code>required</code>, <code>min:3</code>) antes de tocar o banco.</li>
-    <li><strong>Persistência:</strong> A Model usa o método <code>create()</code> para inserir o registro.</li>
+    <li><strong>Validação:</strong> Os dados são validados (ex: <code class="one-line-code">required</code>, <code class="one-line-code">min:3</code>) antes de tocar o banco.</li>
+    <li><strong>Persistência:</strong> A Model usa o método <code class="one-line-code">create()</code> para inserir o registro.</li>
     <li><strong>Redirecionamento:</strong> O usuário é enviado de volta com uma mensagem de sucesso, evitando o reenvio de dados ao atualizar a página (Padrão PRG).</li>
   </ol>
 
   <h3>Onde os arquivos ficam localizados?</h3>
   <ul>
-    <li><strong>Rotas:</strong> <code>routes/web.php</code></li>
-    <li><strong>Controllers:</strong> <code>app/Http/Controllers/</code></li>
-    <li><strong>Models:</strong> <code>app/Models/</code></li>
-    <li><strong>Views:</strong> <code>resources/views/</code></li>
+    <li><strong>Rotas:</strong> <code class="one-line-code">routes/web.php</code></li>
+    <li><strong>Controllers:</strong> <code class="one-line-code">app/Http/Controllers/</code></li>
+    <li><strong>Models:</strong> <code class="one-line-code">app/Models/</code></li>
+    <li><strong>Views:</strong> <code class="one-line-code">resources/views/</code></li>
   </ul>
 </section>
 

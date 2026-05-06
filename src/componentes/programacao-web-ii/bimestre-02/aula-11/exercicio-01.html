@@ -16,7 +16,7 @@ description: "Atividade prática para fixação de conceitos de Classes, Objetos
     objeto "Livro" não for criada.
   </p>
   <p>
-    Sua tarefa é estudar o código do <code>index.php</code> para deduzir a
+    Sua tarefa é estudar o código do <code class="one-line-code">index.php</code> para deduzir a
     estrutura necessária da classe. Você deve descobrir, apenas lendo o código
     fornecido:
   </p>
@@ -27,7 +27,7 @@ description: "Atividade prática para fixação de conceitos de Classes, Objetos
     </li>
     <li>
       Quais métodos a tabela HTML tenta chamar dentro do loop
-      <code>foreach</code> para exibir as informações na estante?
+      <code class="one-line-code">foreach</code> para exibir as informações na estante?
     </li>
   </ul>
 </section>
@@ -43,9 +43,9 @@ description: "Atividade prática para fixação de conceitos de Classes, Objetos
       Crie uma pasta para o exercício no seu ambiente local (XAMPP ou
       diretório de sua preferência).
     </li>
-    <li>Salve o código abaixo como <code>index.php</code>.</li>
+    <li>Salve o código abaixo como <code class="one-line-code">index.php</code>.</li>
     <li>
-      Crie um arquivo novo e vazio chamado <code>Livro.php</code> na mesma
+      Crie um arquivo novo e vazio chamado <code class="one-line-code">Livro.php</code> na mesma
       pasta.
     </li>
   </ol>
@@ -54,8 +54,8 @@ description: "Atividade prática para fixação de conceitos de Classes, Objetos
 <section class="section-box">
   <h2>1. Código Base: index.php (Interface Pronta)</h2>
   <p>
-    O aluno deve analisar as linhas onde ocorre o <code>new Livro(...)</code> e
-    as chamadas dentro das tags <code>&lt;td&gt;</code> da tabela.
+    O aluno deve analisar as linhas onde ocorre o <code class="one-line-code">new Livro(...)</code> e
+    as chamadas dentro das tags <code class="one-line-code">&lt;td&gt;</code> da tabela.
   </p>
   <div class="code-container">
     <pre><code class="language-php">&lt;?php
@@ -168,7 +168,7 @@ if (isset($_GET['del'])) {
 <section class="section-box">
   <h2>O Desafio: Criar Livro.php</h2>
   <p>
-    Você deve escrever o código do arquivo <code>Livro.php</code> começando do
+    Você deve escrever o código do arquivo <code class="one-line-code">Livro.php</code> começando do
     zero. Regras de implementação:
   </p>
   <ul>
@@ -187,7 +187,7 @@ if (isset($_GET['del'])) {
     </li>
     <li>
       <strong>Tudo está no index.php:</strong> Não invente nomes de variáveis ou
-      funções. Se o <code>index.php</code> tenta chamar uma função ou enviar um
+      funções. Se o <code class="one-line-code">index.php</code> tenta chamar uma função ou enviar um
       dado, sua classe deve ter exatamente esse nome e estrutura para que a
       conexão entre os arquivos funcione perfeitamente.
     </li>
@@ -200,16 +200,16 @@ if (isset($_GET['del'])) {
     <li>
       <strong>Estudo Atento:</strong> Todos os nomes de propriedades e métodos
       que sua classe precisa ter estão descritos e utilizados diretamente no
-      arquivo <code>index.php</code>. Sua missão é garantir que a classe seja o
+      arquivo <code class="one-line-code">index.php</code>. Sua missão é garantir que a classe seja o
       "encaixe" perfeito para o que a interface já espera consumir.
     </li>
     <li>
       <strong>Rodando o Projeto:</strong> Para testar sua aplicação, utilize o
       servidor embutido do PHP. Abra o terminal na pasta do projeto e execute:
-      <br /><code>php -S localhost:8000</code>
+      <br /><code class="one-line-code">php -S localhost:8000</code>
     </li>
     <li>
-      <strong>Validação:</strong> Abra <code>http://localhost:8000</code> no
+      <strong>Validação:</strong> Abra <code class="one-line-code">http://localhost:8000</code> no
       navegador. Se o formulário cadastrar os dados e a tabela exibir as
       informações corretamente sem erros de sistema, sua engenharia reversa foi
       concluída com sucesso!

@@ -13,7 +13,7 @@ tags:
   <p>Para deixar as mensagens de erro do Laravel em português (PT-BR), você precisa configurar a localização do framework e adicionar os arquivos de tradução correspondentes. Como o Laravel não vem com as traduções de todos os idiomas por padrão, seguimos estes passos:</p>
 
   <h3>1. Alterar o Idioma no Arquivo de Configuração</h3>
-  <p>Abra o arquivo <code>config/app.php</code> e altere a chave <code>locale</code> de <code>en</code> para <code>pt_BR</code>.</p>
+  <p>Abra o arquivo <code class="one-line-code">config/app.php</code> e altere a chave <code class="one-line-code">locale</code> de <code class="one-line-code">en</code> para <code class="one-line-code">pt_BR</code>.</p>
   <div class="code-container">
     <pre><code class="language-php">'locale' => 'pt_BR',
 'fallback_locale' => 'en',</code></pre>
@@ -23,10 +23,10 @@ tags:
   <p>Você tem duas formas principais de obter as traduções:</p>
 
   <h4>Opção A: Manualmente (Pasta lang)</h4>
-  <p>No Laravel 10, 11, 12 e 13, os arquivos de tradução ficam na pasta raiz <code>/lang</code>.</p>
+  <p>No Laravel 10, 11, 12 e 13, os arquivos de tradução ficam na pasta raiz <code class="one-line-code">/lang</code>.</p>
   <ul>
-    <li>Crie uma pasta chamada <code>pt_BR</code> dentro de <code>/lang</code>.</li>
-    <li>Adicione os arquivos: <code>auth.php</code>, <code>pagination.php</code>, <code>passwords.php</code> e <code>validation.php</code>.</li>
+    <li>Crie uma pasta chamada <code class="one-line-code">pt_BR</code> dentro de <code class="one-line-code">/lang</code>.</li>
+    <li>Adicione os arquivos: <code class="one-line-code">auth.php</code>, <code class="one-line-code">pagination.php</code>, <code class="one-line-code">passwords.php</code> e <code class="one-line-code">validation.php</code>.</li>
     <li>Você pode baixar esses arquivos prontos do repositório da comunidade <em>Laravel-Lang</em>.</li>
   </ul>
 
@@ -44,10 +44,10 @@ tags:
       </div>
     </li>
   </ul>
-  <p>Este comando criará automaticamente a pasta <code>/lang/pt_BR</code> com todas as validações (como "O campo :attribute é obrigatório") já traduzidas.</p>
+  <p>Este comando criará automaticamente a pasta <code class="one-line-code">/lang/pt_BR</code> com todas as validações (como "O campo :attribute é obrigatório") já traduzidas.</p>
 
   <h3>3. Traduzir Nomes de Campos (Attributes)</h3>
-  <p>Para que o erro não apareça como "O campo email é obrigatório", você deve definir apelidos amigáveis no arquivo <code>lang/pt_BR/validation.php</code>, dentro do array <code>attributes</code>:</p>
+  <p>Para que o erro não apareça como "O campo email é obrigatório", você deve definir apelidos amigáveis no arquivo <code class="one-line-code">lang/pt_BR/validation.php</code>, dentro do array <code class="one-line-code">attributes</code>:</p>
   <div class="code-container">
     <pre><code class="language-php">'attributes' => [
     'email' => 'endereço de e-mail',
@@ -60,13 +60,13 @@ tags:
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li><strong>Limpeza de Cache:</strong> Após alterar o <code>config/app.php</code>, é recomendável limpar o cache de configuração para garantir que o Laravel reconheça a mudança:
+    <li><strong>Limpeza de Cache:</strong> Após alterar o <code class="one-line-code">config/app.php</code>, é recomendável limpar o cache de configuração para garantir que o Laravel reconheça a mudança:
       <div class="code-container">
         <pre><code class="language-bash">php artisan config:clear</code></pre>
       </div>
     </li>
-    <li><strong>JSON de Tradução:</strong> Se você usa tradução via strings (ex: <code>__('Welcome')</code>), você pode criar um arquivo <code>/lang/pt_BR.json</code> para mapear essas frases.</li>
-    <li><strong>Fallback:</strong> O <code>fallback_locale</code> em <code>config/app.php</code> serve como "plano B". Se o Laravel não encontrar uma tradução em português, ele usará a definida ali (geralmente <code>en</code>).</li>
+    <li><strong>JSON de Tradução:</strong> Se você usa tradução via strings (ex: <code class="one-line-code">__('Welcome')</code>), você pode criar um arquivo <code class="one-line-code">/lang/pt_BR.json</code> para mapear essas frases.</li>
+    <li><strong>Fallback:</strong> O <code class="one-line-code">fallback_locale</code> em <code class="one-line-code">config/app.php</code> serve como "plano B". Se o Laravel não encontrar uma tradução em português, ele usará a definida ali (geralmente <code class="one-line-code">en</code>).</li>
   </ul>
 </div>
 

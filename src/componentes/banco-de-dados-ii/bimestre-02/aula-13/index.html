@@ -12,7 +12,7 @@ tags:
   <p>As junções são operações fundamentais para recuperar informações de várias tabelas relacionadas simultaneamente, permitindo que os dados sejam combinados conforme um relacionamento lógico estabelecido entre elas.</p>
 
   <h3>1. Fundamentação Teórica e Qualificadores</h3>
-  <p>Teoricamente, uma junção equivale a realizar uma Seleção (σ) sobre um Produto Cartesiano (×) das tabelas envolvidas. Para evitar ambiguidades quando colunas de tabelas diferentes possuem o mesmo nome, utilizamos qualificadores de nome (formato <code>tabela.coluna</code>).</p>
+  <p>Teoricamente, uma junção equivale a realizar uma Seleção (σ) sobre um Produto Cartesiano (×) das tabelas envolvidas. Para evitar ambiguidades quando colunas de tabelas diferentes possuem o mesmo nome, utilizamos qualificadores de nome (formato <code class="one-line-code">tabela.coluna</code>).</p>
 
   <h3>2. INNER JOIN (Junção Interna)</h3>
   <p>É a junção que retorna apenas as linhas que possuem correspondência em ambas as tabelas envolvidas, baseando-se na satisfação de uma condição de junção. Quando a comparação utiliza o operador de igualdade (=), chamamos a operação de <strong>Equijoin</strong>.</p>
@@ -167,8 +167,8 @@ WHERE cliente.UF = 'RJ';</code></pre>
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li><strong>Qualificadores:</strong> Sempre use <code>tabela.coluna</code> ou aliases para evitar o erro "ambiguous column name" quando as tabelas possuem nomes de colunas idênticos.</li>
-    <li><strong>Performance:</strong> O <code>INNER JOIN</code> é geralmente mais rápido que subconsultas para recuperar dados relacionados.</li>
+    <li><strong>Qualificadores:</strong> Sempre use <code class="one-line-code">tabela.coluna</code> ou aliases para evitar o erro "ambiguous column name" quando as tabelas possuem nomes de colunas idênticos.</li>
+    <li><strong>Performance:</strong> O <code class="one-line-code">INNER JOIN</code> é geralmente mais rápido que subconsultas para recuperar dados relacionados.</li>
     <li><strong>NULLs no LEFT JOIN:</strong> Lembre-se que se não houver correspondência, o lado direito virá como NULL. Use isso a seu favor para encontrar registros "faltantes".</li>
   </ul>
 </div>
@@ -176,8 +176,8 @@ WHERE cliente.UF = 'RJ';</code></pre>
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
   <ul>
-    <li><strong>Relatórios de Auditoria:</strong> Use <code>LEFT JOIN</code> com <code>WHERE ... IS NULL</code> para encontrar clientes que nunca compraram ou alunos que não se matricularam em disciplinas.</li>
-    <li><strong>Navegação em Hierarquias:</strong> Utilize <code>SELF-JOIN</code> para montar árvores genealógicas, organogramas de empresas ou categorias de produtos pai/filho.</li>
+    <li><strong>Relatórios de Auditoria:</strong> Use <code class="one-line-code">LEFT JOIN</code> com <code class="one-line-code">WHERE ... IS NULL</code> para encontrar clientes que nunca compraram ou alunos que não se matricularam em disciplinas.</li>
+    <li><strong>Navegação em Hierarquias:</strong> Utilize <code class="one-line-code">SELF-JOIN</code> para montar árvores genealógicas, organogramas de empresas ou categorias de produtos pai/filho.</li>
     <li><strong>Dashboards Consolidados:</strong> Combine múltiplas tabelas para mostrar, em uma única visão, o nome do cliente, os produtos que ele comprou e a data da entrega.</li>
   </ul>
 </section>
@@ -197,4 +197,4 @@ WHERE cliente.UF = 'RJ';</code></pre>
     <li><a href="./exercicio-02/">Exercício 02: Desafio de Fixação</a></li>
   </ul>
 </section>
-
+

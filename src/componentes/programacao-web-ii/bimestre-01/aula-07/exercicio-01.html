@@ -15,8 +15,8 @@ description: "Construção de um script de processamento seguro utilizando filtr
   <h2>Preparação</h2>
   <ul>
     <li><strong>Ambiente:</strong> Certifique-se de usar o PHP 8.1 ou superior.</li>
-    <li><strong>Arquivos:</strong> Crie uma pasta e salve os dois arquivos abaixo (<code>index.html</code> e <code>processa.php</code>).</li>
-    <li><strong>Tipagem Estrita:</strong> O arquivo PHP deve conter <code>declare(strict_types=1);</code> no topo para evitar que o PHP converta tipos de forma automática e insegura.</li>
+    <li><strong>Arquivos:</strong> Crie uma pasta e salve os dois arquivos abaixo (<code class="one-line-code">index.html</code> e <code class="one-line-code">processa.php</code>).</li>
+    <li><strong>Tipagem Estrita:</strong> O arquivo PHP deve conter <code class="one-line-code">declare(strict_types=1);</code> no topo para evitar que o PHP converta tipos de forma automática e insegura.</li>
   </ul>
 </section>
 
@@ -78,7 +78,7 @@ description: "Construção de um script de processamento seguro utilizando filtr
 
 <section class="section-box">
   <h2>O Desafio: processa.php</h2>
-  <p>Você deve completar o arquivo <code>processa.php</code> seguindo os comentários de instrução.</p>
+  <p>Você deve completar o arquivo <code class="one-line-code">processa.php</code> seguindo os comentários de instrução.</p>
   <div class="code-container">
     <pre><code class="language-php">&lt;?php
 declare(strict_types=1);
@@ -186,9 +186,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="tip-box">
   <h4>Orientações Finais e Testes</h4>
   <ul>
-    <li><strong>Regra de Ouro:</strong> Não acesse <code>$_POST</code> diretamente. Use apenas <code>filter_input()</code>.</li>
+    <li><strong>Regra de Ouro:</strong> Não acesse <code class="one-line-code">$_POST</code> diretamente. Use apenas <code class="one-line-code">filter_input()</code>.</li>
     <li><strong>Tratamento de Erros:</strong> Caso algum campo seja inválido, o programa deve listar os erros em vez de confirmar o cadastro.</li>
-    <li><strong>Teste de Segurança:</strong> No campo "Nome", tente enviar: <code>&lt;script&gt;alert('hack')&lt;/script&gt;</code>. O PHP deve exibir o texto na tela em vez de executar o alerta, provando que a sanitização funcionou.</li>
-    <li><strong>Dica Profissional:</strong> O parâmetro <code>options</code> do <code>filter_input</code> permite definir <code>min_range</code> e <code>max_range</code>, o que economiza vários blocos de <code>if</code> no seu código.</li>
+    <li><strong>Teste de Segurança:</strong> No campo "Nome", tente enviar: <code class="one-line-code">&lt;script&gt;alert('hack')&lt;/script&gt;</code>. O PHP deve exibir o texto na tela em vez de executar o alerta, provando que a sanitização funcionou.</li>
+    <li><strong>Dica Profissional:</strong> O parâmetro <code class="one-line-code">options</code> do <code class="one-line-code">filter_input</code> permite definir <code class="one-line-code">min_range</code> e <code class="one-line-code">max_range</code>, o que economiza vários blocos de <code class="one-line-code">if</code> no seu código.</li>
   </ul>
 </div>

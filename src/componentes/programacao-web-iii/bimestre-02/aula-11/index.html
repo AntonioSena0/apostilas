@@ -12,14 +12,14 @@ tags:
   
   <h3>1. A Filosofia do Mapeamento Objeto-Relacional (ORM)</h3>
   <p>No desenvolvimento de sistemas multicamadas, o Eloquent ORM atua como uma ponte entre o Modelo Conceitual (objetos em PHP) e o Modelo Físico (tabelas no banco de dados). Em vez de manipular linhas e colunas através de SQL puro, você interage com classes que possuem "identidades e responsabilidades".</p>
-  <p>A grande vantagem de definir relacionamentos no Laravel é que eles são declarados como métodos. Isso permite que o relacionamento funcione como um Query Builder, possibilitando o encadeamento de filtros antes da execução da consulta. Por exemplo: <code>$usuario->pedidos()->where('status', 'pago')->get();</code>.</p>
+  <p>A grande vantagem de definir relacionamentos no Laravel é que eles são declarados como métodos. Isso permite que o relacionamento funcione como um Query Builder, possibilitando o encadeamento de filtros antes da execução da consulta. Por exemplo: <code class="one-line-code">$usuario->pedidos()->where('status', 'pago')->get();</code>.</p>
 
   <h3>2. Relacionamento Um-para-Um (1:1)</h3>
   <p>Este é o tipo mais básico de associação, onde um registro em uma tabela está ligado a exatamente um registro em outra.</p>
   <ul>
     <li><strong>Conceito:</strong> Frequentemente usado para estender dados de um modelo sem sobrecarregar a tabela principal (ex: um Usuario e seu PerfilSettings).</li>
-    <li><strong>Implementação:</strong> Usa-se o método <code>hasOne()</code> no modelo pai e <code>belongsTo()</code> no modelo filho.</li>
-    <li><strong>Convenção de Chave Estrangeira:</strong> O Laravel busca automaticamente por uma coluna chamada <code>model_id</code> (ex: <code>user_id</code>) na tabela do modelo relacionado.</li>
+    <li><strong>Implementação:</strong> Usa-se o método <code class="one-line-code">hasOne()</code> no modelo pai e <code class="one-line-code">belongsTo()</code> no modelo filho.</li>
+    <li><strong>Convenção de Chave Estrangeira:</strong> O Laravel busca automaticamente por uma coluna chamada <code class="one-line-code">model_id</code> (ex: <code class="one-line-code">user_id</code>) na tabela do modelo relacionado.</li>
   </ul>
   <p><strong>Exemplo de Código:</strong></p>
   <div class="code-container">
@@ -38,7 +38,7 @@ public function user(): BelongsTo {
   <p>É o relacionamento mais comum em aplicações web, onde um único modelo pai possui um ou mais modelos filhos.</p>
   <ul>
     <li><strong>Conceito:</strong> Um pai (como um Post) pode ter um número infinito de filhos (como Comments).</li>
-    <li><strong>Persistência Complexa:</strong> Para vincular um filho a um pai, você pode usar o método <code>associate()</code> no modelo filho (que define a chave estrangeira na memória) ou o método <code>save()</code> a partir do pai.</li>
+    <li><strong>Persistência Complexa:</strong> Para vincular um filho a um pai, você pode usar o método <code class="one-line-code">associate()</code> no modelo filho (que define a chave estrangeira na memória) ou o método <code class="one-line-code">save()</code> a partir do pai.</li>
   </ul>
   <p><strong>Exemplo de Código:</strong></p>
   <div class="code-container">
@@ -59,8 +59,8 @@ $post->comments()->createMany([
   <p>Este é o cenário mais complexo, onde múltiplos registros em uma tabela estão ligados a múltiplos registros em outra.</p>
   <ul>
     <li><strong>O Papel da Tabela Pivô:</strong> Como as tabelas relacionais não podem armazenar listas de IDs diretamente, utiliza-se uma tabela intermediária (tabela pivô).</li>
-    <li><strong>Convenção de Nomenclatura:</strong> Por padrão, o nome da tabela pivô deve ser o nome dos dois modelos no singular, em ordem alfabética, separados por underline (ex: <code>role_user</code> para os modelos Role e User).</li>
-    <li><strong>Atributos de Pivô:</strong> Tabelas pivô podem conter dados extras (como <code>created_at</code> ou <code>status</code>) que podem ser acessados via atributo <code>pivot</code> ou renomeados usando o método <code>as()</code>.</li>
+    <li><strong>Convenção de Nomenclatura:</strong> Por padrão, o nome da tabela pivô deve ser o nome dos dois modelos no singular, em ordem alfabética, separados por underline (ex: <code class="one-line-code">role_user</code> para os modelos Role e User).</li>
+    <li><strong>Atributos de Pivô:</strong> Tabelas pivô podem conter dados extras (como <code class="one-line-code">created_at</code> ou <code class="one-line-code">status</code>) que podem ser acessados via atributo <code class="one-line-code">pivot</code> ou renomeados usando o método <code class="one-line-code">as()</code>.</li>
   </ul>
   <p><strong>Exemplo de Código:</strong></p>
   <div class="code-container">
@@ -82,7 +82,7 @@ $user->roles()->sync([28, 29, 30]);
   <p>Um erro crítico em conceitos de ORM é carregar dados relacionados dentro de um loop, o que gera o problema de performance "N+1".</p>
   <ul>
     <li><strong>O Problema:</strong> Se você listar 25 contatos e buscar os telefones de cada um dentro do loop, o sistema fará 1 consulta para os contatos + 25 consultas individuais para os telefones.</li>
-    <li><strong>A Solução:</strong> Use o método <code>with()</code> para carregar preventivamente os dados em apenas 2 consultas totais.</li>
+    <li><strong>A Solução:</strong> Use o método <code class="one-line-code">with()</code> para carregar preventivamente os dados em apenas 2 consultas totais.</li>
   </ul>
   <p><strong>Exemplo:</strong></p>
   <div class="code-container">
@@ -237,8 +237,8 @@ $posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
   <div class="tip-box" style="margin-top: 1rem;">
     <p><strong>No Eloquent:</strong></p>
     <ul>
-      <li><code>$user->posts</code> retorna uma Collection de objetos Post.</li>
-      <li><code>$post->user</code> retorna uma Instância única de User.</li>
+      <li><code class="one-line-code">$user->posts</code> retorna uma Collection de objetos Post.</li>
+      <li><code class="one-line-code">$post->user</code> retorna uma Instância única de User.</li>
     </ul>
   </div>
 
@@ -260,10 +260,10 @@ $posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
         end
   </div>
   <p><strong>O que acontece no PHP:</strong></p>
-  <p>Ao executar <code>$student->courses()->attach($id)</code>, o Eloquent não mexe na tabela <code>students</code> nem na <code>courses</code>, ele insere um novo registro apenas na tabela <code>course_student</code>.</p>
+  <p>Ao executar <code class="one-line-code">$student->courses()->attach($id)</code>, o Eloquent não mexe na tabela <code class="one-line-code">students</code> nem na <code class="one-line-code">courses</code>, ele insere um novo registro apenas na tabela <code class="one-line-code">course_student</code>.</p>
 
   <h3>3. Ciclo de Persistência Complexa (Método sync)</h3>
-  <p>O método <code>sync()</code> é um dos diferenciais do Eloquent. Este diagrama de sequência mostra a lógica interna dele para manter o banco atualizado com o que você enviou.</p>
+  <p>O método <code class="one-line-code">sync()</code> é um dos diferenciais do Eloquent. Este diagrama de sequência mostra a lógica interna dele para manter o banco atualizado com o que você enviou.</p>
   <div class="mermaid">
     sequenceDiagram
         autonumber
@@ -287,7 +287,7 @@ $posts = Post::with('user')->get(); // O with() carrega os dados "ansiosamente"
         M -. can access .-> C
   </div>
   <p><strong>Como ler esse diagrama:</strong></p>
-  <p>Através do método <code>hasOneThrough</code>, o Eloquent permite que você faça <code>$mechanic->car</code> diretamente. Internamente, ele faz o JOIN: <code>mechanics</code> -> <code>owners</code> -> <code>cars</code>.</p>
+  <p>Através do método <code class="one-line-code">hasOneThrough</code>, o Eloquent permite que você faça <code class="one-line-code">$mechanic->car</code> diretamente. Internamente, ele faz o JOIN: <code class="one-line-code">mechanics</code> -> <code class="one-line-code">owners</code> -> <code class="one-line-code">cars</code>.</p>
 </section>
 
 <div class="tip-box">

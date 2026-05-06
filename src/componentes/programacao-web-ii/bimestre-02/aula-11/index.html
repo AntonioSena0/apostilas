@@ -38,7 +38,7 @@ $casaRuaB->cor = "Branca";</code></pre>
     </li>
     <li>
       <strong>Propriedades (Atributos):</strong> São as características ou dados que o objeto armazena.
-      <br><em>Exemplo Prático:</em> Em um sistema de biblioteca, um objeto Livro teria propriedades como <code>$titulo</code>, <code>$autor</code> e <code>$numeroPaginas</code>.
+      <br><em>Exemplo Prático:</em> Em um sistema de biblioteca, um objeto Livro teria propriedades como <code class="one-line-code">$titulo</code>, <code class="one-line-code">$autor</code> e <code class="one-line-code">$numeroPaginas</code>.
       <div class="code-container">
         <pre><code class="language-php">class Livro {
     public $titulo;
@@ -49,7 +49,7 @@ $casaRuaB->cor = "Branca";</code></pre>
     </li>
     <li>
       <strong>Métodos (Comportamentos):</strong> São as ações que o objeto pode realizar.
-      <br><em>Exemplo Prático:</em> O objeto Livro pode ter um método <code>abrir()</code> ou <code>trocarPagina()</code>. São as funções que operam sobre os dados internos daquele objeto específico.
+      <br><em>Exemplo Prático:</em> O objeto Livro pode ter um método <code class="one-line-code">abrir()</code> ou <code class="one-line-code">trocarPagina()</code>. São as funções que operam sobre os dados internos daquele objeto específico.
       <div class="code-container">
         <pre><code class="language-php">class Livro {
     public function abrir() {
@@ -144,7 +144,7 @@ $user = new Usuario("Ana Silva", "ana@email.com");
 
   <br>
   <h3>Fluxo de Instanciação e Memória</h3>
-  <p>Demonstra o que acontece quando o comando <code>new</code> é executado para dois objetos diferentes:</p>
+  <p>Demonstra o que acontece quando o comando <code class="one-line-code">new</code> é executado para dois objetos diferentes:</p>
   <div class="mermaid">
     graph TD
         Classe[Classe ContaBancaria] -->|new| Obj1[Objeto: minhaConta]
@@ -164,14 +164,14 @@ $user = new Usuario("Ana Silva", "ana@email.com");
   <h4>4. Dicas & Lembretes</h4>
   <ul>
     <li><strong>Identidade Própria:</strong> Mesmo que dois objetos venham da mesma classe, eles são independentes na memória; alterar um não afeta o outro.</li>
-    <li><strong>Encapsulamento é Lei:</strong> Prefira sempre propriedades <code>private</code> ou <code>protected</code> com métodos de acesso para validar os dados.</li>
-    <li><strong>Case Sensitivity:</strong> Nomes de classes são case-insensitive, mas as variáveis de objeto são case-sensitive (<code>$conta</code> != <code>$Conta</code>).</li>
+    <li><strong>Encapsulamento é Lei:</strong> Prefira sempre propriedades <code class="one-line-code">private</code> ou <code class="one-line-code">protected</code> com métodos de acesso para validar os dados.</li>
+    <li><strong>Case Sensitivity:</strong> Nomes de classes são case-insensitive, mas as variáveis de objeto são case-sensitive (<code class="one-line-code">$conta</code> != <code class="one-line-code">$Conta</code>).</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>5. Como aplicar na Prática</h2>
-  <p>Em um sistema de e-commerce, em vez de lidar com arrays de strings para cada peça, você cria uma classe <code>Peca</code>. Veja a diferença de valor que a POO entrega:</p>
+  <p>Em um sistema de e-commerce, em vez de lidar com arrays de strings para cada peça, você cria uma classe <code class="one-line-code">Peca</code>. Veja a diferença de valor que a POO entrega:</p>
 
   <h4>Abordagem Procedural (Sem POO)</h4>
   <p>Os dados ficam soltos e a lógica de negócio (como descontos) precisa ser repetida manualmente em todo o sistema.</p>

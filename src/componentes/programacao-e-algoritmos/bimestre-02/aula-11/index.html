@@ -19,7 +19,7 @@ tags:
   <p>
     Os operadores relacionais são utilizados para comparar dois valores do mesmo
     tipo. O resultado dessas comparações é sempre um valor lógico
-    (<code>boolean</code>): <code>true</code> ou <code>false</code>.
+    (<code class="one-line-code">boolean</code>): <code class="one-line-code">true</code> ou <code class="one-line-code">false</code>.
   </p>
   <div class="code-container">
     <pre><code class="language-java">// Exemplo em Java
@@ -41,48 +41,48 @@ System.out.println(idade == 20); // Imprime: false</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><code>==</code></td>
+        <td><code class="one-line-code">==</code></td>
         <td>Igual a</td>
-        <td><code>5 == 5</code></td>
+        <td><code class="one-line-code">5 == 5</code></td>
         <td>true</td>
       </tr>
       <tr>
-        <td><code>!=</code></td>
+        <td><code class="one-line-code">!=</code></td>
         <td>Diferente de</td>
-        <td><code>5 != 3</code></td>
+        <td><code class="one-line-code">5 != 3</code></td>
         <td>true</td>
       </tr>
       <tr>
-        <td><code>&gt;</code></td>
+        <td><code class="one-line-code">&gt;</code></td>
         <td>Maior que</td>
-        <td><code>10 > 20</code></td>
+        <td><code class="one-line-code">10 > 20</code></td>
         <td>false</td>
       </tr>
       <tr>
-        <td><code>&lt;</code></td>
+        <td><code class="one-line-code">&lt;</code></td>
         <td>Menor que</td>
-        <td><code>10 < 20</code></td>
+        <td><code class="one-line-code">10 < 20</code></td>
         <td>true</td>
       </tr>
       <tr>
-        <td><code>&gt;=</code></td>
+        <td><code class="one-line-code">&gt;=</code></td>
         <td>Maior ou igual a</td>
-        <td><code>15 >= 15</code></td>
+        <td><code class="one-line-code">15 >= 15</code></td>
         <td>true</td>
       </tr>
       <tr>
-        <td><code>&lt;=</code></td>
+        <td><code class="one-line-code">&lt;=</code></td>
         <td>Menor ou igual a</td>
-        <td><code>7 <= 5</code></td>
+        <td><code class="one-line-code">7 <= 5</code></td>
         <td>false</td>
       </tr>
     </tbody>
   </table>
   <p>
     <strong>Nota técnica:</strong> Em pseudocódigo, o símbolo de igualdade
-    costuma ser apenas <code>=</code>, mas em Java utilizamos <code>==</code>. O
-    símbolo de "diferente" em Java é <code>!=</code>, substituindo o
-    <code>&lt;&gt;</code> ou <code>≠</code> visto em algoritmos teóricos.
+    costuma ser apenas <code class="one-line-code">=</code>, mas em Java utilizamos <code class="one-line-code">==</code>. O
+    símbolo de "diferente" em Java é <code class="one-line-code">!=</code>, substituindo o
+    <code class="one-line-code">&lt;&gt;</code> ou <code class="one-line-code">≠</code> visto em algoritmos teóricos.
   </p>
 
   <h3>2. Operadores Lógicos</h3>
@@ -100,17 +100,17 @@ System.out.println(idade == 20); // Imprime: false</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><code>&&</code></td>
+        <td><code class="one-line-code">&&</code></td>
         <td>E (Conjunção)</td>
-        <td>Resulta em <code>true</code> apenas se ambas as expressões forem verdadeiras.</td>
+        <td>Resulta em <code class="one-line-code">true</code> apenas se ambas as expressões forem verdadeiras.</td>
       </tr>
       <tr>
-        <td><code>||</code></td>
+        <td><code class="one-line-code">||</code></td>
         <td>OU (Disjunção)</td>
-        <td>Resulta em <code>true</code> se pelo menos uma das expressões for verdadeira.</td>
+        <td>Resulta em <code class="one-line-code">true</code> se pelo menos uma das expressões for verdadeira.</td>
       </tr>
       <tr>
-        <td><code>!</code></td>
+        <td><code class="one-line-code">!</code></td>
         <td>NÃO (Negação)</td>
         <td>Operador unário que inverte o valor lógico atual.</td>
       </tr>
@@ -184,16 +184,16 @@ System.out.println(!temIngresso); // false (inverteu true para false)</code></pr
     </li>
     <li>
       <strong>Operadores Aritméticos:</strong> Multiplicação, divisão e resto
-      (<code>*, /, %</code>) antes de soma e subtração.
+      (<code class="one-line-code">*, /, %</code>) antes de soma e subtração.
     </li>
     <li>
       <strong>Operadores Relacionais:</strong>
-      <code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code>.
+      <code class="one-line-code">&gt;, &lt;, &gt;=, &lt;=, ==, !=</code>.
     </li>
     <li>
       <strong>Operadores Lógicos:</strong> A ordem interna é
-      <code>!</code> (Negação), seguido de <code>&&</code> (E) e, por último,
-      <code>||</code> (OU).
+      <code class="one-line-code">!</code> (Negação), seguido de <code class="one-line-code">&&</code> (E) e, por último,
+      <code class="one-line-code">||</code> (OU).
     </li>
   </ul>
   <div class="code-container">
@@ -428,14 +428,14 @@ boolean teste = (y + 5 == x) || !(z > 10);</code></pre>
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li><strong>Atribuição vs. Comparação:</strong> Nunca confunda o operador de atribuição (<code>=</code>), usado para guardar um valor em uma variável, com o operador de igualdade (<code>==</code>), usado para comparar se dois valores são iguais.</li>
-    <li><strong>Resultado Booleano:</strong> Lembre-se sempre que qualquer expressão que utilize operadores relacionais ou lógicos resultará obrigatoriamente em um valor do tipo lógico (<code>boolean</code>): <code>true</code> ou <code>false</code>.</li>
-    <li><strong>Hierarquia de Execução:</strong> Na falta de parênteses, o Java segue uma ordem de prioridade rigorosa: primeiro resolve a negação (<code>!</code>), depois a conjunção (<code>&&</code>) e, por fim, a disjunção (<code>||</code>).</li>
-    <li><strong>O Poder dos Parênteses:</strong> Utilize parênteses <code>()</code> não apenas para alterar a ordem de precedência, mas também para tornar o código mais legível para outros programadores.</li>
-    <li><strong>Proibição de Comparações em Cadeia:</strong> Diferente da matemática, você não pode escrever <code>10 < x < 20</code> diretamente no código; em Java, você deve separar as condições usando um operador lógico, como <code>(x > 10) && (x < 20)</code>.</li>
-    <li><strong>Curto-Circuito Lógico:</strong> O Java utiliza a avaliação de curto-circuito; em uma expressão <code>&&</code>, se a primeira parte for falsa, a segunda nem é avaliada, pois o resultado final será obrigatoriamente falso.</li>
-    <li><strong>Negação Inversora:</strong> O operador unário <code>!</code> tem a função simples de inverter o estado lógico; o que é verdadeiro torna-se falso e vice-versa.</li>
-    <li><strong>Diferença entre OU e XOR:</strong> Enquanto o operador OU (<code>||</code>) aceita que ambas as condições sejam verdadeiras, o OU Exclusivo (<code>^</code>) exige que os operandos sejam diferentes entre si para retornar <code>true</code>.</li>
+    <li><strong>Atribuição vs. Comparação:</strong> Nunca confunda o operador de atribuição (<code class="one-line-code">=</code>), usado para guardar um valor em uma variável, com o operador de igualdade (<code class="one-line-code">==</code>), usado para comparar se dois valores são iguais.</li>
+    <li><strong>Resultado Booleano:</strong> Lembre-se sempre que qualquer expressão que utilize operadores relacionais ou lógicos resultará obrigatoriamente em um valor do tipo lógico (<code class="one-line-code">boolean</code>): <code class="one-line-code">true</code> ou <code class="one-line-code">false</code>.</li>
+    <li><strong>Hierarquia de Execução:</strong> Na falta de parênteses, o Java segue uma ordem de prioridade rigorosa: primeiro resolve a negação (<code class="one-line-code">!</code>), depois a conjunção (<code class="one-line-code">&&</code>) e, por fim, a disjunção (<code class="one-line-code">||</code>).</li>
+    <li><strong>O Poder dos Parênteses:</strong> Utilize parênteses <code class="one-line-code">()</code> não apenas para alterar a ordem de precedência, mas também para tornar o código mais legível para outros programadores.</li>
+    <li><strong>Proibição de Comparações em Cadeia:</strong> Diferente da matemática, você não pode escrever <code class="one-line-code">10 < x < 20</code> diretamente no código; em Java, você deve separar as condições usando um operador lógico, como <code class="one-line-code">(x > 10) && (x < 20)</code>.</li>
+    <li><strong>Curto-Circuito Lógico:</strong> O Java utiliza a avaliação de curto-circuito; em uma expressão <code class="one-line-code">&&</code>, se a primeira parte for falsa, a segunda nem é avaliada, pois o resultado final será obrigatoriamente falso.</li>
+    <li><strong>Negação Inversora:</strong> O operador unário <code class="one-line-code">!</code> tem a função simples de inverter o estado lógico; o que é verdadeiro torna-se falso e vice-versa.</li>
+    <li><strong>Diferença entre OU e XOR:</strong> Enquanto o operador OU (<code class="one-line-code">||</code>) aceita que ambas as condições sejam verdadeiras, o OU Exclusivo (<code class="one-line-code">^</code>) exige que os operandos sejam diferentes entre si para retornar <code class="one-line-code">true</code>.</li>
     <li><strong>Tipagem de Dados:</strong> Ao realizar comparações relacionais, certifique-se de que os dados são de tipos compatíveis para evitar erros de compilação.</li>
     <li><strong>Prática com Tabelas-Verdade:</strong> Em caso de dúvida sobre lógica complexa, rascunhe uma Tabela-Verdade para validar todas as combinações possíveis de entrada e garantir que seu algoritmo tome a decisão correta.</li>
   </ul>
@@ -447,43 +447,43 @@ boolean teste = (y + 5 == x) || !(z > 10);</code></pre>
     <li>
       <strong>Sistemas de Autenticação e Segurança:</strong>
       Cenário: Validar se um usuário pode acessar uma área administrativa.
-      <br />Lógica: <code>(usuarioValido == true) && (senhaCorreta == true) && (perfilAdmin == true)</code>.
-      <br />Aplicação: Uso do operador <code>&&</code> para garantir que múltiplos critérios de segurança sejam atendidos simultaneamente.
+      <br />Lógica: <code class="one-line-code">(usuarioValido == true) && (senhaCorreta == true) && (perfilAdmin == true)</code>.
+      <br />Aplicação: Uso do operador <code class="one-line-code">&&</code> para garantir que múltiplos critérios de segurança sejam atendidos simultaneamente.
     </li>
     <li>
       <strong>E-commerce e Promoções:</strong>
       Cenário: Aplicar desconto em uma compra.
-      <br />Lógica: <code>(valorCompra > 500.0) || (cupomAtivo == true)</code>.
-      <br />Aplicação: Uso do operador <code>||</code>, onde o desconto é concedido se o cliente gastar muito ou se possuir um código promocional.
+      <br />Lógica: <code class="one-line-code">(valorCompra > 500.0) || (cupomAtivo == true)</code>.
+      <br />Aplicação: Uso do operador <code class="one-line-code">||</code>, onde o desconto é concedido se o cliente gastar muito ou se possuir um código promocional.
     </li>
     <li>
       <strong>Controle de Acesso por Idade (Streaming/Jogos):</strong>
       Cenário: Verificar se um conteúdo é adequado para o espectador.
-      <br />Lógica: <code>(idadeUsuario >= classificacaoIndicativa) || (autorizacaoPais == true)</code>.
+      <br />Lógica: <code class="one-line-code">(idadeUsuario >= classificacaoIndicativa) || (autorizacaoPais == true)</code>.
       <br />Aplicação: Operadores relacionais de maior ou igual combinados com a lógica de exceção.
     </li>
     <li>
       <strong>Sistemas Acadêmicos (Aprovação):</strong>
       Cenário: Decidir se um aluno foi aprovado, reprovado ou está em recuperação.
-      <br />Lógica: <code>(mediaFinal >= 7.0) && (frequencia >= 0.75)</code>.
+      <br />Lógica: <code class="one-line-code">(mediaFinal >= 7.0) && (frequencia >= 0.75)</code>.
       <br />Aplicação: Conjunção lógica para verificar se o aluno atingiu o desempenho acadêmico e a presença mínima necessária.
     </li>
     <li>
       <strong>Fintechs e Análise de Crédito:</strong>
       Cenário: Aprovar um empréstimo bancário.
-      <br />Lógica: <code>(salario > limiteMinimo) && !(possuiRestricaoNome)</code>.
-      <br />Aplicação: Uso do operador de negação <code>!</code> para verificar se o cliente não possui restrições financeiras.
+      <br />Lógica: <code class="one-line-code">(salario > limiteMinimo) && !(possuiRestricaoNome)</code>.
+      <br />Aplicação: Uso do operador de negação <code class="one-line-code">!</code> para verificar se o cliente não possui restrições financeiras.
     </li>
     <li>
       <strong>Desenvolvimento de Jogos (Colisão e Limites):</strong>
       Cenário: Verificar se um personagem está dentro dos limites da tela.
-      <br />Lógica: <code>(posX >= 0) && (posX <= larguraTela)</code>.
+      <br />Lógica: <code class="one-line-code">(posX >= 0) && (posX <= larguraTela)</code>.
       <br />Aplicação: Delimitação de intervalos numéricos que o computador deve monitorar constantemente para atualizar a interface gráfica.
     </li>
     <li>
       <strong>Sistemas de Logística e Estoque:</strong>
       Cenário: Alertar sobre a necessidade de reposição de produtos.
-      <br />Lógica: <code>(quantidadeEstoque < estoqueMinimo) && (fornecedorDisponivel == true)</code>.
+      <br />Lógica: <code class="one-line-code">(quantidadeEstoque < estoqueMinimo) && (fornecedorDisponivel == true)</code>.
       <br />Aplicação: Comparação relacional de menor que para automação de pedidos de compra.
     </li>
   </ul>
