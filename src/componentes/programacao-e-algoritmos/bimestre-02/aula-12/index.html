@@ -3,47 +3,385 @@ title: "Estruturas de Condição Simples e Composta (Java)"
 aula_numero: "12"
 description: "Implementação de condicionais if-else em Java."
 tags:
-  - aula
-  - "bimestre-02"
+- aula
+- "bimestre-02"
 ---
 
 <section class="section-box">
   <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 12 em desenvolvimento...</p>
+  <p>
+    As estruturas de condição representam um dos mecanismos fundamentais da programação, permitindo que um algoritmo
+    tome decisões e altere seu fluxo de execução com base na avaliação de expressões lógicas. Em Java, um programa
+    normalmente executa suas instruções de forma sequencial, linha após linha, mas as estruturas de controle de seleção
+    possibilitam que blocos de código específicos sejam executados ou ignorados dependendo de critérios estabelecidos
+    pelo programador.
+  </p>
+
+  <h3>1. Estrutura de Condição Simples (if)</h3>
+  <p>
+    A decisão unidirecional, ou simples, envolve apenas um bloco de código que é ativado somente quando uma expressão
+    booleana de controle é avaliada como verdadeira. Se a condição for falsa, o computador simplesmente ignora as
+    instruções contidas no bloco e segue para a próxima instrução fora da estrutura.
+  </p>
+  <ul>
+    <li><strong>Sintaxe e Funcionamento:</strong> Em Java, utiliza-se a palavra-chave <code>if</code> seguida pela
+      condição entre parênteses. Embora as chaves <code>{ }</code> sejam opcionais para instruções de uma única linha,
+      seu uso é uma prática recomendada para garantir a clareza e evitar erros semânticos.</li>
+  </ul>
+
+  <div class="code-container">
+    <pre><code class="language-java">// Exemplo de cálculo de juros baseado em faixas de valor
+double principal = 17000.0;
+double taxaJuros = 0.04; // Taxa padrão
+
+if (principal > 10000) {
+    taxaJuros = 0.05; // Taxa maior para investimentos maiores
+}
+
+double juros = principal * taxaJuros;
+System.out.println("O juro ganho é: " + juros);</code></pre>
+  </div>
+
+  <h3>2. Estrutura de Condição Composta (if-else)</h3>
+  <p>
+    A decisão bidirecional é utilizada quando existem dois caminhos alternativos: um para quando a condição é atendida e
+    outro para quando não é. Nesse modelo, um e apenas um dos dois blocos de comandos será executado.
+  </p>
+  <ul>
+    <li><strong>O comando else:</strong> Representa a cláusula "senão", encapsulando o conjunto de ações que devem
+      ocorrer caso a expressão lógica original resulte em falso.</li>
+  </ul>
+
+  <div class="code-container">
+    <pre><code class="language-java">// Exemplo de cálculo de juros baseado em faixas de valor
+double principal = 17000.0;
+double taxaJuros;
+
+if (principal > 10000) {
+    taxaJuros = 0.05; // Taxa maior para investimentos maiores
+} else {
+    taxaJuros = 0.04; // Taxa padrão
+}
+
+double juros = principal * taxaJuros;
+System.out.println("O juro ganho é: " + juros);</code></pre>
+  </div>
+
+  <h3>3. Estruturas Encadeadas e Múltiplas Escolhas (if-else if)</h3>
+  <p>
+    Frequente em situações complexas onde os caminhos de decisão formam uma árvore com diversas ramificações, o
+    aninhamento de estruturas permite tratar múltiplos intervalos de valores ou critérios sobrepostos.
+  </p>
+
+
+  <p>Quando existem múltiplas opções mutuamente exclusivas, a estrutura <code>if-else if</code> é a mais adequada. Este
+    cenário simula um sistema que processa diferentes unidades de medida.</p>
+
+  <div class="code-container">
+    <pre><code class="language-java">// Processamento de múltiplas opções de texto
+String unidade = "milhas";
+double medida = 2.5;
+double polegadas = 0;
+
+if (unidade.equalsIgnoreCase("polegadas") || unidade.equalsIgnoreCase("in")) {
+    polegadas = medida; 
+} else if (unidade.equalsIgnoreCase("pés") || unidade.equalsIgnoreCase("ft")) {
+    polegadas = medida * 12; 
+} else if (unidade.equalsIgnoreCase("jardas") || unidade.equalsIgnoreCase("yd")) {
+    polegadas = medida * 36; 
+} else if (unidade.equalsIgnoreCase("milhas") || unidade.equalsIgnoreCase("mi")) {
+    polegadas = medida * 12 * 5280; 
+} else {
+    System.out.println("Erro: Unidade de medida inválida."); 
+}</code></pre>
+  </div>
+
+  <p><strong>Encadeamento (Ninhos):</strong> Uma estrutura if-else pode ser colocada dentro de outra, permitindo
+    refinamentos lógicos sucessivos. Em Java, isso é frequentemente escrito como uma sequência de <code>else if</code>,
+    o que torna o código mais legível.</p>
+  <p>O aninhamento é útil quando uma decisão depende do resultado de uma anterior. Abaixo, a lógica para imprimir três
+    números em ordem crescente.</p>
+
+  <div class="code-container">
+    <pre><code class="language-java">// Ordenação de três variáveis x, y, z
+int x = 30, y = 10, z = 20;
+
+if (x < y) {
+    if (z < x) 
+        System.out.println(z + " " + x + " " + y); // z < x < y
+    else if (z > y)
+        System.out.println(x + " " + y + " " + z); // x < y < z
+    else
+        System.out.println(x + " " + z + " " + y); // x < z < y
+} else {
+    if (z < y)
+        System.out.println(z + " " + y + " " + x); // z < y < x
+    else if (z > x)
+        System.out.println(y + " " + x + " " + z); // y < x < z
+    else
+        System.out.println(y + " " + z + " " + x); // y < z < x
+}</code></pre>
+  </div>
+
+  <h3>4. Lógica Avançada e Boas Práticas</h3>
+  <p>Para construir condicionais robustas e eficientes, é necessário dominar a combinação de operadores e a estrutura
+    lógica do programa.</p>
+  <ul>
+    <li><strong>Expressões Lógicas Compostas:</strong> É possível unir múltiplas comparações em um único if utilizando
+      operadores como E (<code>&&</code>) e OU (<code>||</code>). Por exemplo, para aprovação, pode-se exigir média
+      maior que 7 E frequência superior a 75%.</li>
+    <li><strong>Curto-Circuito Lógico:</strong> O Java utiliza avaliação de curto-circuito; em um teste
+      <code>(x != 0) && (y/x > 1)</code>, se x for zero, a segunda parte nem é avaliada, evitando erros de divisão por
+      zero.
+    </li>
+    <li><strong>Precondições:</strong> Bons programadores utilizam estruturas de condição para verificar precondições
+      antes de cálculos críticos. Por exemplo, antes de calcular raízes quadradas, verifica-se se o discriminante
+      (delta) é maior ou igual a zero.</li>
+    <li><strong>O Problema do "Dangling else":</strong> Em aninhamentos sem chaves, o Java associa o else ao if mais
+      próximo, o que pode causar erros de lógica se o programador não utilizar blocos <code>{ }</code> corretamente para
+      definir a hierarquia das decisões.</li>
+  </ul>
 </section>
 
 <section class="section-box">
-  <h2>Exemplo de Código</h2>
+  <h2>Exemplos de Código</h2>
+  <p>As estruturas de condição permitem que o programa tome decisões com base no resultado de expressões lógicas.</p>
+
+  <h3>1. Estrutura de Condição Simples (if)</h3>
+  <p>A forma mais básica, onde um bloco de código só é executado se a condição for verdadeira.</p>
+  <ul>
+    <li><strong>Cenário:</strong> Verificar se um aluno foi aprovado (apenas o caso positivo).</li>
+  </ul>
   <div class="code-container">
-    <pre><code class="language-java">// Em breve...</code></pre>
+    <pre><code class="language-java">double media = 7.5;
+
+if (media >= 6.0) {
+    System.out.println("Parabéns! Você está aprovado.");
+}</code></pre>
+  </div>
+
+  <h3>2. Estrutura de Condição Composta (if-else)</h3>
+  <p>Utilizada quando você precisa de uma alternativa caso a condição seja falsa.</p>
+  <ul>
+    <li><strong>Cenário:</strong> Verificar se um número é par ou ímpar.</li>
+  </ul>
+  <div class="code-container">
+    <pre><code class="language-java">int numero = 10;
+
+if (numero % 2 == 0) {
+    System.out.println("O número é par.");
+} else {
+    System.out.println("O número é ímpar.");
+}</code></pre>
+  </div>
+
+  <h3>3. Estrutura Encadeada (if-else if-else)</h3>
+  <p>Ideal para múltiplos cenários mutuamente exclusivos.</p>
+  <ul>
+    <li><strong>Cenário:</strong> Classificação de faixa etária.</li>
+  </ul>
+  <div class="code-container">
+    <pre><code class="language-java">int idade = 15;
+
+if (idade < 13) {
+    System.out.println("Criança");
+} else if (idade < 18) {
+    System.out.println("Adolescente");
+} else {
+    System.out.println("Adulto");
+}</code></pre>
+  </div>
+
+  <h3>4. Condições Aninhadas (Nesting)</h3>
+  <p>Quando um if é colocado dentro de outro para refinamento da lógica.</p>
+  <ul>
+    <li><strong>Cenário:</strong> Sistema de login com múltiplas verificações.</li>
+  </ul>
+  <div class="code-container">
+    <pre><code class="language-java">boolean usuarioAtivo = true;
+boolean senhaCorreta = true;
+
+if (usuarioAtivo) {
+    if (senhaCorreta) {
+        System.out.println("Acesso permitido.");
+    } else {
+        System.out.println("Senha inválida.");
+    }
+} else {
+    System.out.println("Usuário bloqueado no sistema.");
+}</code></pre>
+  </div>
+
+  <h3>5. Exemplo Avançado: Operadores Lógicos e Cenários Complexos</h3>
+  <p>Utilizando operadores como <code>&&</code> (E) e <code>||</code> (OU) para validar múltiplas condições
+    simultaneamente.</p>
+  <ul>
+    <li><strong>Cenário:</strong> Verificação de elegibilidade para bônus salarial (Salário < 3000 E tempo de casa> 2
+        anos).</li>
+  </ul>
+  <div class="code-container">
+    <pre><code class="language-java">double salario = 2500.0;
+int anosDeEmpresa = 3;
+
+if (salario < 3000.0 && anosDeEmpresa >= 2) {
+    System.out.println("Elegível para bônus de 10%.");
+} else if (salario < 3000.0 || anosDeEmpresa >= 5) {
+    System.out.println("Elegível para bônus de 5%.");
+} else {
+    System.out.println("Não elegível para bônus este ano.");
+}</code></pre>
   </div>
 </section>
 
 <section class="section-box">
   <h2>Representação Gráfica</h2>
+
+  <h3>1. Estrutura de Condição Simples (if)</h3>
+  <p>A condição simples permite que o programa execute um bloco de comandos apenas se um teste lógico for verdadeiro. Se o teste for falso, o bloco é ignorado e o programa segue seu fluxo normal.</p>
+  
+  <p><strong>Componentes do Diagrama:</strong></p>
+  <ul>
+    <li><strong>Decisão (Losango):</strong> Representa o teste lógico (ex: <code>if (idade >= 18)</code>).</li>
+    <li><strong>Caminho Verdadeiro:</strong> Onde o código "entra" no bloco if.</li>
+    <li><strong>Caminho Falso:</strong> Salta diretamente para o final da estrutura.</li>
+  </ul>
+
   <div class="mermaid">
-    graph TD
-    A[Início] --> B[Processamento]
-    B --> C[Fim]
+    flowchart TD
+      %% Estilização de Cores
+      classDef decisao fill:#fff176,stroke:#fbc02d,stroke-width:2px
+      classDef acao fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+      classDef ponto fill:#333,stroke:#333
+
+      Start([<b>INÍCIO</b>]) --> Chegada[Chegada na Condição]
+      Chegada --> Teste{<b>TESTE LÓGICO</b><br/>A condição é<br/>Veradeira?}
+
+      %% Caminhos
+      Teste -- "<b>SIM</b>" --> BlocoIF[<b>EXECUTAR BLOCO IF</b><br/>Executa os comandos<br/>dentro das chaves]
+      Teste -- "<b>NÃO</b>" --> Skip[<b>PULAR BLOCO</b>]
+
+      %% Unindo o fluxo
+      BlocoIF --> Join(( ))
+      Skip --> Join
+      Join --> End([<b>CONTINUAR PROGRAMA</b>])
+
+      %% Aplicando Estilos
+      class Teste decisao
+      class BlocoIF acao
+  </div>
+
+  <h3>2. Estrutura de Condição Composta (if-else)</h3>
+  <p>A condição composta oferece uma alternativa obrigatória. Ou o programa executa o Bloco A (se for verdadeiro) ou executa o Bloco B (se for falso). Nunca os dois ao mesmo tempo.</p>
+  
+  <p><strong>Componentes do Diagrama:</strong></p>
+  <ul>
+    <li><strong>Bloco IF (Verdadeiro):</strong> Ação principal.</li>
+    <li><strong>Bloco ELSE (Falso):</strong> Ação alternativa ou de "erro".</li>
+  </ul>
+
+  <div class="mermaid">
+    flowchart TD
+      %% Estilização de Cores
+      classDef decisao fill:#fff176,stroke:#fbc02d,stroke-width:2px
+      classDef acaoIF fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+      classDef acaoELSE fill:#ffebee,stroke:#c62828,stroke-width:2px
+
+      Start([<b>INÍCIO</b>]) --> Estrutura[Estrutura IF-ELSE]
+      Estrutura --> Teste{<b>TESTE LÓGICO</b><br/>A condição é<br/>Verdadeira?}
+
+      %% Bifurcação
+      Teste -- "<b>SIM (Verdadeiro)</b>" --> BlocoA[<b>BLOCO IF</b><br/>Executa o código A]
+      Teste -- "<b>NÃO (Falso)</b>" --> BlocoB[<b>BLOCO ELSE</b><br/>Executa o código B]
+
+      %% Finalização
+      BlocoA --> FimIF(( ))
+      BlocoB --> FimIF
+      FimIF --> End([<b>PRÓXIMA LINHA</b>])
+
+      %% Aplicando Estilos
+      class Teste decisao
+      class BlocoA acaoIF
+      class BlocoB acaoELSE
   </div>
 </section>
 
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li><strong>Blocos de Código:</strong> Lembre-se que, embora o Java permita omitir as chaves <code>{}</code> para
+      apenas uma linha de comando, é uma boa prática sempre usá-las para evitar erros lógicos futuros.</li>
+    <li><strong>Identação:</strong> Sempre manter o código organizado utilizando identação para que ele fique fácil
+      de ler e entender, pois a identação ajuda a visualizar qual
+      <code>else</code>
+      pertence a qual <code>if</code> em estruturas aninhadas.
+    </li>
+    <li><strong>Expressões Lógicas:</strong> Lembre-se que a condição dentro do <code>if</code> deve sempre resultar em
+      um
+      valor <code>boolean</code> (verdadeiro ou falso).</li>
+    <li>O operador ternário (<code>? :</code>) pode ser usado como uma alternativa compacta para <code>if-else</code>
+      simples.</li>
   </ul>
 </div>
 
 <section class="section-box">
   <h2>Como aplicar na Prática</h2>
-  <p>Aplicação real em desenvolvimento...</p>
+
+  <h3>1. Finanças e Sistemas de Investimento</h3>
+  <p>Em aplicações financeiras, as condições são usadas para definir regras de negócio variáveis.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Cálculo de taxas de juros diferenciadas. Por exemplo, se o valor de um investimento principal for superior a um limite (ex: 10.000), o sistema aplica uma taxa de 5%; caso contrário, aplica 4%.</li>
+    <li><strong>Lógica:</strong> <code>if (principal > 10000) interest = principal * 0.05; else interest = principal * 0.04;</code>.</li>
+  </ul>
+
+  <h3>2. Sistemas Acadêmicos e de Gestão de Alunos</h3>
+  <p>Utilizado para automatizar a classificação de desempenho.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Determinar se um aluno está aprovado, em recuperação ou reprovado. O sistema avalia não apenas a média final, mas também a frequência mínima obrigatória.</li>
+    <li><strong>Lógica:</strong> Uma estrutura composta ou encadeada verifica se a frequência é maior que 75% e se a nota atinge o critério de corte.</li>
+  </ul>
+
+  <h3>3. Saúde e Bem-estar</h3>
+  <p>Cálculos que geram diagnósticos ou classificações baseadas em faixas de valores.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Calculadora de IMC (Índice de Massa Corpórea). O software utiliza o resultado de uma expressão aritmética e, através de if-else if, classifica o usuário como "magro", "peso ideal" ou "gordo".</li>
+  </ul>
+
+  <h3>4. Engenharia e Geometria Computacional</h3>
+  <p>Verificações de integridade física ou matemática antes de realizar operações complexas.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Validação de existência de formas. Antes de desenhar ou calcular a área de um triângulo, o sistema deve verificar se a soma de dois lados é maior que o terceiro.</li>
+    <li><strong>Lógica Avançada:</strong> Uso de condições aninhadas para identificar o tipo específico do triângulo (equilátero, isósceles ou escaleno) após confirmar sua existência.</li>
+  </ul>
+
+  <h3>5. Desenvolvimento de Software Robusto (Precondições)</h3>
+  <p>Essencial para evitar que programas travem (crash) por erros previsíveis.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Verificação de divisão por zero ou raízes de números negativos. Em uma calculadora científica ou software de engenharia, usa-se o if para garantir que o divisor não seja nulo antes de realizar o cálculo.</li>
+    <li><strong>Segurança de Dados:</strong> Verificar se um arquivo ou conexão de rede existe antes de tentar ler dados, evitando exceções no sistema.</li>
+  </ul>
+
+  <h3>6. Interfaces Gráficas (GUI) e UX</h3>
+  <p>Controle do que o usuário vê e como interage com o sistema.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> Processamento de menus e botões. Quando um usuário clica em um botão, o sistema usa estruturas de condição para identificar qual opção foi escolhida e qual ação executar (ex: abrir, salvar ou sair).</li>
+    <li><strong>Dinâmica de Interface:</strong> Habilitar ou desabilitar botões dependendo do estado atual do programa (ex: o botão "Atirar" só funciona se houver munição).</li>
+  </ul>
+
+  <h3>7. Desenvolvimento de Jogos</h3>
+  <p>Lógica de regras e mecânicas.</p>
+  <ul>
+    <li><strong>Aplicação:</strong> No jogo de Blackjack, as condições são usadas para calcular o valor do Ás (que pode ser 1 ou 11) dependendo de se o total da mão ultrapassaria 21.</li>
+    <li><strong>Inteligência Básica:</strong> Decidir o movimento de um personagem ou do computador de forma aleatória ou baseada em condições de vitória.</li>
+  </ul>
 </section>
 
 <section class="section-box">
   <h2>Referências</h2>
   <ul>
-    <li>Material de apoio em breve.</li>
+    <li><a
+        href="https://www.ispsn.org/sites/default/files/documentos-virtuais/pdf/apostila-java-orientacao-objetos_1.pdf">Java
+        e Orientação a Objetos (Alura)</a></li>
+    <li><a href="https://www.w3schools.com/java/java_conditions.asp">Java If ... Else - W3Schools</a></li>
   </ul>
 </section>
 
@@ -54,4 +392,3 @@ tags:
     <li><a href="./exercicio-02/">Exercício 02: Desafio de Fixação</a></li>
   </ul>
 </section>
-
