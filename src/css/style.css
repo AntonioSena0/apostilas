@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
   --bg: #ffffff;
@@ -536,4 +536,15 @@ footer {
 #incorrect-feedback {
   border: 2px solid red;
   padding: 1rem;
+}
+
+.one-line-code {
+  display: inline;
+  font-family: "JetBrains Mono", monospace;
+  background-color: #e7e7e7;
+  padding: 0.2rem 0.3rem;
+  color: black;
+  border-radius: 0.1rem;
+  font-style: italic;
+  font-size: 0.9rem;
 }
