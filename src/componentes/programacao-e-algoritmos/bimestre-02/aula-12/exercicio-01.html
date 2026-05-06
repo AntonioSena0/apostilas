@@ -6,13 +6,79 @@ aula_numero: "12"
 description: "Primeira atividade prática para consolidar os conhecimentos da aula 12."
 ---
 
-<p>Enunciado do exercício 01 em desenvolvimento para a disciplina...</p>
+<section class="section-box">
+  <h2>Enunciado</h2>
+  <p>Você está desenvolvendo o motor lógico de um jogo de RPG em turnos. Sua tarefa é programar a mecânica de "Dano e Esquiva". O programa deve decidir se um ataque atingiu o oponente, se houve um acerto crítico e qual a mensagem de status do defensor baseada em sua vida restante.</p>
+</section>
+
+<section class="section-box">
+  <h2>Preparação</h2>
+  <ul>
+    <li>Certifique-se de ter o JDK instalado e um editor de código.</li>
+    <li>Crie uma classe chamada <code>SimuladorCombate</code>.</li>
+    <li>Utilizaremos a classe <code>Scanner</code> para entrada de dados e a classe <code>Random</code> para simular a sorte (dados).</li>
+  </ul>
+</section>
+
+<section class="section-box">
+  <h2>Código Base</h2>
+  <div class="code-container">
+    <pre><code class="language-java">import java.util.Scanner;
+import java.util.Random;
+
+public class SimuladorCombate {
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        Random gerador = new Random();
+
+        System.out.print("Pontos de Vida (HP) do Inimigo: ");
+        int hpInimigo = teclado.nextInt();
+
+        // Sorteia um valor de ataque entre 1 e 20 (como um dado D20)
+        int valorAtaque = gerador.nextInt(20) + 1;
+        System.out.println("Você rolou um: " + valorAtaque);
+
+        // --- O DESAFIO COMEÇA AQUI ---
+        
+        int danoBase = 10;
+        
+        // Implemente a lógica de acerto, dano e status...
+
+        // --- O DESAFIO TERMINA AQUI ---
+        
+        teclado.close();
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="section-box">
+  <h2>O Desafio (Atividade)</h2>
+  <p>Implemente as seguintes regras utilizando estruturas de condição:</p>
+  <ul>
+    <li><strong>Condição Simples (Esquiva):</strong> Se o <code>valorAtaque</code> for menor que 5, o ataque falhou. Imprima "O inimigo esquivou!" e encerre a execução usando <code>return;</code>.</li>
+    <li><strong>Condição Composta (Acerto Crítico):</strong>
+      <ul>
+        <li>Se o <code>valorAtaque</code> for igual a 20, o dano é dobrado (<code>danoBase * 2</code>) e a mensagem "ACERTO CRÍTICO!" deve ser exibida.</li>
+        <li>Caso contrário (ataque normal entre 5 e 19), o dano causado é apenas o <code>danoBase</code>.</li>
+      </ul>
+    </li>
+    <li><strong>Estrutura Encadeada (Status do Inimigo):</strong> Após calcular o dano e subtrair do <code>hpInimigo</code>, verifique o estado atual dele:
+      <ul>
+        <li>HP menor ou igual a 0: "Inimigo Derrotado!"</li>
+        <li>HP entre 1 e 10: "Inimigo Ferido Gravemente!"</li>
+        <li>HP maior que 10: "Inimigo ainda está de pé!"</li>
+      </ul>
+    </li>
+  </ul>
+</section>
 
 <div class="tip-box">
-  <h4>Orientações</h4>
+  <h4>Orientações Finais</h4>
   <ul>
-    <li>Leia atentamente o enunciado.</li>
-    <li>Consulte o conteúdo da aula caso tenha dúvidas.</li>
-    <li>Tente resolver de forma independente antes de buscar ajuda.</li>
+    <li><strong>Uso de Chaves:</strong> Mantenha a boa prática de utilizar chaves <code>{ }</code> em todos os blocos <code>if</code> e <code>else</code>, facilitando a leitura e futuras expansões do código do jogo.</li>
+    <li><strong>Identação:</strong> Organize o código para que fique claro quais ações dependem de quais condições, especialmente na parte do cálculo de dano.</li>
+    <li><strong>Aplicação Prática:</strong> Note como a lógica de programação é o que define a "inteligência" básica e as regras de um jogo, permitindo diferentes resultados para cada jogada.</li>
+    <li><strong>Dica para os alunos:</strong> No RPG, as condições são o que chamamos de "mecânicas de jogo". Sem o <code>if/else</code>, o jogo sempre teria o mesmo resultado!</li>
   </ul>
 </div>

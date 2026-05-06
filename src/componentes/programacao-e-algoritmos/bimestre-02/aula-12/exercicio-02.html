@@ -1,18 +1,307 @@
 ---
-layout: exercicio
-title: "Exercício 02 - Estruturas de Condição Simples e Composta (Java)"
+layout: questionario
+title: "Estruturas de Condição e Lógica em Java"
 exercicio_numero: "02"
 aula_numero: "12"
-description: "Segunda atividade prática para consolidar os conhecimentos da aula 12."
+description: "Questionário de fixação sobre condicionais simples, compostas, encadeadas e operadores lógicos."
+perguntas:
+  - texto: "Qual é a função principal de uma estrutura de condição em um algoritmo?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Repetir um bloco de código várias vezes."
+      - letra: "b"
+        texto: "Alterar o fluxo de execução com base em uma expressão lógica."
+      - letra: "c"
+        texto: "Declarar variáveis do tipo booleano."
+      - letra: "d"
+        texto: "Impedir que o programa seja compilado com erros."
+
+  - texto: "Na estrutura de condição simples (if), o que acontece se a condição for falsa?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "O programa gera um erro de execução."
+      - letra: "b"
+        texto: "O bloco 'else' é executado obrigatoriamente."
+      - letra: "c"
+        texto: "O bloco é ignorado e o fluxo segue para a próxima instrução fora dele."
+      - letra: "d"
+        texto: "O programa para de responder."
+
+  - texto: "Qual palavra-chave é utilizada para definir um caminho alternativo quando o 'if' é avaliado como falso?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "else"
+      - letra: "b"
+        texto: "then"
+      - letra: "c"
+        texto: "otherwise"
+      - letra: "d"
+        texto: "switch"
+
+  - texto: "Qual é o operador lógico 'E' (AND) em Java?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "||"
+      - letra: "b"
+        texto: "!"
+      - letra: "c"
+        texto: "&"
+      - letra: "d"
+        texto: "&&"
+
+  - texto: "Sobre o uso de chaves { } em estruturas if/else, qual é a boa prática recomendada?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Usar apenas quando houver mais de 5 linhas de código."
+      - letra: "b"
+        texto: "Sempre utilizar chaves, mesmo para uma única linha de comando."
+      - letra: "c"
+        texto: "Nunca utilizar chaves para economizar memória."
+      - letra: "d"
+        texto: "Usar chaves apenas no bloco 'else'."
+
+  - texto: "O que caracteriza uma estrutura de condição encadeada?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Um if que nunca termina."
+      - letra: "b"
+        texto: "Apenas um if seguido de um único else."
+      - letra: "c"
+        texto: "Várias verificações lógicas sequenciais usando 'else if'."
+      - letra: "d"
+        texto: "O uso de operadores matemáticos dentro do if."
+
+  - texto: "Qual é o resultado da expressão lógica (true || false)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "null"
+      - letra: "d"
+        texto: "Erro"
+
+  - texto: "Em uma estrutura if-else, os dois blocos de código podem ser executados simultaneamente?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Sim, se a condição for neutra."
+      - letra: "b"
+        texto: "Não, eles são mutuamente exclusivos."
+      - letra: "c"
+        texto: "Sim, se usarmos o operador &&."
+      - letra: "d"
+        texto: "Apenas em sistemas operacionais multitarefa."
+
+  - texto: "O que é 'curto-circuito' em operadores lógicos em Java?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "Um erro que queima o processador."
+      - letra: "b"
+        texto: "Quando o programa pula todas as condições if."
+      - letra: "c"
+        texto: "A execução de um código sem compilar."
+      - letra: "d"
+        texto: "Quando a JVM interrompe a avaliação da expressão por já saber o resultado."
+
+  - texto: "Qual operador é usado para verificar se dois valores são diferentes?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "<>"
+      - letra: "b"
+        texto: "!="
+      - letra: "c"
+        texto: "not="
+      - letra: "d"
+        texto: "=="
+
+  - texto: "Na expressão (A && B), para o resultado ser 'true', o que deve acontecer?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Tanto A quanto B devem ser true."
+      - letra: "b"
+        texto: "Apenas A deve ser true."
+      - letra: "c"
+        texto: "Pelo menos um deles deve ser true."
+      - letra: "d"
+        texto: "Ambos devem ser false."
+
+  - texto: "O que são 'condições aninhadas'?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Condições que não funcionam."
+      - letra: "b"
+        texto: "Condições que usam apenas números inteiros."
+      - letra: "c"
+        texto: "Uma estrutura if/else dentro de outro bloco if/else."
+      - letra: "d"
+        texto: "Comentários no código."
+
+  - texto: "Qual o resultado de !(10 > 5)?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "5"
+      - letra: "d"
+        texto: "Erro"
+
+  - texto: "Para que serve o operador '%' em condições (ex: x % 2 == 0)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Obter o resto da divisão para verificar paridade, por exemplo."
+      - letra: "b"
+        texto: "Calcular a porcentagem de um valor."
+      - letra: "c"
+        texto: "Multiplicar dois números."
+      - letra: "d"
+        texto: "Formatar um texto."
+
+  - texto: "O que acontece se um 'if' não tiver chaves e houver duas linhas de código identadas abaixo dele?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "As duas linhas serão executadas apenas se a condição for true."
+      - letra: "b"
+        texto: "O Java obriga o uso de chaves em todas as versões."
+      - letra: "c"
+        texto: "Nenhuma linha será executada."
+      - letra: "d"
+        texto: "Apenas a primeira linha depende do if; a segunda será executada sempre."
+
+  - texto: "Qual é o valor de uma variável 'boolean' por padrão se não for inicializada em uma classe?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "0"
+      - letra: "d"
+        texto: "null"
+
+  - texto: "O operador lógico '||' retorna 'false' apenas quando:"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "O primeiro valor é false."
+      - letra: "b"
+        texto: "O segundo valor é false."
+      - letra: "c"
+        texto: "Ambos os valores são false."
+      - letra: "d"
+        texto: "Os valores são diferentes."
+
+  - texto: "Qual a ordem de precedência correta (do maior para o menor)?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Aritméticos > Relacionais > Lógicos"
+      - letra: "b"
+        texto: "Lógicos > Relacionais > Aritméticos"
+      - letra: "c"
+        texto: "Relacionais > Aritméticos > Lógicos"
+      - letra: "d"
+        texto: "Lógicos > Aritméticos > Relacionais"
+
+  - texto: "Qual instrução encerra imediatamente a execução de um método em um cenário de erro dentro de um 'if'?"
+    resposta_correta: "d"
+    alternativas:
+      - letra: "a"
+        texto: "stop"
+      - letra: "b"
+        texto: "end"
+      - letra: "c"
+        texto: "break"
+      - letra: "d"
+        texto: "return"
+
+  - texto: "Como se escreve a condição 'X maior ou igual a 10' em Java?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "X => 10"
+      - letra: "b"
+        texto: "X >= 10"
+      - letra: "c"
+        texto: "X >== 10"
+      - letra: "d"
+        texto: "X > e = 10"
+
+  - texto: "A expressão (5 == 5 && 3 > 10) resulta em:"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "true"
+      - letra: "b"
+        texto: "false"
+      - letra: "c"
+        texto: "Erro de sintaxe"
+      - letra: "d"
+        texto: "10"
+
+  - texto: "Em Java, 'if (x = 10)' causará um erro de compilação se X for int. Por quê?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Porque 10 é um número proibido."
+      - letra: "b"
+        texto: "Porque falta o ponto e vírgula."
+      - letra: "c"
+        texto: "Porque '=' é atribuição, e o 'if' espera uma comparação '=='."
+      - letra: "d"
+        texto: "Porque X deveria ser constante."
+
+  - texto: "Qual a finalidade de um diagrama de fluxo (fluxograma) para condicionais?"
+    resposta_correta: "a"
+    alternativas:
+      - letra: "a"
+        texto: "Visualizar os caminhos possíveis que o programa pode tomar."
+      - letra: "b"
+        texto: "Substituir o código Java no computador."
+      - letra: "c"
+        texto: "Apenas para decorar a documentação."
+      - letra: "d"
+        texto: "Medir a velocidade da internet."
+
+  - texto: "A estrutura 'else if' deve vir sempre antes de qual bloco?"
+    resposta_correta: "c"
+    alternativas:
+      - letra: "a"
+        texto: "Do primeiro 'if'."
+      - letra: "b"
+        texto: "De um comentário."
+      - letra: "c"
+        texto: "Do bloco 'else' final (se houver)."
+      - letra: "d"
+        texto: "Da declaração de variáveis."
+
+  - texto: "Na lógica de programação, o que representa o losango em um fluxograma?"
+    resposta_correta: "b"
+    alternativas:
+      - letra: "a"
+        texto: "Início/Fim do programa."
+      - letra: "b"
+        texto: "Um ponto de decisão (condição)."
+      - letra: "c"
+        texto: "Uma operação aritmética."
+      - letra: "d"
+        texto: "Entrada de dados via teclado."
 ---
-
-<p>Enunciado do exercício 02 em desenvolvimento para a disciplina...</p>
-
-<div class="tip-box">
-  <h4>Orientações</h4>
-  <ul>
-    <li>Aplique os conceitos de lógica e sintaxe aprendidos.</li>
-    <li>Verifique se o resultado atende aos requisitos propostos.</li>
-    <li>Documente seu código para facilitar o entendimento.</li>
-  </ul>
-</div>
