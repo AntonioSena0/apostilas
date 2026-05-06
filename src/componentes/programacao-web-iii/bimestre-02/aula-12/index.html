@@ -1,6 +1,7 @@
 ---
 title: "Validação de Dados"
 aula_numero: "12"
+componente: "Programação Web III"
 description: "Implementando regras de negócio e mensagens de erro personalizadas."
 tags:
 - aula
@@ -8,14 +9,234 @@ tags:
 ---
 
 <section class="section-box">
-  <h2>Teoria & Conceitos</h2>
-  <p>Conteúdo da aula 12 em desenvolvimento...</p>
+  <h2>Teoria & Conceitos: Validação Profissional com Laravel</h2>
+
+  <h3>1. O Princípio da Desconfiança</h3>
+  <p>O pilar fundamental da segurança em sistemas multicamadas é: <strong>nunca confie em dados vindos de fontes
+      externas</strong>. No Laravel, a validação não é apenas uma checagem de erros, mas um mecanismo de defesa contra
+    ataques e uma garantia de integridade para o banco de dados. Toda entrada — seja via formulários HTML, parâmetros de
+    URL, cabeçalhos HTTP ou payloads JSON — deve ser tratada como potencialmente maliciosa.</p>
+
+  <h3>2. O Método <code class="one-line-code">validate</code> no Controller</h3>
+  <p>A abordagem mais comum para validar dados no Laravel é utilizar o método <code class="one-line-code">validate</code> disponível
+    diretamente no objeto de requisição (<code class="one-line-code">Request</code>).</p>
+  <ul>
+    <li><strong>Fluxo Automático:</strong> Se as regras passarem, o código continua normalmente. Se falharem, o Laravel
+      lança uma exceção (<code class="one-line-code">ValidationException</code>) que gera automaticamente uma resposta de erro.</li>
+    <li><strong>Comportamento Inteligente:</strong> Em requisições tradicionais de navegador, o Laravel redireciona o
+      usuário de volta para a página anterior com os erros gravados na sessão. Em requisições AJAX/API, ele retorna um
+      JSON com status <code class="one-line-code">422 Unprocessable Entity</code>.</li>
+  </ul>
+
+  <p><strong>Exemplo de Código (Controller):</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">public function store(Request $request)
+{
+    // O Laravel valida os dados e já os retorna filtrados para a variável $validated
+    $validated = $request->validate([
+        'titulo' => 'required|unique:posts|max:255', // Pipe syntax
+        'corpo'  => ['required', 'min:10'],           // Array syntax (mais legível)
+    ]);
+
+    // Se chegar aqui, os dados são válidos
+    Post::create($validated);
+    
+    return redirect('/posts');
+}</code></pre>
+  </div>
+
+  <h3>3. Regras de Validação e Sintaxe</h3>
+  <p>As regras podem ser definidas por strings separadas por "pipe" (<code class="one-line-code">|</code>) ou em arrays, o que é recomendado
+    para regras complexas ou personalizadas.</p>
+  <p><strong>Principais Regras de Mercado:</strong></p>
+  <ul>
+    <li><code class="one-line-code">required</code>: O campo deve estar presente e não ser vazio.</li>
+    <li><code class="one-line-code">unique:table,column</code>: Verifica se o valor já existe no banco de dados para evitar duplicatas.</li>
+    <li><code class="one-line-code">numeric</code>: Garante que o valor seja um número. Nas versões modernas, você pode usar
+      <code class="one-line-code">numeric:strict</code> para garantir que o tipo seja estritamente um inteiro ou float, rejeitando strings
+      numéricas.</li>
+    <li><code class="one-line-code">email</code>: Valida se o formato do e-mail é legítimo.</li>
+    <li><code class="one-line-code">confirmed</code>: Exige que haja um campo correspondente com o sufixo <code class="one-line-code">_confirmation</code> (ex:
+      <code class="one-line-code">password</code> e <code class="one-line-code">password_confirmation</code>).</li>
+  </ul>
+
+  <h3>4. Form Requests: Organização em Larga Escala</h3>
+  <p>Para aplicações complexas, manter as regras dentro do Controller viola o princípio da responsabilidade única (SRP).
+    O Laravel resolve isso com os Form Requests, que são classes dedicadas que encapsulam a lógica de validação e
+    autorização.</p>
+
+  <p><strong>Exemplo de Código (Form Request):</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">// Criado via: php artisan make:request StorePostRequest
+
+public function authorize(): bool
+{
+    return true; // Define se o usuário tem permissão para esta ação
+}
+
+public function rules(): array
+{
+    return [
+        'titulo' => 'required|max:100',
+        'slug'   => 'required|alpha_dash|unique:posts',
+    ];
+}</code></pre>
+  </div>
+
+  <p>No Controller, você apenas substitui a classe <code class="one-line-code">Request</code> pela sua nova classe:</p>
+  <div class="code-container">
+    <pre><code class="language-php">public function store(StorePostRequest $request) 
+{
+    // A validação já ocorreu antes de entrar no método!
+    $data = $request->validated();
+    Post::create($data);
+}</code></pre>
+  </div>
+
+  <h3>5. Exibição de Erros no Front-end (Blade)</h3>
+  <p>O Laravel compartilha automaticamente uma variável <code class="one-line-code">$errors</code> com todas as suas views. Você pode usar a
+    diretiva <code class="one-line-code">@error</code> para destacar campos específicos.</p>
+  <p><strong>Exemplo de Código (Blade):</strong></p>
+  <div class="code-container">
+    <pre><code class="language-html">&lt;label for="titulo"&gt;Título do Post&lt;/label&gt;
+&lt;input type="text" name="titulo" class="@error('titulo') is-invalid @enderror"&gt;
+
+@error('titulo')
+    &lt;div class="alert alert-danger"&gt;{% raw %}{{ $message }}{% endraw %}&lt;/div&gt;
+@enderror</code></pre>
+  </div>
+
+  <h3>6. Preparação e Sanitização Pré-Validação</h3>
+  <p>Muitas vezes, os dados precisam ser limpos antes de serem validados (ex: remover espaços extras ou formatar um
+    CPF). Dentro de um Form Request, você pode usar o método <code class="one-line-code">prepareForValidation</code>.</p>
+  <p><strong>Exemplo de Código (Sanitização):</strong></p>
+  <div class="code-container">
+    <pre><code class="language-php">protected function prepareForValidation(): void
+{
+    $this->merge([
+        'slug' => str($this->titulo)->slug(), // Gera o slug a partir do título antes da checagem unique
+    ]);
+}</code></pre>
+  </div>
+
+  <h3>7. Mensagens Personalizadas e Localização</h3>
+  <p>Você pode substituir as mensagens de erro padrão do framework por frases que façam sentido para o seu negócio,
+    inclusive suportando múltiplos idiomas através dos arquivos de tradução em <code class="one-line-code">lang/</code>.</p>
+  <a href="./internacionalizacao/">Mais informações sobre internacionalização...</a>
 </section>
 
 <section class="section-box">
-  <h2>Exemplo de Código</h2>
+  <h2>Exemplos de Código</h2>
+
+  <h3>1. Validação Básica no Controller</h3>
+  <p>Esta é a abordagem inicial, onde as regras são definidas diretamente no método do controlador. É ideal para
+    formulários simples e prototipagem rápida.</p>
   <div class="code-container">
-    <pre><code class="language-php">// Em breve...</code></pre>
+    <pre><code class="language-php">public function store(Request $request)
+{
+    // O método validate redireciona automaticamente em caso de falha [2]
+    $validated = $request->validate([
+        'titulo' => 'required|unique:posts|max:255', // Regras por string (Pipe syntax) [2]
+        'email'  => ['required', 'email'],           // Regras por array (mais legível) [3]
+        'status' => 'required|in:rascunho,publicado', // Validação contra lista específica [4]
+    ]);
+
+    // Se o código chegar aqui, os dados já estão seguros [2]
+    Post::create($validated);
+}</code></pre>
+  </div>
+
+  <h3>2. Validação Avançada: A Regra <code class="one-line-code">bail</code> e Atributos Aninhados</h3>
+  <p>Útil quando você quer interromper a verificação de um campo logo na primeira falha ou validar dados vindos de
+    arrays aninhados no HTML.</p>
+  <div class="code-container">
+    <pre><code class="language-php">$request->validate([
+    // 'bail' para de validar o campo 'usuario' se 'required' falhar [5]
+    'usuario' => 'bail|required|alpha_dash|unique:users',
+    
+    // Validação de dados aninhados (ex: &lt;input name="contato[telefone]"&gt;) [6]
+    'contato.telefone' => 'required|numeric',
+]);</code></pre>
+  </div>
+
+  <h3>3. Form Requests (Organização Profissional)</h3>
+  <p>Para aplicações escaláveis, movemos a lógica para uma classe dedicada. Isso segue o princípio da responsabilidade
+    única (SRP) e limpa o controlador.</p>
+  <p>Gerar classe: <code class="one-line-code">php artisan make:request StorePostRequest</code></p>
+  <div class="code-container">
+    <pre><code class="language-php">// app/Http/Requests/StorePostRequest.php
+public function authorize(): bool
+{
+    return $this->user()->can('create-posts'); // Controle de acesso integrado [8]
+}
+
+public function rules(): array
+{
+    return [
+        'titulo' => 'required|min:5|max:100',
+        'corpo'  => 'required',
+        'imagem' => 'required|image|max:2048', // Validação de arquivo (até 2MB) [4, 9]
+    ];
+}</code></pre>
+  </div>
+
+  <h3>4. Preparação e Sanitização (Pre-Validation)</h3>
+  <p>Muitas vezes precisamos limpar os dados (sanitizar) antes que as regras de validação sejam aplicadas. No Laravel
+    12/13, fazemos isso dentro do Form Request.</p>
+  <div class="code-container">
+    <pre><code class="language-php">protected function prepareForValidation(): void
+{
+    $this->merge([
+        'slug' => str($this->titulo)->slug(),       // Gera slug automaticamente [10]
+        'cpf'  => preg_replace('/\D/', '', $this->cpf), // Remove pontos/traços de um CPF
+    ]);
+}</code></pre>
+  </div>
+
+  <h3>5. Validação de Arrays e Listas Dinâmicas</h3>
+  <p>Cenário comum em sistemas de e-commerce ou cadastros múltiplos, onde o formulário envia uma lista de itens.</p>
+  <div class="code-container">
+    <pre><code class="language-php">$request->validate([
+    'fotos' => 'required|array|min:1',          // Deve ser um array com pelo menos 1 item [12]
+    'fotos.*.url' => 'required|url',           // Cada 'url' dentro do array 'fotos' deve ser válida [6, 11]
+    'fotos.*.legenda' => 'nullable|string',     // Legenda é opcional [13]
+]);</code></pre>
+  </div>
+
+  <h3>6. Regras Customizadas (Closures)</h3>
+  <p>Para validações muito específicas que não existem no framework, você pode usar uma função anônima.</p>
+  <div class="code-container">
+    <pre><code class="language-php">$request->validate([
+    'codigo_promocional' => [
+        'required',
+        function (string $attribute, mixed $value, Closure $fail) {
+            if ($value !== 'ETEC-2024') {
+                $fail("O {$attribute} informado é inválido ou expirou."); // Mensagem dinâmica [14]
+            }
+        },
+    ],
+]);</code></pre>
+  </div>
+
+  <h3>7. Integração no Front-end (Blade)</h3>
+  <p>Como exibir os erros de forma amigável para o usuário final.</p>
+  <div class="code-container">
+    <pre><code class="language-html">&lt;!-- Exibir lista geral de erros no topo [16] --&gt;
+@if ($errors->any())
+    &lt;div class="alert alert-danger"&gt;
+        &lt;ul&gt;
+            @foreach ($errors->all() as $error)
+                &lt;li&gt;{% raw %}{{ $error }}{% endraw %}&lt;/li&gt;
+            @endforeach
+        &lt;/ul&gt;
+    &lt;/div&gt;
+@endif
+
+&lt;!-- Exibir erro específico abaixo de um campo [15] --&gt;
+&lt;input type="text" name="titulo" class="@error('titulo') is-invalid @enderror"&gt;
+@error('titulo')
+    &lt;div class="text-danger"&gt;{% raw %}{{ $message }}{% endraw %}&lt;/div&gt;
+@enderror</code></pre>
   </div>
 </section>
 
@@ -31,7 +252,24 @@ tags:
 <div class="tip-box">
   <h4>Dicas & Lembretes</h4>
   <ul>
-    <li>Pratique os conceitos logo após a leitura.</li>
+    <li><strong>Proteção contra Mass Assignment:</strong> Use sempre o retorno de <code class="one-line-code">$request->validated()</code> ou
+      <code class="one-line-code">$request->safe()</code> para preencher seus modelos, garantindo que apenas campos validados entrem no banco.
+    </li>
+    <li><strong>Validação de Arrays:</strong> O Laravel permite validar entradas de array usando a notação de ponto (ex:
+      <code class="one-line-code">'fotos.*.url' => 'required|url'</code>), o que é essencial para formulários dinâmicos.</li>
+    <li><strong>TDD (Test Driven Development):</strong> Em sistemas de alta qualidade, a validação é o primeiro ponto a
+      ser testado via testes de funcionalidade para garantir que campos obrigatórios nunca fiquem desprotegidos.</li>
+    <li><strong>Validações Mais Utilizadas:
+        <ul>
+          <li><code class="one-line-code">required</code>: Campo obrigatório.</li>
+          <li><code class="one-line-code">email</code>: Deve ser um formato de e-mail válido.</li>
+          <li><code class="one-line-code">unique:tabela,coluna</code>: O valor não pode se repetir no banco de dados.</li>
+          <li><code class="one-line-code">confirmed</code>: O campo deve ter um par igual com o sufixo _confirmation (ex: senha).</li>
+          <li><code class="one-line-code">image</code>: O arquivo deve ser uma imagem (jpg, png, etc.).</li>
+          <li><code class="one-line-code">numeric</code>: Garante que a entrada seja um número.</li>
+          <li><code class="one-line-code">nullable</code>: Permite que o campo seja nulo ou vazio.</li>
+        </ul>
+      </strong></li>
   </ul>
 </div>
 
